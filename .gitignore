@@ -4,4 +4,5 @@
 coverage
 node_modules
 public/assets
-public
+public/loadable-stats.json
+public/webpack-assets.json
