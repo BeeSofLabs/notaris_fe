@@ -1,0 +1,107 @@
+.list-section {
+  margin-top: 50px;
+
+  .list-filter {
+    .search {
+      position: relative;
+      input {
+        color: #707070;
+        box-shadow: none;
+        padding: 15px 36px 15px 45px;
+        border:1px solid  rgba(1, 15, 113, 0.3)
+        ;
+      }
+    }
+    .icon-search {
+      position: absolute;
+      width: 16px;
+      left: 25px;
+      top: 18px;
+    }
+
+    .ant-select {
+      margin-top: 10px;
+      .ant-select-selection {
+        border: none;
+
+        &:focus, &:active {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .filter-harga {
+      position: relative;
+      .wrapper-select {
+        position: absolute;
+        right: 0;
+        width: 80%;
+        padding:5px 20px;
+        border: 1px solid #707070;
+        border-radius: 90px;
+
+        label {
+          font-weight: normal;
+          color: #707070;
+        }
+
+        .ant-select {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+.list-body {
+  margin: 50px auto;
+  width: 80%;
+
+  .list-body-content {
+    padding: 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .name-notaris {
+      h3 {
+        font-size: 20px;
+      }
+    }
+
+    .star {
+      float: right;
+      h1 {
+        float: left;
+        margin-right: 20px;
+        font-size: 20px;
+        color: #0c65e4;
+      }
+    }
+
+    .mid-content {
+      margin-top: 10px; 
+
+      .address {
+        p {
+          font-weight: normal;
+          color:#0c65e4;
+        }
+      }
+    }
+
+    .bottom-content {
+      margin-top: 10px;
+
+      .detail-address {
+        p {
+          color: #707070;
+          font-weight: normal;
+          line-height: 1.5;
+        }   
+      }
+    }
+  }
+}

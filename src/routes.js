@@ -2,7 +2,7 @@
 
 import { usersAction, userAction } from './actions';
 import App from './app';
-import { asyncHome, asyncUserInfo, NotFound } from './pages';
+import { asyncHome, asyncUserInfo, NotFound, List, Detail } from './pages';
 
 export default [
   {
@@ -22,6 +22,22 @@ export default [
         component: asyncUserInfo,
         loadData: ({ params }: Object) => [
           userAction.fetchUserIfNeeded(params.id)
+        ]
+      },
+      {
+        path: '/notaris',
+        exact: true,
+        component: List,
+        loadData: ({ params }: Object) => [
+          // userAction.fetchUserIfNeeded(params.id)
+        ]
+      },
+      {
+        path: '/notaris/:id',
+        exact: true,
+        component: Detail,
+        loadData: ({ params }: Object) => [
+          // userAction.fetchUserIfNeeded(params.id)
         ]
       },
       {

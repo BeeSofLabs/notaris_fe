@@ -1,0 +1,23 @@
+.footer {
+  padding: 38px 0 50px;
+
+  .title-footer {
+    margin-bottom: 20px;
+
+    h4 {
+      font-size: 16px;
+    }
+  }
+
+  .body-footer {
+    font-size: 12px;
+    font-weight: normal;
+    color: #7e8085;
+    
+      ul {
+        li {
+          margin-bottom: 25px;
+        }
+      }
+  }
+}

@@ -1,0 +1,31 @@
+.header {
+  .logo {
+    display: inline-block;
+    margin-right: 40px;
+  }
+  .navigation {
+    display: inline-block;
+    position: relative;
+    bottom: 15px;
+
+    ul {
+      li {
+        display: inline;
+        margin-right: 40px;
+      }
+    }
+  }
+
+  .link-login {
+    text-align: right;
+    margin-top: 15px;
+
+    a {
+      padding: 15px 57px;
+      background: #ffba40;
+      border: none;
+      color: #fff;
+      border-radius: 90px;
+    }
+  }
+}

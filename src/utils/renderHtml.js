@@ -19,7 +19,8 @@ export default (
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link rel="shortcut icon" href="/favicon.ico">
-
+        <script src="http://maps.google.com/maps/api/js?sensor=false" 
+          type="text/javascript"></script>
         ${head.title.toString()}
         ${head.base.toString()}
         ${head.meta.toString()}
