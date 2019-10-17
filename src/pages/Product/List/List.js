@@ -2,11 +2,11 @@
 
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import type { Dispatch, ReduxState } from 'types';
 import { Select, Rate } from 'antd';
 import Helmet from 'react-helmet';
+import type { Dispatch, ReduxState } from '../../../types';
 
-import { PageWrapper, Card } from 'components/element';
+import { PageWrapper, Card } from '../../../components/element';
 
 const { Option } = Select;
 
@@ -48,7 +48,6 @@ export class List extends PureComponent<Props> {
 
   render() {
     const { star } = this.state;
-    console.log('sd', star);
     return (
       <PageWrapper>
         <div className="container">

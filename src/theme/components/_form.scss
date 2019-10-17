@@ -16,3 +16,174 @@ input {
     outline: none;
   }
 }
+
+.group-input-formik {
+  width: 100%;
+  position: relative;
+  font-weight: normal;
+  margin-bottom: 24px;
+
+  label {
+    font-size: 14px;
+    color: #2c2e30;
+    width: 100%;
+    position: relative;
+    font-weight: normal;
+
+    .status-input {
+      position: absolute;
+      top: 10px;
+      right: 0;
+      color:#ff5f5f;
+      font-size: 10px;
+    }
+  }
+
+  .formik-input {
+    background: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 90px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #575962;
+    width: 100%;
+    margin-top: 10px;
+    
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .error {
+    color: #ff5f5f;
+    font-size: 12px;
+  }
+}
+
+.date-input {
+  .ant-calendar-picker {
+    top: 6px;
+  }
+}
+
+.checkbox-section {
+  margin-top: 50px;
+}
+
+.status {
+  background: #dddddd;
+  padding: 7px 20px;
+  text-align: center;
+  color: #fff;
+  border-radius: 90px;
+}
+
+.group-detail-field {
+  margin-bottom: 24px;
+
+  h5 {
+    color: #7e8085;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  .value-detail {
+    color: #2c2e30;
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.43;
+  }
+}
+
+.wrapper-select {
+  top: 10px;
+
+  .dd__selectControl {
+    border: 1px solid #d3d3d3;
+    border-radius: 90px;
+    padding: 9px 16px;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #575962;
+  }
+
+  .icon {
+    transition: all ease 0.3s;
+    -webkit-transform: all ease 0.3s;
+    -moz-transform: all ease 0.3s;
+    -o-transform: all ease 0.3s;
+  }
+
+  .active-icon {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transition: all ease 0.3s;
+    -webkit-transform: all ease 0.3s;
+    -moz-transform: all ease 0.3s;
+    -o-transform: all ease 0.3s;
+  }
+
+  .wrapper-list {
+    border: 1px solid #d3d3d3;
+    overflow-x: unset;
+  }
+}
+
+.date-input {
+  label {
+    font-size: 14px;
+    color: #2c2e30;
+    width: 100%;
+    position: relative;
+    font-weight: normal;
+  }
+
+  .ant-calendar-picker {
+    width: 100%;
+    margin-top: 5px;
+    border-color: 
+
+    &:hover {
+      border:none!important;
+      box-shadow: none;
+    }
+
+    .ant-input {
+      border: 1px solid #d3d3d3 !important;
+      border-radius: 90px;
+      padding: 9px 16px;
+      font-size: 14px;
+      color: #575962;
+      width: 100%;
+      height: auto;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.dropdown-calendar {
+  padding-top: 3px;
+}
+
+.ant-calendar-picker:hover .ant-calendar-picker-input:not(.ant-input-disabled) {
+  border-color: transparent;
+}
+
+.button-notaris {
+  padding: 15px 0;
+  width: 100%;
+  background: #ffba40;
+  border: none;
+  color: #fff;
+  border-radius: 90px;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}

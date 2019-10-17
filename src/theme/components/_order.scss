@@ -1,0 +1,103 @@
+.ant-steps:not(.ant-steps-vertical) .ant-steps-item-custom .ant-steps-item-icon {
+  /* margin-top: 20px; */
+  width: 70px;
+  display: block;
+  height: 70px;
+  border-radius: 90px; 
+  left: 14px;
+  background: rgb(229, 232, 240);
+  position: relative;
+}
+
+
+.ant-steps-item-active, .ant-steps-item-finish {
+  .ant-steps-item-icon {
+    background: #0c65e4!important;
+  }
+
+  .ant-steps-item-title {
+    color: #2c2e30 !important;
+  }
+}
+
+.notaris-review {
+  .photo-profil {
+    width: 80px;
+    height: 80px;
+    border-radius: 90px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
+  .name-notaris {
+    h5 {
+      color: #19225e;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    span {
+      color: #575962;
+      font-size: 14px;
+      font-weight: normal;
+    }
+  }
+}
+
+
+.order-container {
+  margin-top: 40px;
+  padding: 0 90px;
+
+  .ant-steps-icon {
+    top: 14px!important;
+
+    .anticon {
+      font-size: 35px;
+      color: #fff;
+    }
+  }
+
+  .ant-steps-item-title::after {
+    top: -40px;
+    height: 3px;
+    opacity: 0.4;
+  }
+
+  .ant-steps-item-title {
+    padding-top: 20px;
+    color: #677782!important;
+    font-weight: bold !important;
+  }
+
+  .ant-steps-item-active, .ant-steps-item-finish {
+    .ant-steps-item-icon {
+      background: #0c65e4!important;
+    }
+  
+    .ant-steps-item-title {
+      color: #2c2e30 !important;
+    }
+  }
+
+  .step-section {
+    padding: 0 100px;
+    margin-bottom: 30px;
+  }
+
+  .order-form {
+    padding: 40px 30px;
+
+    h4 {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.button-section {
+  width: 100%;
+  margin-top: 50px;
+  float: right;
+}

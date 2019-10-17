@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
-import { InputSearch, PageWrapper } from 'components/element';
+import { InputSearch, PageWrapper } from '../../components/element';
 import { usersAction } from '../../actions';
 import type { Home as HomeType, Dispatch, ReduxState } from '../../types';
 import styles from './styles.scss';

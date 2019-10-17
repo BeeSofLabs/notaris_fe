@@ -2,7 +2,7 @@
 
 import { usersAction, userAction } from './actions';
 import App from './app';
-import { asyncHome, asyncUserInfo, NotFound, List, Detail } from './pages';
+import { asyncHome, asyncUserInfo, NotFound, List, Detail, Order } from './pages';
 
 export default [
   {
@@ -39,6 +39,10 @@ export default [
         loadData: ({ params }: Object) => [
           // userAction.fetchUserIfNeeded(params.id)
         ]
+      },{
+        path: '/notaris/:id/order',
+        exact: true,
+        component: Order,
       },
       {
         component: NotFound
