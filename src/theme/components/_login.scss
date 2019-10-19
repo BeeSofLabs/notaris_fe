@@ -1,0 +1,23 @@
+.login-container {
+  width: 450px;
+  margin: 30px auto;
+
+  .title-login {
+    h4 {
+      font-size: 40px;
+      color: #010f71;
+      text-align: center;
+    }
+    p {
+      margin: 24px auto;
+      color: #687782;
+      font-size: 14px;
+      font-weight: normal;
+      text-align: center;
+    }
+  }
+
+  .form-login {
+    padding: 32px;
+  }
+}

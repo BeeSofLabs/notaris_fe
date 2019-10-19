@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Footer } from 'components/element';
+import { Header, Footer } from '../index.js';
 
 const PageWrapper = props => (
   <div className="body-app">

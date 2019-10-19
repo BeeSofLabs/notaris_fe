@@ -2,159 +2,97 @@
   "errors": [],
   "warnings": [],
   "version": "4.39.2",
-  "hash": "8a6fd144ec3015252f9b",
+  "hash": "6bbcd23477140c002f6d",
   "publicPath": "/assets/",
   "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
   "assetsByChunkName": {
     "Detail": "Detail.js",
-    "Detail~Home~List~Order": "Detail~Home~List~Order.js",
-    "Home": [
-      "Home.css",
-      "Home.js"
-    ],
+    "Detail~Home~List~Login~Order": "Detail~Home~List~Login~Order.js",
+    "Home": ["Home.css", "Home.js"],
     "List": "List.js",
-    "Order": [
-      "Order.js",
-      "Order.dd29e90e76a67a32cdf3.hot-update.js"
-    ],
-    "UserInfo": [
-      "UserInfo.css",
-      "UserInfo.js"
-    ],
-    "main": [
-      "main.css",
-      "main.js"
-    ],
-    "vendors~Detail~Home~List~Order": "vendors~Detail~Home~List~Order.js",
+    "Login": "Login.js",
+    "Order": "Order.js",
+    "UserInfo": ["UserInfo.css", "UserInfo.js"],
+    "main": ["main.css", "main.js"],
+    "vendors~Detail~Home~List~Login~Order": "vendors~Detail~Home~List~Login~Order.js",
     "vendors~Order": "vendors~Order.js"
   },
   "assets": [
     {
       "name": "Detail.js",
       "size": 38196,
-      "chunks": [
-        "Detail"
-      ],
-      "chunkNames": [
-        "Detail"
-      ],
+      "chunks": ["Detail"],
+      "chunkNames": ["Detail"],
       "emitted": false
     },
     {
-      "name": "Detail~Home~List~Order.js",
-      "size": 105020,
-      "chunks": [
-        "Detail~Home~List~Order"
-      ],
-      "chunkNames": [
-        "Detail~Home~List~Order"
-      ],
+      "name": "Detail~Home~List~Login~Order.js",
+      "size": 104984,
+      "chunks": ["Detail~Home~List~Login~Order"],
+      "chunkNames": ["Detail~Home~List~Login~Order"],
       "emitted": false
     },
     {
       "name": "Home.css",
       "size": 30,
-      "chunks": [
-        "Home"
-      ],
-      "chunkNames": [
-        "Home"
-      ],
+      "chunks": ["Home"],
+      "chunkNames": ["Home"],
       "emitted": false
     },
     {
       "name": "Home.js",
       "size": 62337,
-      "chunks": [
-        "Home"
-      ],
-      "chunkNames": [
-        "Home"
-      ],
+      "chunks": ["Home"],
+      "chunkNames": ["Home"],
       "emitted": false
     },
     {
       "name": "List.js",
       "size": 48987,
-      "chunks": [
-        "List"
-      ],
-      "chunkNames": [
-        "List"
-      ],
+      "chunks": ["List"],
+      "chunkNames": ["List"],
       "emitted": false
     },
     {
-      "name": "Order.dd29e90e76a67a32cdf3.hot-update.js",
-      "size": 83552,
-      "chunks": [
-        "Order"
-      ],
-      "chunkNames": [
-        "Order"
-      ],
+      "name": "Login.js",
+      "size": 19900,
+      "chunks": ["Login"],
+      "chunkNames": ["Login"],
       "emitted": false
     },
     {
       "name": "Order.js",
       "size": 84552,
-      "chunks": [
-        "Order"
-      ],
-      "chunkNames": [
-        "Order"
-      ],
+      "chunks": ["Order"],
+      "chunkNames": ["Order"],
       "emitted": false
     },
     {
       "name": "UserInfo.css",
       "size": 34,
-      "chunks": [
-        "UserInfo"
-      ],
-      "chunkNames": [
-        "UserInfo"
-      ],
+      "chunks": ["UserInfo"],
+      "chunkNames": ["UserInfo"],
       "emitted": false
     },
     {
       "name": "UserInfo.js",
       "size": 48790,
-      "chunks": [
-        "UserInfo"
-      ],
-      "chunkNames": [
-        "UserInfo"
-      ],
-      "emitted": false
-    },
-    {
-      "name": "dd29e90e76a67a32cdf3.hot-update.json",
-      "size": 47,
-      "chunks": [],
-      "chunkNames": [],
+      "chunks": ["UserInfo"],
+      "chunkNames": ["UserInfo"],
       "emitted": false
     },
     {
       "name": "main.css",
-      "size": 910484,
-      "chunks": [
-        "main"
-      ],
-      "chunkNames": [
-        "main"
-      ],
-      "emitted": true
+      "size": 910930,
+      "chunks": ["main"],
+      "chunkNames": ["main"],
+      "emitted": false
     },
     {
       "name": "main.js",
-      "size": 4642060,
-      "chunks": [
-        "main"
-      ],
-      "chunkNames": [
-        "main"
-      ],
+      "size": 4648687,
+      "chunks": ["main"],
+      "chunkNames": ["main"],
       "emitted": false
     },
     {
@@ -165,63 +103,45 @@
       "emitted": false
     },
     {
-      "name": "vendors~Detail~Home~List~Order.js",
-      "size": 16499724,
-      "chunks": [
-        "vendors~Detail~Home~List~Order"
-      ],
-      "chunkNames": [
-        "vendors~Detail~Home~List~Order"
-      ],
+      "name": "vendors~Detail~Home~List~Login~Order.js",
+      "size": 16499730,
+      "chunks": ["vendors~Detail~Home~List~Login~Order"],
+      "chunkNames": ["vendors~Detail~Home~List~Login~Order"],
       "emitted": false
     },
     {
       "name": "vendors~Order.js",
       "size": 573417,
-      "chunks": [
-        "vendors~Order"
-      ],
-      "chunkNames": [
-        "vendors~Order"
-      ],
+      "chunks": ["vendors~Order"],
+      "chunkNames": ["vendors~Order"],
       "emitted": false
     }
   ],
   "filteredAssets": 0,
   "entrypoints": {
     "main": {
-      "chunks": [
-        "main"
-      ],
-      "assets": [
-        "main.css",
-        "main.js"
-      ],
+      "chunks": ["main"],
+      "assets": ["main.css", "main.js"],
       "children": {},
       "childAssets": {}
     }
   },
   "namedChunkGroups": {
     "main": {
-      "chunks": [
-        "main"
-      ],
-      "assets": [
-        "main.css",
-        "main.js"
-      ],
+      "chunks": ["main"],
+      "assets": ["main.css", "main.js"],
       "children": {},
       "childAssets": {}
     },
     "Home": {
       "chunks": [
-        "vendors~Detail~Home~List~Order",
-        "Detail~Home~List~Order",
+        "vendors~Detail~Home~List~Login~Order",
+        "Detail~Home~List~Login~Order",
         "Home"
       ],
       "assets": [
-        "vendors~Detail~Home~List~Order.js",
-        "Detail~Home~List~Order.js",
+        "vendors~Detail~Home~List~Login~Order.js",
+        "Detail~Home~List~Login~Order.js",
         "Home.css",
         "Home.js"
       ],
@@ -229,25 +149,20 @@
       "childAssets": {}
     },
     "UserInfo": {
-      "chunks": [
-        "UserInfo"
-      ],
-      "assets": [
-        "UserInfo.css",
-        "UserInfo.js"
-      ],
+      "chunks": ["UserInfo"],
+      "assets": ["UserInfo.css", "UserInfo.js"],
       "children": {},
       "childAssets": {}
     },
     "List": {
       "chunks": [
-        "vendors~Detail~Home~List~Order",
-        "Detail~Home~List~Order",
+        "vendors~Detail~Home~List~Login~Order",
+        "Detail~Home~List~Login~Order",
         "List"
       ],
       "assets": [
-        "vendors~Detail~Home~List~Order.js",
-        "Detail~Home~List~Order.js",
+        "vendors~Detail~Home~List~Login~Order.js",
+        "Detail~Home~List~Login~Order.js",
         "List.js"
       ],
       "children": {},
@@ -255,13 +170,13 @@
     },
     "Detail": {
       "chunks": [
-        "vendors~Detail~Home~List~Order",
-        "Detail~Home~List~Order",
+        "vendors~Detail~Home~List~Login~Order",
+        "Detail~Home~List~Login~Order",
         "Detail"
       ],
       "assets": [
-        "vendors~Detail~Home~List~Order.js",
-        "Detail~Home~List~Order.js",
+        "vendors~Detail~Home~List~Login~Order.js",
+        "Detail~Home~List~Login~Order.js",
         "Detail.js"
       ],
       "children": {},
@@ -269,17 +184,30 @@
     },
     "Order": {
       "chunks": [
-        "vendors~Detail~Home~List~Order",
+        "vendors~Detail~Home~List~Login~Order",
         "vendors~Order",
-        "Detail~Home~List~Order",
+        "Detail~Home~List~Login~Order",
         "Order"
       ],
       "assets": [
-        "vendors~Detail~Home~List~Order.js",
+        "vendors~Detail~Home~List~Login~Order.js",
         "vendors~Order.js",
-        "Detail~Home~List~Order.js",
-        "Order.js",
-        "Order.dd29e90e76a67a32cdf3.hot-update.js"
+        "Detail~Home~List~Login~Order.js",
+        "Order.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "Login": {
+      "chunks": [
+        "vendors~Detail~Home~List~Login~Order",
+        "Detail~Home~List~Login~Order",
+        "Login"
+      ],
+      "assets": [
+        "vendors~Detail~Home~List~Login~Order.js",
+        "Detail~Home~List~Login~Order.js",
+        "Login.js"
       ],
       "children": {},
       "childAssets": {}
@@ -292,5 +220,380 @@
       "debug": false
     }
   },
-  "children": []
+  "children": [
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/antd/dist/antd.css"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/bootstrap/dist/css/bootstrap.css"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/normalize.css/normalize.css"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--5-1!node_modules/postcss-loader/src/index.js??ref--5-2!node_modules/react-select-me/lib/ReactSelectMe.css"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!node_modules/postcss-loader/src/index.js??ref--6-2!node_modules/sass-loader/dist/cjs.js??ref--6-3!src/components/Loading/styles.scss"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!node_modules/postcss-loader/src/index.js??ref--6-2!node_modules/sass-loader/dist/cjs.js??ref--6-3!src/components/UserCard/styles.scss"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!node_modules/postcss-loader/src/index.js??ref--6-2!node_modules/sass-loader/dist/cjs.js??ref--6-3!src/components/UserList/styles.scss"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!node_modules/postcss-loader/src/index.js??ref--6-2!node_modules/sass-loader/dist/cjs.js??ref--6-3!src/pages/Home/styles.scss"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!node_modules/postcss-loader/src/index.js??ref--6-2!node_modules/sass-loader/dist/cjs.js??ref--6-3!src/pages/NotFound/styles.scss"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!node_modules/postcss-loader/src/index.js??ref--6-2!node_modules/sass-loader/dist/cjs.js??ref--6-3!src/pages/UserInfo/styles.scss"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": ["mini-css-extract-plugin"],
+          "assets": ["*"],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!node_modules/postcss-loader/src/index.js??ref--6-2!node_modules/sass-loader/dist/cjs.js??ref--6-3!src/theme/styles.scss"
+    }
+  ]
 }

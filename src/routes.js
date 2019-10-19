@@ -2,7 +2,7 @@
 
 import { usersAction, userAction } from './actions';
 import App from './app';
-import { asyncHome, asyncUserInfo, NotFound, List, Detail, Order } from './pages';
+import { asyncHome, asyncUserInfo, NotFound, List, Detail, Order, Login } from './pages';
 
 export default [
   {
@@ -43,6 +43,11 @@ export default [
         path: '/notaris/:id/order',
         exact: true,
         component: Order,
+      },
+      {
+        path: '/login',
+        exact: true,
+        component: Login
       },
       {
         component: NotFound

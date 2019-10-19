@@ -11,7 +11,7 @@ import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-select-me/lib/ReactSelectMe.css';
 import 'normalize.css/normalize.css'; // eslint-disable-line import/first
-import 'theme/styles.scss';
+import '../theme/styles.scss';
 
 type Props = { route: Object };
 

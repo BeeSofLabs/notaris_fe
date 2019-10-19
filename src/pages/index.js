@@ -6,6 +6,7 @@ import NotFound from './NotFound'
 import List from './Product/List'
 import Detail from './Product/Detail'
 import Order from './Product/Order'
+import Login from './Login'
 
 export { 
   asyncHome, 
@@ -13,5 +14,6 @@ export {
   NotFound, 
   List, 
   Detail,
-  Order
+  Order,
+  Login
 };
