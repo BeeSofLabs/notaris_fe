@@ -7,12 +7,21 @@ import Helmet from 'react-helmet';
 import { Formik, Form } from 'formik'
 import { Link } from 'react-router-dom'
 
-import { PageWrapper, Card, InputFormik } from '../../components/element';
+import { PageWrapper, Card, InputFormik, Button } from '../../components/element';
 
 export class Login extends PureComponent<Props> {
   render() {
     return (
-      <PageWrapper>
+      <PageWrapper
+        buttonLogin={true}
+      >
+        <div className="login-page-background">
+          <img
+            src={require('../../app/assets/img/banner-home.svg')}
+            alt="banner-home"
+            className="background-cover"
+          />
+        </div>
         <div className="container">
           <div className="login-container">
             <div className="title-login">
@@ -60,12 +69,26 @@ silakan masuk menggunakan akun Anda terlebih dahulu</p>
                               </Link>
                             </div>
                           </div>
+                          <div className="col-md-12">
+                            <div className="button-section">
+                              <Button
+                                className="button-left"
+                                type="submit"
+                                disabled={false}
+                              >
+                                Lanjut
+                              </Button>
+                            </div>
+                          </div>
                         </div>
                       </Form>
                     )
                   }}
                 </Formik>
               </Card>
+              <div className="section-to-register">
+                <p>Belum memiliki akun? Silakan <Link to="/register">Register Akun Baru</Link></p>
+              </div>
             </div>
           </div>
         </div>

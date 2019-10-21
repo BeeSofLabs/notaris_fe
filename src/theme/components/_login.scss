@@ -1,6 +1,6 @@
 .login-container {
   width: 450px;
-  margin: 30px auto;
+  margin: 80px auto 10px;
 
   .title-login {
     h4 {
@@ -19,5 +19,29 @@
 
   .form-login {
     padding: 32px;
+
+    .button-section {
+      width: 60%;
+      margin: 30px auto 0;
+      float: unset;
+    }
   }
+
+  .section-to-register {
+    margin-top: -30px;
+    text-align: center;
+    color: #687782;
+    font-weight: normal;
+
+    a {
+      font-weight: bold;
+    }
+  }
+}
+
+.login-page-background {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
 }

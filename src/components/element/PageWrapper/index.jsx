@@ -5,7 +5,9 @@ const PageWrapper = props => (
   <div className="body-app">
     <Header {...props} />
     {props.children}
-    <Footer />
+    {props.footerShow ? (
+      <Footer />
+    ) : ''}
   </div>
 );
 

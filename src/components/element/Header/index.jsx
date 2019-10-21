@@ -1,16 +1,15 @@
-import React from 'react';
-import { Row, Col } from 'antd';
-
+import React from 'react'
+import { Row, Col } from 'antd'
+import { Link } from 'react-router-dom'
 const Header = props => {
-  if (false) {
-    return ' ';
-  }
   return (
     <div className="header">
       <div className="container">
         <Row>
           <Col md={18}>
-            <div className="logo" />
+            <Link to="/">
+              <div className="logo" />
+            </Link>
             <div className="navigation">
               <ul>
                 <li>Tentang Kami</li>
@@ -20,11 +19,11 @@ const Header = props => {
               </ul>
             </div>
           </Col>
-          <Col md={6}>
+          {!props.buttonLogin ? (<Col md={6}>
             <div className="link-login">
-              <a href="/">Login</a>
+              <Link to="/login">Login</Link>
             </div>
-          </Col>
+          </Col>) : ''}
         </Row>
       </div>
     </div>

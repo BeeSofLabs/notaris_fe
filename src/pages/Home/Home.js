@@ -3,7 +3,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-
 import { InputSearch, PageWrapper } from '../../components/element';
 import { usersAction } from '../../actions';
 import type { Home as HomeType, Dispatch, ReduxState } from '../../types';
@@ -21,11 +20,18 @@ export class Home extends PureComponent<Props> {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
     const { fetchUsersIfNeeded } = this.props;
     fetchUsersIfNeeded();
+  }
+
+  handleSearch (e) {
+    e.preventDefault()
+
+    window.location = `/notaris?name=${this.state.search}`
   }
 
   onChange = e => {
@@ -59,7 +65,9 @@ export class Home extends PureComponent<Props> {
     return (
       <div className={styles.Home}>
         <Helmet title="Home" />
-        <PageWrapper>
+        <PageWrapper
+          showFooter={true}
+        >
           <img
             src={require('../../app/assets/img/banner-home.svg')}
             alt="banner-home"
@@ -74,17 +82,26 @@ export class Home extends PureComponent<Props> {
                       Kini Mencari Notaris <br /> Hanya Dengan Satu Klik
                     </h4>
                     <div className="search-section">
-                      <InputSearch
-                        id="search"
-                        value={search}
-                        onChange={this.onChange}
-                        placeholder="Ketik Keperluan Anda eg, PPAT,SKMHT"
-                      />
-                      <img
-                        src={require('../../app/assets/img/search.svg')}
-                        alt="search"
-                        className="icon-search"
-                      />
+                      <form
+                        onSubmit={this.handleSearch}
+                      >
+                        <InputSearch
+                          id="search"
+                          value={search}
+                          onChange={this.onChange}
+                          placeholder="Ketik Keperluan Anda eg, PPAT,SKMHT"
+                        />
+                        <button 
+                          type="submit"
+                          className="icon-search"
+                        >
+                          <img
+                            src={require('../../app/assets/img/search.svg')}
+                            alt="search"
+                            // className="icon-search"
+                          />
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>
