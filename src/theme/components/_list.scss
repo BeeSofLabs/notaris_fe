@@ -17,6 +17,13 @@
       width: 16px;
       left: 25px;
       top: 18px;
+      background: none;
+      border: none;
+      padding: 0;
+      
+      img {
+        width: 100%;
+      }
     }
 
     .ant-select {

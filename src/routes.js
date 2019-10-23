@@ -2,7 +2,7 @@
 
 import { usersAction, userAction } from './actions';
 import App from './app';
-import { asyncHome, asyncUserInfo, NotFound, List, Detail, Order, Login } from './pages';
+import { asyncHome, asyncUserInfo, NotFound, List, Detail, Order, Login, Register, Account } from './pages';
 
 export default [
   {
@@ -48,6 +48,16 @@ export default [
         path: '/login',
         exact: true,
         component: Login
+      },
+      {
+        path: '/register',
+        exact: true,
+        component: Register
+      },
+      {
+        path: '/account',
+        exact: true,
+        component: Account
       },
       {
         component: NotFound

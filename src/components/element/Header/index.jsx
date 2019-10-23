@@ -1,6 +1,7 @@
-import React from 'react'
-import { Row, Col } from 'antd'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
+
 const Header = props => {
   return (
     <div className="header">
@@ -19,11 +20,15 @@ const Header = props => {
               </ul>
             </div>
           </Col>
-          {!props.buttonLogin ? (<Col md={6}>
-            <div className="link-login">
-              <Link to="/login">Login</Link>
-            </div>
-          </Col>) : ''}
+          {!props.buttonLogin ? (
+            <Col md={6}>
+              <div className="link-login">
+                <Link to="/login">Login</Link>
+              </div>
+            </Col>
+          ) : (
+            ''
+          )}
         </Row>
       </div>
     </div>

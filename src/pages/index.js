@@ -7,6 +7,8 @@ import List from './Product/List'
 import Detail from './Product/Detail'
 import Order from './Product/Order'
 import Login from './Login'
+import Register from './Register'
+import Account from './Account'
 
 export { 
   asyncHome, 
@@ -15,5 +17,7 @@ export {
   List, 
   Detail,
   Order,
-  Login
+  Login,
+  Register,
+  Account
 };

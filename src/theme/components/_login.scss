@@ -32,6 +32,98 @@
     text-align: center;
     color: #687782;
     font-weight: normal;
+    position: relative;
+    z-index: 999;
+
+    a {
+      font-weight: bold;
+    }
+  }
+}
+
+.register-container {
+  width: 642px;
+  margin: 80px auto 84px;
+
+  .title-login {
+    h4 {
+      font-size: 40px;
+      color: #010f71;
+      text-align: center;
+    }
+    p {
+      margin: 24px auto;
+      color: #687782;
+      font-size: 14px;
+      font-weight: normal;
+      text-align: center;
+    }
+  }
+
+  .form-login {
+    padding: 32px;
+
+    .button-section {
+      width: 60%;
+      margin: 30px auto 0;
+      float: unset;
+    }
+  }
+
+  .section-to-register {
+    margin-top: -30px;
+    text-align: center;
+    color: #687782;
+    font-weight: normal;
+    position: relative;
+    z-index: 999;
+
+    a {
+      font-weight: bold;
+    }
+  }
+}
+
+.account-container {
+  width: 80%;
+  margin: 80px auto 84px;
+
+  h3 {
+    margin-bottom: 20px;
+  }
+
+  .title-login {
+    h4 {
+      font-size: 40px;
+      color: #010f71;
+      text-align: center;
+    }
+    p {
+      margin: 24px auto;
+      color: #687782;
+      font-size: 14px;
+      font-weight: normal;
+      text-align: center;
+    }
+  }
+
+  .form-login {
+    padding: 32px;
+
+    .button-section {
+      width: 60%;
+      margin: 30px auto 0;
+      float: unset;
+    }
+  }
+
+  .section-to-register {
+    margin-top: -30px;
+    text-align: center;
+    color: #687782;
+    font-weight: normal;
+    position: relative;
+    z-index: 999;
 
     a {
       font-weight: bold;

@@ -4,17 +4,20 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Select, Rate } from 'antd';
 import Helmet from 'react-helmet';
-import { Formik, Form } from 'formik'
-import { Link } from 'react-router-dom'
+import { Formik, Form } from 'formik';
+import { Link } from 'react-router-dom';
 
-import { PageWrapper, Card, InputFormik, Button } from '../../components/element';
+import {
+  PageWrapper,
+  Card,
+  InputFormik,
+  Button
+} from '../../components/element';
 
 export class Login extends PureComponent<Props> {
   render() {
     return (
-      <PageWrapper
-        buttonLogin={true}
-      >
+      <PageWrapper buttonLogin>
         <div className="login-page-background">
           <img
             src={require('../../app/assets/img/banner-home.svg')}
@@ -26,8 +29,10 @@ export class Login extends PureComponent<Props> {
           <div className="login-container">
             <div className="title-login">
               <h4>Silakan Masuk </h4>
-              <p>Untuk melanjutkan proses order notaris, 
-silakan masuk menggunakan akun Anda terlebih dahulu</p>
+              <p>
+                Untuk melanjutkan proses order notaris, silakan masuk
+                menggunakan akun Anda terlebih dahulu
+              </p>
             </div>
             <div className="body-login">
               <Card>
@@ -36,13 +41,9 @@ silakan masuk menggunakan akun Anda terlebih dahulu</p>
                     email: '',
                     password: ''
                   }}
-                  onSubmit={value => {
-
-                  }}
+                  onSubmit={value => {}}
                 >
-                  {({
-                    errors, touched, values, setFieldValue
-                  }) => {
+                  {({ errors, touched, values, setFieldValue }) => {
                     return (
                       <Form className="form-login">
                         <div className="row">
@@ -51,7 +52,11 @@ silakan masuk menggunakan akun Anda terlebih dahulu</p>
                               name="email"
                               label="Email"
                               placeholder="Masukan email"
-                              error={errors.email && touched.email ? errors.email : null}
+                              error={
+                                errors.email && touched.email
+                                  ? errors.email
+                                  : null
+                              }
                             />
                           </div>
                           <div className="col-md-12">
@@ -59,14 +64,16 @@ silakan masuk menggunakan akun Anda terlebih dahulu</p>
                               name="password"
                               label="Password"
                               placeholder="Masukan email"
-                              error={errors.email && touched.email ? errors.email : null}
+                              error={
+                                errors.email && touched.email
+                                  ? errors.email
+                                  : null
+                              }
                             />
                           </div>
                           <div className="col-md-12">
                             <div className="forgot-button">
-                              <Link to="/forgot">
-                                forgot password
-                              </Link>
+                              <Link to="/forgot">forgot password</Link>
                             </div>
                           </div>
                           <div className="col-md-12">
@@ -76,24 +83,27 @@ silakan masuk menggunakan akun Anda terlebih dahulu</p>
                                 type="submit"
                                 disabled={false}
                               >
-                                Lanjut
+                                Login
                               </Button>
                             </div>
                           </div>
                         </div>
                       </Form>
-                    )
+                    );
                   }}
                 </Formik>
               </Card>
               <div className="section-to-register">
-                <p>Belum memiliki akun? Silakan <Link to="/register">Register Akun Baru</Link></p>
+                <p>
+                  Belum memiliki akun? Silakan{' '}
+                  <Link to="/register">Register Akun Baru</Link>
+                </p>
               </div>
             </div>
           </div>
         </div>
       </PageWrapper>
-    )
+    );
   }
 }
 
@@ -104,4 +114,4 @@ const mapDispatchToProps = () => ({});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login)
+)(Login);

@@ -3,6 +3,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Select, Rate } from 'antd';
+import { Link } from 'react-router-dom'
 import Helmet from 'react-helmet';
 import type { Dispatch, ReduxState } from '../../../types';
 
@@ -17,7 +18,8 @@ export class List extends PureComponent<Props> {
     super(props);
 
     this.state = {
-      star: 2
+      star: 2,
+      search: ''
     };
 
     this.onChangeStar = this.onChangeStar.bind(this);
@@ -47,7 +49,7 @@ export class List extends PureComponent<Props> {
   }
 
   render() {
-    const { star } = this.state;
+    const { star, search } = this.state;
     return (
       <PageWrapper>
         <div className="container">
@@ -57,12 +59,21 @@ export class List extends PureComponent<Props> {
                 <div className="col-md-4">
                   <div className="search">
                     <label forHtml="search">
-                      <input type="text" />
-                      <img
-                        src={require('app/assets/img/search.svg')}
-                        alt="search"
-                        className="icon-search"
-                      />
+                      <form onSubmit={this.handleSearch}>
+                        <input 
+                          type="text"
+                          value={search} 
+                          placeholder="Cari ..."
+                        />
+                        <button type="submit" className="icon-search">
+                          <img
+                            src={require('../../../app/assets/img/search.svg')}
+                            alt="search"
+                          />
+                        </button>
+                      </form>
+                      
+                      
                     </label>
                   </div>
                 </div>
@@ -109,7 +120,8 @@ export class List extends PureComponent<Props> {
             </div>
             <div className="list-body">
               <Card>
-                <div className="list-body-content">
+                <Link to="/notaris/1">
+                  <div className="list-body-content">
                   <div className="top-content">
                     <div className="row">
                       <div className="col-md-6">
@@ -141,6 +153,7 @@ export class List extends PureComponent<Props> {
                     </div>
                   </div>
                 </div>
+                </Link>
                 <div className="list-body-content">
                   <div className="top-content">
                     <div className="row">

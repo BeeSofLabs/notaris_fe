@@ -28,10 +28,10 @@ export class Home extends PureComponent<Props> {
     fetchUsersIfNeeded();
   }
 
-  handleSearch (e) {
-    e.preventDefault()
+  handleSearch(e) {
+    e.preventDefault();
 
-    window.location = `/notaris?name=${this.state.search}`
+    window.location = `/notaris?name=${this.state.search}`;
   }
 
   onChange = e => {
@@ -65,9 +65,7 @@ export class Home extends PureComponent<Props> {
     return (
       <div className={styles.Home}>
         <Helmet title="Home" />
-        <PageWrapper
-          showFooter={true}
-        >
+        <PageWrapper showFooter>
           <img
             src={require('../../app/assets/img/banner-home.svg')}
             alt="banner-home"
@@ -82,19 +80,14 @@ export class Home extends PureComponent<Props> {
                       Kini Mencari Notaris <br /> Hanya Dengan Satu Klik
                     </h4>
                     <div className="search-section">
-                      <form
-                        onSubmit={this.handleSearch}
-                      >
+                      <form onSubmit={this.handleSearch}>
                         <InputSearch
                           id="search"
                           value={search}
                           onChange={this.onChange}
                           placeholder="Ketik Keperluan Anda eg, PPAT,SKMHT"
                         />
-                        <button 
-                          type="submit"
-                          className="icon-search"
-                        >
+                        <button type="submit" className="icon-search">
                           <img
                             src={require('../../app/assets/img/search.svg')}
                             alt="search"
