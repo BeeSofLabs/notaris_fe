@@ -2,13 +2,13 @@
   "errors": [],
   "warnings": [],
   "version": "4.39.2",
-  "hash": "b07538ce628f89cdf2cb",
+  "hash": "ea4e7ab7c9008ac11831",
   "publicPath": "/assets/",
   "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
   "assetsByChunkName": {
     "Account": [
       "Account.js",
-      "Account.9d95ca2dfe23a4dd510b.hot-update.js"
+      "Account.9b109726d0cc7cf7d53d.hot-update.js"
     ],
     "Account~Detail~Home~List~Login~Order~Register": "Account~Detail~Home~List~Login~Order~Register.js",
     "Detail": "Detail.js",
@@ -26,22 +26,24 @@
     ],
     "main": [
       "main.css",
-      "main.js"
+      "main.js",
+      "main.9b109726d0cc7cf7d53d.hot-update.js"
     ],
+    "vendors~Account": "vendors~Account.js",
     "vendors~Account~Detail~Home~List~Login~Order~Register": "vendors~Account~Detail~Home~List~Login~Order~Register.js",
     "vendors~Order": "vendors~Order.js"
   },
   "assets": [
     {
-      "name": "9d95ca2dfe23a4dd510b.hot-update.json",
-      "size": 49,
+      "name": "9b109726d0cc7cf7d53d.hot-update.json",
+      "size": 161,
       "chunks": [],
       "chunkNames": [],
       "emitted": false
     },
     {
-      "name": "Account.9d95ca2dfe23a4dd510b.hot-update.js",
-      "size": 35153,
+      "name": "Account.9b109726d0cc7cf7d53d.hot-update.js",
+      "size": 96121,
       "chunks": [
         "Account"
       ],
@@ -52,7 +54,7 @@
     },
     {
       "name": "Account.js",
-      "size": 35230,
+      "size": 96198,
       "chunks": [
         "Account"
       ],
@@ -63,14 +65,14 @@
     },
     {
       "name": "Account~Detail~Home~List~Login~Order~Register.js",
-      "size": 122385,
+      "size": 122245,
       "chunks": [
         "Account~Detail~Home~List~Login~Order~Register"
       ],
       "chunkNames": [
         "Account~Detail~Home~List~Login~Order~Register"
       ],
-      "emitted": false
+      "emitted": true
     },
     {
       "name": "Detail.js",
@@ -92,7 +94,7 @@
       "chunkNames": [
         "Home"
       ],
-      "emitted": false
+      "emitted": true
     },
     {
       "name": "Home.js",
@@ -103,11 +105,11 @@
       "chunkNames": [
         "Home"
       ],
-      "emitted": false
+      "emitted": true
     },
     {
       "name": "List.js",
-      "size": 78001,
+      "size": 77932,
       "chunks": [
         "List"
       ],
@@ -118,7 +120,7 @@
     },
     {
       "name": "Login.js",
-      "size": 25983,
+      "size": 25845,
       "chunks": [
         "Login"
       ],
@@ -140,7 +142,7 @@
     },
     {
       "name": "Register.js",
-      "size": 32803,
+      "size": 33398,
       "chunks": [
         "Register"
       ],
@@ -158,7 +160,7 @@
       "chunkNames": [
         "UserInfo"
       ],
-      "emitted": false
+      "emitted": true
     },
     {
       "name": "UserInfo.js",
@@ -169,11 +171,11 @@
       "chunkNames": [
         "UserInfo"
       ],
-      "emitted": false
+      "emitted": true
     },
     {
-      "name": "main.css",
-      "size": 913753,
+      "name": "main.9b109726d0cc7cf7d53d.hot-update.js",
+      "size": 41645,
       "chunks": [
         "main"
       ],
@@ -183,8 +185,19 @@
       "emitted": false
     },
     {
+      "name": "main.css",
+      "size": 914149,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "emitted": true
+    },
+    {
       "name": "main.js",
-      "size": 4662248,
+      "size": 4662566,
       "chunks": [
         "main"
       ],
@@ -201,6 +214,17 @@
       "emitted": false
     },
     {
+      "name": "vendors~Account.js",
+      "size": 56430,
+      "chunks": [
+        "vendors~Account"
+      ],
+      "chunkNames": [
+        "vendors~Account"
+      ],
+      "emitted": true
+    },
+    {
       "name": "vendors~Account~Detail~Home~List~Login~Order~Register.js",
       "size": 16499747,
       "chunks": [
@@ -209,7 +233,7 @@
       "chunkNames": [
         "vendors~Account~Detail~Home~List~Login~Order~Register"
       ],
-      "emitted": false
+      "emitted": true
     },
     {
       "name": "vendors~Order.js",
@@ -231,7 +255,8 @@
       ],
       "assets": [
         "main.css",
-        "main.js"
+        "main.js",
+        "main.9b109726d0cc7cf7d53d.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
@@ -244,7 +269,8 @@
       ],
       "assets": [
         "main.css",
-        "main.js"
+        "main.js",
+        "main.9b109726d0cc7cf7d53d.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
@@ -350,14 +376,16 @@
     "Account": {
       "chunks": [
         "vendors~Account~Detail~Home~List~Login~Order~Register",
+        "vendors~Account",
         "Account~Detail~Home~List~Login~Order~Register",
         "Account"
       ],
       "assets": [
         "vendors~Account~Detail~Home~List~Login~Order~Register.js",
+        "vendors~Account.js",
         "Account~Detail~Home~List~Login~Order~Register.js",
         "Account.js",
-        "Account.9d95ca2dfe23a4dd510b.hot-update.js"
+        "Account.9b109726d0cc7cf7d53d.hot-update.js"
       ],
       "children": {},
       "childAssets": {}

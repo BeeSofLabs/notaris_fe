@@ -120,7 +120,7 @@ export class List extends PureComponent<Props> {
             </div>
             <div className="list-body">
               <Card>
-                <Link to="/notaris/1">
+                <a href="/notaris/1">
                   <div className="list-body-content">
                   <div className="top-content">
                     <div className="row">
@@ -153,7 +153,7 @@ export class List extends PureComponent<Props> {
                     </div>
                   </div>
                 </div>
-                </Link>
+                </a>
                 <div className="list-body-content">
                   <div className="top-content">
                     <div className="row">

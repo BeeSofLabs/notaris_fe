@@ -21,13 +21,16 @@ export class Register extends PureComponent<Props> {
     this.state = {
       optionsRole: [{
         label: 'Debitur',
-        value: 0
+        value: 'db'
       }, {
         label: 'Kreditur',
-        value: 1
+        value: 'kd'
       }, {
         label: 'Pemilik Agunan',
-        value: 2
+        value: 'pa'
+      }, {
+        label: 'Notaris',
+        value: 'nt'
       }],
       optionsStatus: [{
         label: 'Perorangan',
@@ -60,9 +63,11 @@ export class Register extends PureComponent<Props> {
                       password: '',
                       confirm_password: ''
                     }}
-                    onSubmit={value => {}}
+                    onSubmit={value => {
+                      window.location = `/account?role=${value.role.value}`
+                    }}
                   >
-                    {({ errors, touched, values, setFieldValue }) => {
+                    {({ errors, touched, values, setFieldValue, onSubmit }) => {
                       const onChangeSelect = (name ,value) => {
                         setFieldValue(name, value)
                       }
@@ -159,7 +164,7 @@ export class Register extends PureComponent<Props> {
                 <div className="section-to-register">
                   <p>
                     Sudah memiliki akun? {' '}
-                    <Link to="/login">Login Disini</Link>
+                    <a href="/login">Login Disini</a>
                   </p>
                 </div>
               </div>

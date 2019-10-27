@@ -324,6 +324,7 @@
     "node-sass": "^4.12.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
+    "query-string": "^6.8.3",
     "react": "^16.9.0",
     "react-dev-utils": "^9.0.3",
     "react-dom": "npm:@hot-loader/react-dom",

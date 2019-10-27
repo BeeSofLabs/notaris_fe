@@ -73,7 +73,7 @@ export class Login extends PureComponent<Props> {
                           </div>
                           <div className="col-md-12">
                             <div className="forgot-button">
-                              <Link to="/forgot">forgot password</Link>
+                              <a href="/forgot">forgot password</a>
                             </div>
                           </div>
                           <div className="col-md-12">
@@ -96,7 +96,7 @@ export class Login extends PureComponent<Props> {
               <div className="section-to-register">
                 <p>
                   Belum memiliki akun? Silakan{' '}
-                  <Link to="/register">Register Akun Baru</Link>
+                  <a href="/register">Register Akun Baru</a>
                 </p>
               </div>
             </div>

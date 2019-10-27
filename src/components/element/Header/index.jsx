@@ -8,9 +8,9 @@ const Header = props => {
       <div className="container">
         <Row>
           <Col md={18}>
-            <Link to="/">
+            <a href="/">
               <div className="logo" />
-            </Link>
+            </a>
             <div className="navigation">
               <ul>
                 <li>Tentang Kami</li>
@@ -23,7 +23,7 @@ const Header = props => {
           {!props.buttonLogin ? (
             <Col md={6}>
               <div className="link-login">
-                <Link to="/login">Login</Link>
+                <a href="/login">Login</a>
               </div>
             </Col>
           ) : (

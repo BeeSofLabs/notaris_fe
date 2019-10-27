@@ -3,12 +3,12 @@ import React from 'react';
 import loadable from '@loadable/component';
 import { Loading, ErrorBoundary } from '../../components';
 
-const Home = loadable(() => import('./Login'), {
+const Login = loadable(() => import('./Login'), {
   fallback: <Loading />
 });
 
 export default (props: { props: Object }) => (
   <ErrorBoundary>
-    <Home {...props} />
+    <Login {...props} />
   </ErrorBoundary>
 );
