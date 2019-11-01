@@ -11,7 +11,7 @@ const DateInput = ({
   label,
   error,
   onChange,
-  value, 
+  // value, 
   placeholder
 }) => (
   <div className="date-input">
@@ -20,7 +20,7 @@ const DateInput = ({
       <DatePicker 
         format={dateFormat} 
         placeholder={placeholder}
-        value={value}
+        // value={value}
         onChange={onChange}
         dropdownClassName="dropdown-calendar"
       />

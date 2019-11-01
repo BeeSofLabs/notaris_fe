@@ -3,6 +3,7 @@
 import { usersAction, userAction } from './actions';
 import App from './app';
 import { asyncHome, asyncUserInfo, NotFound, List, Detail, Order, Login, Register, Account } from './pages';
+import RequireAuth from './components/Page/PublicComponent/index'
 
 export default [
   {

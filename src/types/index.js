@@ -20,6 +20,29 @@ export type UserInfo = {
   }
 };
 
+export type AuthRegister = {
+  +[param: Object]: {
+    +readyStatus: string,
+    +err: any,
+    +info: Object
+  }
+};
+
+export type AuthLogin = {
+  +[param: Object]: {
+    +readyStatus: string,
+    +err: any,
+    +info: Object
+  }
+};
+
+export type ListNotaris = {
+  +readyStatus: string,
+  +err: any,
+  +list: Array<Object>
+};
+
+
 // State
 type $ExtractFunctionReturn = <V>(v: (...args: any) => V) => V; // eslint-disable-line no-undef
 export type ReduxState = $ObjMap<Reducers, $ExtractFunctionReturn>; // eslint-disable-line no-undef
@@ -31,7 +54,22 @@ export type Action =
   | { type: 'USERS_FAILURE', err: any }
   | { type: 'USER_REQUESTING', userId: string }
   | { type: 'USER_SUCCESS', userId: string, data: Object }
-  | { type: 'USER_FAILURE', userId: string, err: any };
+  | { type: 'USER_FAILURE', userId: string, err: any }
+
+  // AUTH LOGIN-------------------------------------
+  | { type: 'LOGIN_REQUESTING', param: Object }
+  | { type: 'LOGIN_SUCCESS', param: Object, data: Object }
+  | { type: 'LOGIN_FAILURE', param: Object, err: any }
+
+  // AUTH REGISTER-------------------------------------
+  | { type: 'REGISTER_REQUESTING', param: Object }
+  | { type: 'REGISTER_SUCCESS', param: Object, data: Object }
+  | { type: 'REGISTER_FAILURE', param: Object, err: any }
+
+  // LIST NOTARIS-------------------------------------
+  | { type: 'LIST_NOTARIS_REQUESTING', param: Object }
+  | { type: 'LIST_NOTARIS_SUCCESS', param: Object, data: Object }
+  | { type: 'LIST_NOTARIS_FAILURE', param: Object, err: any }
 
 export type Dispatch = (
   action: Action | ThunkAction | PromiseAction | Array<Action>

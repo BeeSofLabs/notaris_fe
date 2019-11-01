@@ -5,7 +5,16 @@ import { connect } from 'react-redux';
 import { Select, Rate } from 'antd';
 import Helmet from 'react-helmet';
 import { Formik, Form } from 'formik';
-import { Link } from 'react-router-dom';
+import { CookieStorage } from 'cookie-storage';
+import { compressToEncodedURIComponent } from 'lz-string'
+
+import * as AuthLoginAction from '../../actions/auth/login';
+
+import type {
+  AuthLogin as AuthLoginType,
+  Dispatch,
+  ReduxState
+} from '../../types';
 
 import {
   PageWrapper,
@@ -14,10 +23,82 @@ import {
   Button
 } from '../../components/element';
 
+const cookieStorage = new CookieStorage({
+  path: '/'
+});
+
+type Props = {
+  authLogin: AuthLoginType,
+  match: Object,
+  fetchAuthLoginIfNeeded: (param: Object) => void,
+};
+
 export class Login extends PureComponent<Props> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false,
+      err: ''
+    }
+
+    this.handleLogin = this.handleLogin.bind(this)
+    this.handleAuth = this.handleAuth.bind(this)
+  }
+
+  componentWillMount () {
+    if (cookieStorage.getItem('auth_token')) {
+      this.props.history.push('/')
+    }
+  }
+
+  handleLogin (data) {
+    const { 
+      fetchAuthLoginIfNeeded
+    } = this.props
+
+    fetchAuthLoginIfNeeded(data)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      authLogin
+    } = this.props
+    const obj ={}
+    if (authLogin[obj] !== nextProps.authLogin[obj]) {
+      this.handleAuth(nextProps.authLogin[obj]);
+    }
+  }
+
+  handleAuth (data) {
+    if (!data || data.readyStatus === "LOGIN_REQUESTING") {
+      return this.setState({
+        loading: true,
+        err: ''
+      }, () => {
+        this.forceUpdate()
+      })
+    }
+
+    if (data.readyStatus === "LOGIN_FAILURE") {
+      return this.setState({
+        err: data.err,
+        loading: false
+      })
+    }
+    
+    cookieStorage.setItem(
+      'auth_token',
+      compressToEncodedURIComponent(data.info.data.auth_token)
+    );
+    window.location = "/"
+  }
+
   render() {
+    const { loading, err } = this.state
+
     return (
-      <PageWrapper buttonLogin>
+      <PageWrapper buttonLogin showNav>
         <div className="login-page-background">
           <img
             src={require('../../app/assets/img/banner-home.svg')}
@@ -41,7 +122,9 @@ export class Login extends PureComponent<Props> {
                     email: '',
                     password: ''
                   }}
-                  onSubmit={value => {}}
+                  onSubmit={value => {
+                    this.handleLogin(value)
+                  }}
                 >
                   {({ errors, touched, values, setFieldValue }) => {
                     return (
@@ -49,6 +132,7 @@ export class Login extends PureComponent<Props> {
                         <div className="row">
                           <div className="col-md-12">
                             <InputFormik
+                              type="email"
                               name="email"
                               label="Email"
                               placeholder="Masukan email"
@@ -63,6 +147,7 @@ export class Login extends PureComponent<Props> {
                             <InputFormik
                               name="password"
                               label="Password"
+                              type="password"
                               placeholder="Masukan email"
                               error={
                                 errors.email && touched.email
@@ -71,19 +156,23 @@ export class Login extends PureComponent<Props> {
                               }
                             />
                           </div>
+                          
                           <div className="col-md-12">
                             <div className="forgot-button">
                               <a href="/forgot">forgot password</a>
                             </div>
                           </div>
+                          {
+                            err && <div className="error">{err}</div>
+                          }
                           <div className="col-md-12">
                             <div className="button-section">
                               <Button
                                 className="button-left"
                                 type="submit"
-                                disabled={false}
+                                disabled={loading}
                               >
-                                Login
+                                {loading ? 'Loading ...' : 'Login'} 
                               </Button>
                             </div>
                           </div>
@@ -107,9 +196,16 @@ export class Login extends PureComponent<Props> {
   }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({
+  authLogin
+}: ReduxState) => ({
+  authLogin
+});
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchAuthLoginIfNeeded: (param: Object) =>
+    dispatch(AuthLoginAction.fetchAuthLoginIfNeeded(param)),
+});
 
 export default connect(
   mapStateToProps,

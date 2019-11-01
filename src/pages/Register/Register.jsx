@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
 import { Formik, Form } from 'formik'
 import { Link } from 'react-router-dom'
-
+import * as Yup from 'yup'
 import {
   PageWrapper,
   Card,
@@ -13,6 +13,15 @@ import {
   Button,
   SelectFormik
 } from '../../components/element'
+
+import * as AuthRegisterAction from '../../actions/auth/register';
+import type {
+  AuthRegister as AuthRegister,
+  Dispatch,
+  ReduxState
+} from '../../types'
+import { Modal } from 'antd'
+import { CookieStorage } from 'cookie-storage'
 
 export class Register extends PureComponent<Props> {
   constructor(props) {
@@ -35,15 +44,79 @@ export class Register extends PureComponent<Props> {
       optionsStatus: [{
         label: 'Perorangan',
         value: 0
-      }]
+      }],
+      loading: false,
+      err: ''
+    }
+
+    this.handleAuth = this.handleAuth.bind(this)
+  }
+
+  handleRegister (data) {
+    const {
+      fetchAuthRegisterIfNeeded
+    } = this.props
+    console.log(data)
+    fetchAuthRegisterIfNeeded(data)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      authRegister
+    } = this.props
+    const obj = {}
+    console.log('asds', authRegister, nextProps.authRegister)
+    if (authRegister[obj] !== nextProps.authRegister[obj]) {
+      console.log('asd', nextProps)
+      this.handleAuth(nextProps.authRegister[obj])
     }
   }
 
+  handleAuth (data) {
+    if (!data || data.readyStatus === "REGISTER_REQUESTING") {
+      return this.setState({
+        loading: true,
+        err: ''
+      }, () => {
+        this.forceUpdate()
+      })
+    }
+
+    if (!data || data.readyStatus === "REGISTER_FAILURE") {
+      return this.setState({
+        loading: false,
+        err: data.err
+      }, () => {
+        this.forceUpdate()
+      })
+    }
+
+    console.log('berhasil', data)
+    Modal.success({
+    content: data.info.data.message,
+      onOk: () => window.location = "/login"
+    });
+  }
+
   render() {
-    const { optionsRole, optionsStatus } = this.state
+    const { optionsRole, optionsStatus, loading, err } = this.state
+    console.log(this.props)
+    const Schema = Yup.object().shape({
+      role: Yup.object().shape({
+        label: Yup.string().required('Tidak boleh ksoong.')
+      }).required("Tidak boleh kosong"),
+      status: Yup.object().shape({
+        label: Yup.string().required('Tidak boleh ksoong.')
+      }).required("Tidak boleh kosong."),
+      full_name: Yup.string().required('Tidak boleh ksoong.'),
+      email: Yup.string().required('Tidak boleh ksoong.'),
+      nomor_hp: Yup.string().required("Tidak boleh kosong."),
+      password: Yup.string().required('Tidak boleh ksoong.'),
+      confirm_password: Yup.string().required('Tidak boleh ksoong.')
+    })
 
     return (
-      <PageWrapper buttonLogin>
+      <PageWrapper buttonLogin showNav>
         <div className="register-page-background">
           <div className="container">
             <div className="register-container">
@@ -63,8 +136,10 @@ export class Register extends PureComponent<Props> {
                       password: '',
                       confirm_password: ''
                     }}
+                    validationSchema={Schema}
                     onSubmit={value => {
-                      window.location = `/account?role=${value.role.value}`
+                      this.handleRegister(value)
+                      // window.location = `/account?role=${value.role.value}`
                     }}
                   >
                     {({ errors, touched, values, setFieldValue, onSubmit }) => {
@@ -81,6 +156,7 @@ export class Register extends PureComponent<Props> {
                                 value={values.role}
                                 options={optionsRole}
                                 onChange={(value) => onChangeSelect('role', value)}
+                                error={errors.role && touched.role ? errors.role.label : null}
                               />
                             </div>
                             <div className="col-md-6">
@@ -144,14 +220,17 @@ export class Register extends PureComponent<Props> {
                                 error={errors.confirm_password && touched.confirm_password ? errors.confirm_password : null}
                               />
                             </div>
+                            {
+                              err && <div className="error">{err}</div>
+                            }
                             <div className="col-md-12">
                               <div className="button-section">
                                 <Button
                                   className="button-left"
                                   type="submit"
-                                  disabled={false}
+                                  disabled={loading}
                                 >
-                                  Daftar
+                                  {loading ? 'Loading ...' : 'Daftar'}
                                 </Button>
                               </div>
                             </div>
@@ -176,9 +255,16 @@ export class Register extends PureComponent<Props> {
   }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({
+  authRegister
+}: ReduxState) => ({
+  authRegister
+});
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchAuthRegisterIfNeeded: (param: Object) => 
+    dispatch(AuthRegisterAction.fetchAuthRegisterIfNeeded(param))
+});
 
 export default connect(
   mapStateToProps,

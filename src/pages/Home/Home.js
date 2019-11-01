@@ -65,7 +65,7 @@ export class Home extends PureComponent<Props> {
     return (
       <div className={styles.Home}>
         <Helmet title="Home" />
-        <PageWrapper showFooter>
+        <PageWrapper showFooter showNav>
           <img
             src={require('../../app/assets/img/banner-home.svg')}
             alt="banner-home"

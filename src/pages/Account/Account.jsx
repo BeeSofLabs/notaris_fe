@@ -83,7 +83,7 @@ export class Account extends PureComponent<Props> {
     this.changeButtonPendamping = this.changeButtonPendamping.bind(this)
   }
 
-  componentDidMount () {
+  componentWillMount () {
     try {
       this.setState({
         role: queryString.parse(this.props.location.search).role
@@ -94,6 +94,7 @@ export class Account extends PureComponent<Props> {
   }
 
   handleChange = info => {
+    console.log('asd', info)
     if (info.file.status === 'uploading') {
       this.setState({ loading: true });
       return;
@@ -131,6 +132,24 @@ export class Account extends PureComponent<Props> {
     }
   };
 
+  beforeUpload = (file) => {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      message.error('Image must smaller than 2MB!');
+    }
+    getBase64(file, imageUrl =>
+      this.setState({
+        imageUrl,
+        loading: false,
+      })
+    );
+    return false
+  }
+
   renderDebitur () {
     const  { optionsGender, imageUrl, imageUrlB, showPendamping } = this.state
     const uploadButton = (
@@ -163,6 +182,15 @@ export class Account extends PureComponent<Props> {
           const onChangeSelect = (name ,value) => {
             setFieldValue(name, value)
           }
+          const onChangeDate = (date, dateString) => {
+            setFieldValue('tanggal_lahir', date)
+          }
+
+          const onChangeTextarea = (e) => {
+            setFieldValue(e.target.name, e.target.value)
+          }
+
+
           return (
             <Form className="form-login">
               <h3>Data Diri</h3>
@@ -175,10 +203,10 @@ export class Account extends PureComponent<Props> {
                         name="avatar"
                         listType="picture-card"
                         className="avatar-uploader"
-                        showUploadList={false}
-                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                        beforeUpload={beforeUpload}
+                        // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                        beforeUpload={this.beforeUpload}
                         onChange={this.handleChange}
+                        showUploadList={false}
                       >
                         {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                       </Upload>
@@ -217,6 +245,7 @@ export class Account extends PureComponent<Props> {
                         name="tanggal_lahir"
                         label="Tanggal Lahir"
                         placeholder="Pilih Tangal Lahir"
+                        onChange={onChangeDate}
                         error={errors.tanggal_lahir && touched.tanggal_lahir ? errors.tanggal_lahir : null}
                       />
                     </div>
@@ -232,6 +261,7 @@ export class Account extends PureComponent<Props> {
                     placeholder="Masukan alamat"
                     value={values.alamat_ktp}
                     error={errors.luasTanah && touched.luasTanah ? errors.luasTanah : null}
+                    onChange={onChangeTextarea}
                   />
                 </div>
                 <div className="col-md-4">
@@ -426,7 +456,6 @@ export class Account extends PureComponent<Props> {
                         showUploadList={false}
                         action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                         beforeUpload={beforeUpload}
-                        onChange={this.handleChangeB}
                       >
                         {imageUrlB ? <img src={imageUrlB} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                       </Upload>
@@ -618,7 +647,7 @@ export class Account extends PureComponent<Props> {
     const { role } = this.state
     
     return (
-      <PageWrapper buttonLogin>
+      <PageWrapper buttonLogin showNav>
         <div className="register-page-background">
           <div className="container">
             <div className="account-container">

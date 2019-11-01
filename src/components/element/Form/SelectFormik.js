@@ -21,7 +21,7 @@ const SelectFormik = ({
   onChange,
   value,
 }) => (
-  <div className="group-input-formik">
+  <div className="group-select-formik">
     <label htmlFor={name}>
       {label}
       {

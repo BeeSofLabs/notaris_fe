@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Rate } from 'antd';
 import type { Dispatch, ReduxState } from '../../../types';
 
-import { PageWrapper, Card } from '../../../components/element';
+import { PageWrapper, Card, Button } from '../../../components/element';
 
 type Props = {};
 
@@ -206,6 +206,29 @@ export class Detail extends PureComponent<Props> {
                     </div>
                   </div>
                 </Card>
+
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="button-fix">
+          <div className="container">
+            <div className="wrapping-button">
+              <div className="row">
+                <div className="col-md-9">
+
+                </div>
+                <div className="col-md-3">
+                  <Button 
+                    type="button"
+                    className="button-right"
+                    onClick={() => window.location = `/notaris/${this.props.match.params.id}/order`}
+                    disabled={false}
+                  >
+                    Order
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
