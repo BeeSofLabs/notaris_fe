@@ -56,17 +56,23 @@ class Header extends Component {
       <div className="container">
         <Row>
           <Col md={18}>
-            <a href="/">
-              <div className="logo" />
-            </a>
-            {this.props.showNav ? (<div className="navigation">
-              <ul>
-                <li>Tentang Kami</li>
-                <li>Layanan Kami</li>
-                <li>Kebijakan Privasi</li>
-                <li>Hubungi Kami</li>
-              </ul>
-            </div>) : ''}
+            <Row>
+              <Col md={6}>
+                <a href="/">
+                  <div className="logo" />
+                </a>
+              </Col>
+              <Col md={18}>
+                {this.props.showNav ? (<div className="navigation">
+                  <ul>
+                    <li>Tentang Kami</li>
+                    <li>Layanan Kami</li>
+                    <li>Kebijakan Privasi</li>
+                    <li>Hubungi Kami</li>
+                  </ul>
+                </div>) : ''}
+              </Col>
+            </Row>
           </Col>
           {!this.props.buttonLogin && auth == 'login'? (
             <Col md={6}>

@@ -76,7 +76,18 @@ export class Account extends PureComponent<Props> {
         label: 'Mandiri',
         value: 0
       }],
+      optionsStatus: [{
+        label: 'Suami',
+        value: 0
+      }, {
+        label: 'Istri',
+        value: 1
+      }, {
+        label: 'Ahli Waris',
+        value: 2
+      }],
       role: '',
+      status: '',
       showPendamping: true
     }
     
@@ -86,7 +97,8 @@ export class Account extends PureComponent<Props> {
   componentWillMount () {
     try {
       this.setState({
-        role: queryString.parse(this.props.location.search).role
+        role: queryString.parse(this.props.location.search).role,
+        status: queryString.parse(this.props.location.search).status
       })
     } catch(e) {
       window.location = '/'
@@ -151,7 +163,7 @@ export class Account extends PureComponent<Props> {
   }
 
   renderDebitur () {
-    const  { optionsGender, imageUrl, imageUrlB, showPendamping } = this.state
+    const  { optionsGender, imageUrl, imageUrlB, showPendamping, optionsStatus, status } = this.state
     const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
@@ -174,12 +186,20 @@ export class Account extends PureComponent<Props> {
           full_name_pendamping: '',
           nomorKtp_pendamping: '',
           jenis_kelamin_pedamping: '',
-          alamat_lengkap_pendamping: ''
+          alamat_lengkap_pendamping: '',
+          jabatan: '',
+          komparisi: '',
+          nama_badan_usaha: '',
+          longitude_pendamping: '',
+          latitude_pendamping: '',
+          status_pendamping: '',
+          komparisi_pendamping:''
         }}
         onSubmit={value => {}}
       >
         {({ errors, touched, values, setFieldValue }) => {
           const onChangeSelect = (name ,value) => {
+            console.log('asd', name)
             setFieldValue(name, value)
           }
           const onChangeDate = (date, dateString) => {
@@ -189,7 +209,7 @@ export class Account extends PureComponent<Props> {
           const onChangeTextarea = (e) => {
             setFieldValue(e.target.name, e.target.value)
           }
-
+          console.log('ad', values)
 
           return (
             <Form className="form-login">
@@ -266,16 +286,60 @@ export class Account extends PureComponent<Props> {
                 </div>
                 <div className="col-md-4">
                   <div className="row">
-                    <div className="col-md-12">
+                    {/* <div className="col-md-12">
                       <InputFormik
                         name="ibu_kandung"
                         label="Nama Ibu Kandung"
                         placeholder="Masukan nama ibu..."
                         error={errors.luasTanah && touched.luasTanah ? errors.luasTanah : null}
                       />
+                    </div> */}
+                    <div className="col-md-12">
+                      <InputFormik
+                        name="longitude"
+                        label="Longitude"
+                        placeholder="Masukan Luas Tanah"
+                        error={errors.luasTanah && touched.luasTanah ? errors.luasTanah : null}
+                      />
+                    </div>
+                    <div className="col-md-12">
+                      <InputFormik
+                        name="latitude"
+                        label="Latitude"
+                        placeholder="Masukan Latitude"
+                        error={errors.latitude && touched.latitude ? errors.latitude : null}
+                      />
                     </div>
                   </div>
                 </div>
+                {(status === 'bu') && (<><div className="col-md-4">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <InputFormik
+                        name="jabatan"
+                        label="Jabatan"
+                        placeholder="Masukan Jabatan"
+                        error={errors.jabatan && touched.jabatan ? errors.jabatan : null}
+                      />
+                    </div>
+                    <div className="col-md-12">
+                      <InputFormik
+                        name="komparisi"
+                        label="Komparisi"
+                        placeholder="Masukan Komparisi"
+                        error={errors.komparisi && touched.komparisi ? errors.komparisi : null}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <InputFormik
+                    name="nama_badan_usaha"
+                    label="Nama Badan Usaha"
+                    placeholder="Nomor Nama"
+                    error={errors.nama_badan_usaha && touched.nama_badan_usaha ? errors.nama_badan_usaha : null}
+                  />
+                </div></>)}
               </div>  
               <hr />
               {showPendamping && <div className="col-md-4 mg-top-20"><Button
@@ -312,13 +376,26 @@ export class Account extends PureComponent<Props> {
                   />
                 </div>
                 <div className="col-md-4">
-                  <SelectFormik 
-                    name="jenis_kelamin_pendamping"
-                    label="Jenis Kelamin"
-                    value={values.jenis_kelamin_pedamping}
-                    options={optionsGender}
-                    onChange={(value) => onChangeSelect('jenis_kelamin_pendamping', value)}
-                  />
+                  <div className="row">
+                    <div className="col-md-12">
+                      <SelectFormik 
+                        name="jenis_kelamin_pendamping"
+                        label="Jenis Kelamin"
+                        value={values.jenis_kelamin_pendamping}
+                        options={optionsGender}
+                        onChange={(value) => onChangeSelect('jenis_kelamin_pendamping', value)}
+                      />
+                    </div>
+                    <div className="col-md-12">
+                      <SelectFormik 
+                        name="status_pendamping"
+                        label="Status Pendamping"
+                        value={values.status_pendamping}
+                        options={optionsStatus}
+                        onChange={(value) => onChangeSelect('status_pendamping', value)}
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="col-md-4">
                   <Textarea
@@ -330,16 +407,37 @@ export class Account extends PureComponent<Props> {
                     error={errors.alamat_lengkap_pendamping && touched.alamat_lengkap_pendamping ? errors.alamat_lengkap_pendamping : null}
                   />
                 </div>
+                <div className="col-md-4">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <InputFormik
+                        name="longitude_pendamping"
+                        label="Masukan Longitude"
+                        placeholder="Masukan Luas Tanah"
+                        error={errors.luasTanah && touched.luasTanah ? errors.luasTanah : null}
+                      />
+                    </div>
+                    <div className="col-md-12">
+                      <InputFormik
+                        name="latitude_pendamping"
+                        label="Masukan Latitude"
+                        placeholder="Masukan Latitude"
+                        error={errors.latitude && touched.latitude ? errors.latitude : null}
+                      />
+                    </div>
+                  </div>
+                </div>
+                {(status === 'bu') && <div className="col-md-4">
+                  <InputFormik
+                    name="komparisi_pendamping"
+                    label="Komparisi"
+                    placeholder="Masukan Komparisi"
+                    error={errors.komparisi_pendamping && touched.komparisi_pendamping ? errors.komparisi_pendamping : null}
+                  />
+                </div>}
               </div>
               }
               <div className="button-section-form">
-                <Button
-                  className="button-left"
-                  type="button"
-                  disabled={false}
-                >
-                  lewati
-                </Button>
                 <Button
                   className="button-right"
                   type="submit"

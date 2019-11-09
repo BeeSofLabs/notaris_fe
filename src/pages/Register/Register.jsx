@@ -43,7 +43,10 @@ export class Register extends PureComponent<Props> {
       }],
       optionsStatus: [{
         label: 'Perorangan',
-        value: 0
+        value: 'pr'
+      }, {
+        label: 'Badan Usaha',
+        value: 'bu'
       }],
       loading: false,
       err: ''
@@ -138,8 +141,8 @@ export class Register extends PureComponent<Props> {
                     }}
                     validationSchema={Schema}
                     onSubmit={value => {
-                      this.handleRegister(value)
-                      // window.location = `/account?role=${value.role.value}`
+                      // this.handleRegister(value)
+                      window.location = `/account?role=${value.role.value}&status=${value.status.value}`
                     }}
                   >
                     {({ errors, touched, values, setFieldValue, onSubmit }) => {
@@ -181,14 +184,7 @@ export class Register extends PureComponent<Props> {
                                 error={errors.full_name && touched.full_name ? errors.full_name : null}
                               />
                             </div>
-                            <div className="col-md-6">
-                              <InputFormik
-                                name="email"
-                                label="Email"
-                                placeholder="Email"
-                                error={errors.email && touched.email ? errors.email : null}
-                              />
-                            </div>
+                            
                             <div className="col-md-6">
                               <InputFormik
                                 name="nomor_hp"
@@ -199,6 +195,16 @@ export class Register extends PureComponent<Props> {
                             </div>
                             <div className="col-md-12">
                               <hr />
+                            </div>
+                          </div>
+                          <div className="row">
+                            <div className="col-md-6">
+                              <InputFormik
+                                name="email"
+                                label="Email"
+                                placeholder="Email"
+                                error={errors.email && touched.email ? errors.email : null}
+                              />
                             </div>
                           </div>
                           <div className="row">
@@ -230,7 +236,7 @@ export class Register extends PureComponent<Props> {
                                   type="submit"
                                   disabled={loading}
                                 >
-                                  {loading ? 'Loading ...' : 'Daftar'}
+                                  {loading ? 'Loading ...' : 'Lanjut'}
                                 </Button>
                               </div>
                             </div>
