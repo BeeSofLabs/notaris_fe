@@ -31,11 +31,11 @@ export class Register extends PureComponent<Props> {
         },
         {
           label: 'Kreditur',
-          value: 'kd'
+          value: 'db'
         },
         {
           label: 'Pemilik Agunan',
-          value: 'pa'
+          value: 'db'
         },
         {
           label: 'Notaris',

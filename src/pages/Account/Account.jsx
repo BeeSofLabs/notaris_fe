@@ -370,7 +370,7 @@ export class Account extends PureComponent<Props> {
                   </div>
                 </div>
                 {status === 'bu' && (
-                  <>
+                  <React.Fragment>
                     <div className="col-md-4">
                       <div className="row">
                         <div className="col-md-12">
@@ -411,7 +411,7 @@ export class Account extends PureComponent<Props> {
                         }
                       />
                     </div>
-                  </>
+                  </React.Fragment>
                 )}
               </div>
               <hr />
@@ -1079,8 +1079,8 @@ export class Account extends PureComponent<Props> {
               </div>
               <div className="body-login">
                 <Card>
-                  {role != 'nt' && this.renderDebitur()}
-                  {role == 'nt' && this.renderNotaris()}
+                  {(role === 'db') && this.renderDebitur()}
+                  {(role === 'nt') && this.renderNotaris()}
                 </Card>
                 <div className="section-to-register">
                   <p>
