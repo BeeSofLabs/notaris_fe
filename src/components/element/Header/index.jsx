@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Menu, Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
-import { CookieStorage } from 'cookie-storage'
-import { Menu, Dropdown } from 'antd'
+import { CookieStorage } from 'cookie-storage';
 
 const cookieStorage = new CookieStorage({
   path: '/'
@@ -10,24 +9,25 @@ const cookieStorage = new CookieStorage({
 
 class Header extends Component {
   constructor(props) {
-    super(props) 
+    super(props);
 
     this.state = {
       auth: '',
       visible: false
-    }
+    };
 
-    this.handleVisibleChange = this.handleVisibleChange.bind(this)
+    this.handleVisibleChange = this.handleVisibleChange.bind(this);
   }
+
   componentDidMount() {
-    if(cookieStorage.getItem('auth_token')) {
+    if (cookieStorage.getItem('auth_token')) {
       this.setState({
         auth: 'info'
-      })
+      });
     } else {
       this.setState({
         auth: 'login'
-      })
+      });
     }
   }
 
@@ -41,50 +41,57 @@ class Header extends Component {
   }
 
   render() {
-    const { auth } = this.state
+    const { auth } = this.state;
 
     const menu = (
       <Menu>
         <ul className="menu-profile-logout">
-          <li><button type="button" onClick={this.handleLogout}>Logout</button></li>
+          <li>
+            <button type="button" onClick={this.handleLogout}>
+              Logout
+            </button>
+          </li>
         </ul>
       </Menu>
     );
 
     return (
       <div className="header">
-      <div className="container">
-        <Row>
-          <Col md={18}>
-            <Row>
-              <Col md={6}>
-                <a href="/">
-                  <div className="logo" />
-                </a>
-              </Col>
-              <Col md={18}>
-                {this.props.showNav ? (<div className="navigation">
-                  <ul>
-                    <li>Tentang Kami</li>
-                    <li>Layanan Kami</li>
-                    <li>Kebijakan Privasi</li>
-                    <li>Hubungi Kami</li>
-                  </ul>
-                </div>) : ''}
-              </Col>
-            </Row>
-          </Col>
-          {!this.props.buttonLogin && auth == 'login'? (
-            <Col md={6}>
-              <div className="link-login">
-                <a href="/login">Login</a>
-              </div>
+        <div className="container">
+          <Row>
+            <Col md={18}>
+              <Row>
+                <Col md={6}>
+                  <a href="/">
+                    <div className="logo" />
+                  </a>
+                </Col>
+                <Col md={18}>
+                  {this.props.showNav ? (
+                    <div className="navigation">
+                      <ul>
+                        <li>Tentang Kami</li>
+                        <li>Layanan Kami</li>
+                        <li>Kebijakan Privasi</li>
+                        <li>Hubungi Kami</li>
+                      </ul>
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                </Col>
+              </Row>
             </Col>
-          ) : (
-            ''
-          )}
-          {
-            auth == 'info'? (
+            {!this.props.buttonLogin && auth == 'login' ? (
+              <Col md={6}>
+                <div className="link-login">
+                  <a href="/login">Login</a>
+                </div>
+              </Col>
+            ) : (
+              ''
+            )}
+            {auth == 'info' ? (
               <Col md={6}>
                 <Dropdown
                   overlay={menu}
@@ -98,13 +105,14 @@ class Header extends Component {
                   <span className="profile-info">Ary Suryawan</span>
                 </Dropdown>
               </Col>
-            ) : ''
-          }
-        </Row>
+            ) : (
+              ''
+            )}
+          </Row>
+        </div>
       </div>
-    </div>
-    )
+    );
   }
-};
+}
 
 export default Header;

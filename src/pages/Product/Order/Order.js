@@ -16,10 +16,18 @@ import {
   Icon, 
   Checkbox
 } from 'antd';
+import { CookieStorage } from 'cookie-storage'
+import { compressToEncodedURIComponent } from 'lz-string'
+
+const cookieStorage = new CookieStorage();
 
 const { Step } = Steps;
 
-const steps = [
+const steps = [{
+    title: 'Document Type',
+    content: 'Zero Content',
+    icon: <Icon type="profile" />
+  },
   {
     title: 'Surat Properti',
     content: 'First-content',
@@ -43,7 +51,8 @@ export class Order extends PureComponent<Props> {
     super(props)
 
     this.state = {
-      current: 0
+      current: 0,
+      document_type: ''
     }
 
     this.handleSubmitFirst = this.handleSubmitFirst.bind(this)
@@ -83,7 +92,8 @@ export class Order extends PureComponent<Props> {
 
   render() {
     const {
-      current
+      current,
+      document_type
     } = this.state
 
     const options = [{
@@ -93,7 +103,7 @@ export class Order extends PureComponent<Props> {
       label: 'APHT',
       value: 1
     }, {
-      label: 'Fidusa',
+      label: 'Fidusia',
       value: 2
     }]
     console.log(current)
@@ -109,9 +119,70 @@ export class Order extends PureComponent<Props> {
                   ))}
                 </Steps>
               </div>
-              
               {
-                current === 0 && <Card><div className="order-form"><div className="surat-section">
+                current === 0 && <Card><div className="order-form">
+                    <div className="order-document">
+                      <h4>Pilih Document Type</h4>
+                      <Formik
+                        initialValues={{
+                          document_type: "",
+                        }}
+                        onSubmit={(value) => {
+                          console.log(value)
+                          cookieStorage.setItem(
+                            'tpy',
+                            compressToEncodedURIComponent(value.document_type.label)
+                          );
+                          this.setState({
+                            document_type: value.document_type.label
+                          })
+                          this.handleSubmitFirst()
+                        }}
+                      >
+                        {({
+                          errors, touched, values, setFieldValue
+                        }) => {
+                          const onChangeSelect = (value) => {
+                            setFieldValue('document_type', value)
+                          }
+                          return (
+                            <Form className="form-surat-nah">
+                              <div className="row">
+                                <div className="col-md-4">
+                                  <SelectFormik
+                                    name="document_type"
+                                    label="Dokumen Type"
+                                    placeholder="Dokumen Type"
+                                    onChange={onChangeSelect}
+                                    options={options}
+                                    value={values.document_type}
+                                    error={errors.document_type && touched.document_type ? errors.document_type : null}
+                                  />
+                                </div>
+                              </div>
+                              <div className="row">
+                                <div className="col-md-3 offset-9">
+                                  <div className="button-section">
+                                    <Button
+                                      className="button-left"
+                                      type="submit"
+                                      disabled={false}
+                                    >
+                                      Lanjut
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+                            </Form>
+                          )
+                        }}
+                      </Formik>
+                    </div>
+                  </div>
+                </Card>
+              }
+              {
+                ((current === 1) && document_type !== 'Fidusia') && <Card><div className="order-form"><div className="surat-section">
                 <h4>Surat Properti</h4>
                 <Formik 
                 initialValues={{
@@ -311,7 +382,153 @@ export class Order extends PureComponent<Props> {
               </div></div></Card>
               }
               {
-                current === 1 && <Card><div className="order-form"><div className="kelengkapan-section">
+                ((current === 1) && document_type === 'Fidusia') && <Card><div className="order-form"><div className="surat-section">
+                      <h4>Surat Detail</h4>
+                      <Formik
+                        initialValues= {{
+                          buktiKepemilikan: '',
+                          namaPemilik: '',
+                          atas_nama: '',
+                          no_bukti: '',
+                          tanggalPenerbitan: '',
+                          no_mesin: '',
+                          no_rangka: '',
+                          warna: '',
+                          tipe: '',
+                          nilai_agunan:'',
+                          nilai_pengikatan: ''
+                        }}
+                        onSubmit={(value) => {
+                          this.handleSubmitFirst()
+                        }}
+                      >
+                        {
+                          ({ errors, touched, values, setFieldValue }) => {
+                            const onChangeSelect = (value) => {
+                              setFieldValue('buktiKepemilikan', value)
+                            }
+                            return  (
+                              <Form className="form-surat-nah">
+                                <div className="row">
+                                  <div className="col-md-4">
+                                    <SelectFormik
+                                      name="buktiKepemilikan"
+                                      label="Bukti Kepemilikan"
+                                      placeholder="Bukti Kepemilikan"
+                                      onChange={onChangeSelect}
+                                      options={options}
+                                      value={values.buktiKepemilikan}
+                                      error={errors.buktiKepemilikan && touched.buktiKepemilikan ? errors.buktiKepemilikan : null}
+                                    />
+                                  </div>
+                                  <div className="col-md-4">
+                                    <InputFormik
+                                      name="atas_nama"
+                                      label="Atas Nama"
+                                      placeholder="Masukan nama..."
+                                      error={errors.atas_nama && touched.atas_nama ? errors.atas_nama : null}
+                                    />
+                                  </div>
+                                  <div className="col-md-4">
+                                    <InputFormik
+                                      name="namaPemilik"
+                                      label="Nama Pemilik"
+                                      placeholder="Masukan nama pemilik..."
+                                      error={errors.namaPemilik && touched.namaPemilik ? errors.namaPemilik : null}
+                                    />
+                                  </div>
+                                  <div className="col-md-4">
+                                    <InputFormik
+                                      name="no_bukti"
+                                      label="Nama Bukti"
+                                      placeholder="Masukan nomor bukti..."
+                                      error={errors.no_bukti && touched.no_bukti ? errors.namaPemilik : null}
+                                    />
+                                  </div>
+                                  <div className="col-md-4">
+                                    <DateInput 
+                                      name="tanggalPenerbitan"
+                                      label="Tanggal Penerbitan"
+                                      placeholder="Pilih Tangal Penerbitan"
+                                      error={errors.firstName && touched.firstName ? errors.firstName : null}
+                                    />
+                                  </div>
+                                </div>
+                                <hr />
+                                <div className="row">
+                                  <div className="col-md-4">
+                                    <InputFormik
+                                      name="no_mesin"
+                                      label="Nomor Mesin"
+                                      placeholder="Masukan nomor mesin..."
+                                      error={errors.no_mesin && touched.no_mesin ? errors.no_mesin : null}
+                                    />
+                                  </div>
+                                  <div className="col-md-4">
+                                    <InputFormik
+                                      name="no_rangka"
+                                      label="Nomor Rangka"
+                                      placeholder="Masukan nomor rangka..."
+                                      error={errors.no_rangka && touched.no_rangka ? errors.no_rangka : null}
+                                    />
+                                  </div>
+                                  <div className="col-md-4">
+                                    <InputFormik
+                                      name="warna"
+                                      label="Warna"
+                                      placeholder="Masukan warna..."
+                                      error={errors.warna && touched.warna ? errors.warna : null}
+                                    />
+                                  </div>
+                                  <div className="col-md-4">
+                                    <InputFormik
+                                      name="tipe"
+                                      label="Tipe"
+                                      placeholder="Masukan tipe..."
+                                      error={errors.tipe && touched.tipe ? errors.tipe : null}
+                                    />
+                                  </div>
+                                  <div className="col-md-4">
+                                    <InputFormik
+                                      name="nilai_agunan"
+                                      label="Nilai Agunan"
+                                      placeholder="Masukan nilai agunan..."
+                                      error={errors.nilai_agunan && touched.nilai_agunan ? errors.nilai_agunan : null}
+                                    />
+                                  </div>
+                                  <div className="col-md-4">
+                                    <InputFormik
+                                      name="nilai_pengikatan"
+                                      label="Nomor Pengikatan"
+                                      placeholder="Masukan nilai pengikatan..."
+                                      error={errors.nilai_pengikatan && touched.nilai_pengikatan ? errors.no_mesin : null}
+                                    />
+                                  </div>
+                                </div>
+                                <div className="row">
+                                  <div className="col-md-3 offset-9">
+                                    <div className="button-section">
+                                      <Button
+                                        className="button-left"
+                                        type="submit"
+                                        disabled={false}
+                                      >
+                                        Lanjut
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </Form>
+                            )
+                          }
+                        }
+                      </Formik>
+                    </div>
+                  </div>
+                </Card>
+              }
+              {
+                current === 2 && <Card><div className="order-form"><div className="kelengkapan-section">
                   <h4>Pilih Debitur</h4>
                   <Formik
                     initialValues={{
@@ -379,7 +596,7 @@ export class Order extends PureComponent<Props> {
                 </div></div></Card>
               }
               {
-                current === 2 && <React.Fragment>
+                current === 3 && <React.Fragment>
                 <Card>
                   <div className="order-form">
                     <div className="review-order">

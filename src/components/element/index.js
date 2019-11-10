@@ -11,6 +11,6 @@ import Upload from './Form/Upload'
 import Button from './Button/Button'
 import Status from './Status'
 import Card from './Card';
+import { LoadingListSkeleton } from './Loading'
 
-
-export { Footer, PageWrapper, Header, InputSearch, Card, InputFormik, SelectFormik, DateInput, Button, DetailField, Status, Textarea, Upload };
+export { Footer, PageWrapper, Header, InputSearch, Card, InputFormik, SelectFormik, DateInput, Button, DetailField, Status, Textarea, Upload, LoadingListSkeleton };

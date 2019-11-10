@@ -46,19 +46,23 @@ export class Home extends PureComponent<Props> {
     const listService = [
       {
         label: 'Notaris/PPAT',
-        id: 1
+        id: 1,
+        link: '/notaris'
       },
       {
         label: 'SKMHT',
-        id: 2
+        id: 2,
+        link: '/notaris?type=skmht'
       },
       {
         label: 'APHT',
-        id: 3
+        id: 3,
+        link: '/notaris?type=apht'
       },
       {
         label: 'Fidusa',
-        id: 4
+        id: 4,
+        link: '/notaris?type=fidusa'
       }
     ];
 
@@ -85,7 +89,7 @@ export class Home extends PureComponent<Props> {
                           id="search"
                           value={search}
                           onChange={this.onChange}
-                          placeholder="Ketik Keperluan Anda eg, PPAT,SKMHT"
+                          placeholder="Ketik nama notaris ..."
                         />
                         <button type="submit" className="icon-search">
                           <img
@@ -110,12 +114,14 @@ export class Home extends PureComponent<Props> {
                 <div className="row">
                   {listService.map(label => (
                     <div className="col-md-3" key={label.id}>
-                      <div className="box">
-                        <div className="icon-box" />
-                        <div className="desc-box">
-                          <h5>{label.label}</h5>
+                      <a href={label.link}>
+                        <div className="box">
+                          <div className="icon-box" />
+                          <div className="desc-box">
+                            <h5>{label.label}</h5>
+                          </div>
                         </div>
-                      </div>
+                      </a>
                     </div>
                   ))}
                 </div>

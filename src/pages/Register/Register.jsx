@@ -1,122 +1,132 @@
 /* @flow */
 
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
-import Helmet from 'react-helmet'
-import { Formik, Form } from 'formik'
-import { Link } from 'react-router-dom'
-import * as Yup from 'yup'
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
+import { Formik, Form } from 'formik';
+import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
+import { Modal } from 'antd';
+import { CookieStorage } from 'cookie-storage';
 import {
   PageWrapper,
   Card,
   InputFormik,
   Button,
   SelectFormik
-} from '../../components/element'
+} from '../../components/element';
 
 import * as AuthRegisterAction from '../../actions/auth/register';
-import type {
-  AuthRegister as AuthRegister,
-  Dispatch,
-  ReduxState
-} from '../../types'
-import { Modal } from 'antd'
-import { CookieStorage } from 'cookie-storage'
+import type { AuthRegister, Dispatch, ReduxState } from '../../types';
 
 export class Register extends PureComponent<Props> {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      optionsRole: [{
-        label: 'Debitur',
-        value: 'db'
-      }, {
-        label: 'Kreditur',
-        value: 'kd'
-      }, {
-        label: 'Pemilik Agunan',
-        value: 'pa'
-      }, {
-        label: 'Notaris',
-        value: 'nt'
-      }],
-      optionsStatus: [{
-        label: 'Perorangan',
-        value: 'pr'
-      }, {
-        label: 'Badan Usaha',
-        value: 'bu'
-      }],
+      optionsRole: [
+        {
+          label: 'Debitur',
+          value: 'db'
+        },
+        {
+          label: 'Kreditur',
+          value: 'kd'
+        },
+        {
+          label: 'Pemilik Agunan',
+          value: 'pa'
+        },
+        {
+          label: 'Notaris',
+          value: 'nt'
+        }
+      ],
+      optionsStatus: [
+        {
+          label: 'Perorangan',
+          value: 'pr'
+        },
+        {
+          label: 'Badan Usaha',
+          value: 'bu'
+        }
+      ],
       loading: false,
       err: ''
-    }
+    };
 
-    this.handleAuth = this.handleAuth.bind(this)
+    this.handleAuth = this.handleAuth.bind(this);
   }
 
-  handleRegister (data) {
-    const {
-      fetchAuthRegisterIfNeeded
-    } = this.props
-    console.log(data)
-    fetchAuthRegisterIfNeeded(data)
+  handleRegister(data) {
+    const { fetchAuthRegisterIfNeeded } = this.props;
+    console.log(data);
+    fetchAuthRegisterIfNeeded(data);
   }
 
   componentWillReceiveProps(nextProps) {
-    const {
-      authRegister
-    } = this.props
-    const obj = {}
-    console.log('asds', authRegister, nextProps.authRegister)
+    const { authRegister } = this.props;
+    const obj = {};
+    console.log('asds', authRegister, nextProps.authRegister);
     if (authRegister[obj] !== nextProps.authRegister[obj]) {
-      console.log('asd', nextProps)
-      this.handleAuth(nextProps.authRegister[obj])
+      console.log('asd', nextProps);
+      this.handleAuth(nextProps.authRegister[obj]);
     }
   }
 
-  handleAuth (data) {
-    if (!data || data.readyStatus === "REGISTER_REQUESTING") {
-      return this.setState({
-        loading: true,
-        err: ''
-      }, () => {
-        this.forceUpdate()
-      })
+  handleAuth(data) {
+    if (!data || data.readyStatus === 'REGISTER_REQUESTING') {
+      return this.setState(
+        {
+          loading: true,
+          err: ''
+        },
+        () => {
+          this.forceUpdate();
+        }
+      );
     }
 
-    if (!data || data.readyStatus === "REGISTER_FAILURE") {
-      return this.setState({
-        loading: false,
-        err: data.err
-      }, () => {
-        this.forceUpdate()
-      })
+    if (!data || data.readyStatus === 'REGISTER_FAILURE') {
+      return this.setState(
+        {
+          loading: false,
+          err: data.err
+        },
+        () => {
+          this.forceUpdate();
+        }
+      );
     }
 
-    console.log('berhasil', data)
+    console.log('berhasil', data);
     Modal.success({
-    content: data.info.data.message,
-      onOk: () => window.location = "/login"
+      content: data.info.data.message,
+      onOk: () => (window.location = '/login')
     });
   }
 
   render() {
-    const { optionsRole, optionsStatus, loading, err } = this.state
-    console.log(this.props)
+    const { optionsRole, optionsStatus, loading, err } = this.state;
+    console.log(this.props);
     const Schema = Yup.object().shape({
-      role: Yup.object().shape({
-        label: Yup.string().required('Tidak boleh ksoong.')
-      }).required("Tidak boleh kosong"),
-      status: Yup.object().shape({
-        label: Yup.string().required('Tidak boleh ksoong.')
-      }).required("Tidak boleh kosong."),
+      role: Yup.object()
+        .shape({
+          label: Yup.string().required('Tidak boleh ksoong.')
+        })
+        .required('Tidak boleh kosong'),
+      status: Yup.object()
+        .shape({
+          label: Yup.string().required('Tidak boleh ksoong.')
+        })
+        .required('Tidak boleh kosong.'),
       full_name: Yup.string().required('Tidak boleh ksoong.'),
       email: Yup.string().required('Tidak boleh ksoong.'),
-      nomor_hp: Yup.string().required("Tidak boleh kosong."),
+      nomor_hp: Yup.string().required('Tidak boleh kosong.'),
       password: Yup.string().required('Tidak boleh ksoong.'),
       confirm_password: Yup.string().required('Tidak boleh ksoong.')
-    })
+    });
 
     return (
       <PageWrapper buttonLogin showNav>
@@ -125,7 +135,9 @@ export class Register extends PureComponent<Props> {
             <div className="register-container">
               <div className="title-login">
                 <h4>Silahkan Buat Akun Anda</h4>
-                <p>Anda harus melengkapi formulir dibawah ini, untuk membuat akun</p>
+                <p>
+                  Anda harus melengkapi formulir dibawah ini, untuk membuat akun
+                </p>
               </div>
               <div className="body-login">
                 <Card>
@@ -142,33 +154,41 @@ export class Register extends PureComponent<Props> {
                     validationSchema={Schema}
                     onSubmit={value => {
                       // this.handleRegister(value)
-                      window.location = `/account?role=${value.role.value}&status=${value.status.value}`
+                      window.location = `/account?role=${value.role.value}&status=${value.status.value}`;
                     }}
                   >
                     {({ errors, touched, values, setFieldValue, onSubmit }) => {
-                      const onChangeSelect = (name ,value) => {
-                        setFieldValue(name, value)
-                      }
+                      const onChangeSelect = (name, value) => {
+                        setFieldValue(name, value);
+                      };
                       return (
                         <Form className="form-login">
                           <div className="row">
                             <div className="col-md-6">
-                              <SelectFormik 
+                              <SelectFormik
                                 name="role"
                                 label="Mendaftar Sebagai"
                                 value={values.role}
                                 options={optionsRole}
-                                onChange={(value) => onChangeSelect('role', value)}
-                                error={errors.role && touched.role ? errors.role.label : null}
+                                onChange={value =>
+                                  onChangeSelect('role', value)
+                                }
+                                error={
+                                  errors.role && touched.role
+                                    ? errors.role.label
+                                    : null
+                                }
                               />
                             </div>
                             <div className="col-md-6">
-                              <SelectFormik 
+                              <SelectFormik
                                 name="status"
                                 label="Status"
                                 value={values.status}
                                 options={optionsStatus}
-                                onChange={(value) => onChangeSelect('status', value)}
+                                onChange={value =>
+                                  onChangeSelect('status', value)
+                                }
                               />
                             </div>
                             <div className="col-md-12">
@@ -181,16 +201,24 @@ export class Register extends PureComponent<Props> {
                                 name="full_name"
                                 label="Nama Lengkap"
                                 placeholder="Nama Lengkap"
-                                error={errors.full_name && touched.full_name ? errors.full_name : null}
+                                error={
+                                  errors.full_name && touched.full_name
+                                    ? errors.full_name
+                                    : null
+                                }
                               />
                             </div>
-                            
+
                             <div className="col-md-6">
                               <InputFormik
                                 name="nomor_hp"
                                 label="Nomor Handphone"
                                 placeholder="Nomor Handphone"
-                                error={errors.nomor_hp && touched.nomor_hp ? errors.nomor_hp : null}
+                                error={
+                                  errors.nomor_hp && touched.nomor_hp
+                                    ? errors.nomor_hp
+                                    : null
+                                }
                               />
                             </div>
                             <div className="col-md-12">
@@ -203,7 +231,11 @@ export class Register extends PureComponent<Props> {
                                 name="email"
                                 label="Email"
                                 placeholder="Email"
-                                error={errors.email && touched.email ? errors.email : null}
+                                error={
+                                  errors.email && touched.email
+                                    ? errors.email
+                                    : null
+                                }
                               />
                             </div>
                           </div>
@@ -214,7 +246,11 @@ export class Register extends PureComponent<Props> {
                                 name="password"
                                 label="Password"
                                 placeholder="Password"
-                                error={errors.password && touched.password ? errors.password : null}
+                                error={
+                                  errors.password && touched.password
+                                    ? errors.password
+                                    : null
+                                }
                               />
                             </div>
                             <div className="col-md-6">
@@ -223,12 +259,15 @@ export class Register extends PureComponent<Props> {
                                 name="confirm_password"
                                 label="Confirm Password"
                                 placeholder="Confirm Password"
-                                error={errors.confirm_password && touched.confirm_password ? errors.confirm_password : null}
+                                error={
+                                  errors.confirm_password &&
+                                  touched.confirm_password
+                                    ? errors.confirm_password
+                                    : null
+                                }
                               />
                             </div>
-                            {
-                              err && <div className="error">{err}</div>
-                            }
+                            {err && <div className="error">{err}</div>}
                             <div className="col-md-12">
                               <div className="button-section">
                                 <Button
@@ -242,14 +281,13 @@ export class Register extends PureComponent<Props> {
                             </div>
                           </div>
                         </Form>
-                      )
+                      );
                     }}
                   </Formik>
                 </Card>
                 <div className="section-to-register">
                   <p>
-                    Sudah memiliki akun? {' '}
-                    <a href="/login">Login Disini</a>
+                    Sudah memiliki akun? <a href="/login">Login Disini</a>
                   </p>
                 </div>
               </div>
@@ -257,18 +295,16 @@ export class Register extends PureComponent<Props> {
           </div>
         </div>
       </PageWrapper>
-    )
+    );
   }
 }
 
-const mapStateToProps = ({
-  authRegister
-}: ReduxState) => ({
+const mapStateToProps = ({ authRegister }: ReduxState) => ({
   authRegister
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchAuthRegisterIfNeeded: (param: Object) => 
+  fetchAuthRegisterIfNeeded: (param: Object) =>
     dispatch(AuthRegisterAction.fetchAuthRegisterIfNeeded(param))
 });
 

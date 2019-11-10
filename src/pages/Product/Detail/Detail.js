@@ -118,7 +118,7 @@ export class Detail extends PureComponent<Props> {
                   </div>
                 </Card>
 
-                <Card>
+                {/* <Card>
                   <div className="detail-body-content">
                     <div className="row">
                       <div className="col-md-12">
@@ -207,7 +207,7 @@ export class Detail extends PureComponent<Props> {
                   </div>
                 </Card>
 
-                
+                 */}
               </div>
             </div>
           </div>
