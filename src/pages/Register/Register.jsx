@@ -31,11 +31,11 @@ export class Register extends PureComponent<Props> {
         },
         {
           label: 'Kreditur',
-          value: 'db'
+          value: 'kr'
         },
         {
           label: 'Pemilik Agunan',
-          value: 'db'
+          value: 'pa'
         },
         {
           label: 'Notaris',
@@ -108,7 +108,7 @@ export class Register extends PureComponent<Props> {
   }
 
   render() {
-    const { optionsRole, optionsStatus, loading, err } = this.state;
+    const { optionsRole, loading, err } = this.state;
     console.log(this.props);
     const Schema = Yup.object().shape({
       role: Yup.object()
@@ -149,7 +149,17 @@ export class Register extends PureComponent<Props> {
                       email: '',
                       nomor_hp: '',
                       password: '',
-                      confirm_password: ''
+                      confirm_password: '',
+                      optionsStatus: [
+                        {
+                          label: 'Perorangan',
+                          value: 'pr'
+                        },
+                        {
+                          label: 'Badan Usaha',
+                          value: 'bu'
+                        }
+                      ]
                     }}
                     validationSchema={Schema}
                     onSubmit={value => {
@@ -158,7 +168,30 @@ export class Register extends PureComponent<Props> {
                     }}
                   >
                     {({ errors, touched, values, setFieldValue, onSubmit }) => {
+                      
                       const onChangeSelect = (name, value) => {
+                        if (value.value === 'nt' && name === 'role') {
+                          const optionsStatus = [{
+                            label: 'Perorangan',
+                            value: 'pr'
+                          }]
+                          setFieldValue('optionsStatus', optionsStatus)
+
+                        } else {
+                          if (name === 'role') {
+                            const optionsStatus = [
+                              {
+                                label: 'Perorangan',
+                                value: 'pr'
+                              },
+                              {
+                                label: 'Badan Usaha',
+                                value: 'bu'
+                              }
+                            ]
+                            setFieldValue('optionsStatus', optionsStatus)
+                          }
+                        }
                         setFieldValue(name, value);
                       };
                       return (
@@ -185,7 +218,7 @@ export class Register extends PureComponent<Props> {
                                 name="status"
                                 label="Status"
                                 value={values.status}
-                                options={optionsStatus}
+                                options={values.optionsStatus}
                                 onChange={value =>
                                   onChangeSelect('status', value)
                                 }

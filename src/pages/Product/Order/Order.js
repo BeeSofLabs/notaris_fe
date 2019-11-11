@@ -9,7 +9,7 @@ import {
   Form,
 } from 'formik'
 import * as Yup from 'yup'
-import { PageWrapper, Card, InputFormik, SelectFormik, DateInput, Button, DetailField, Status } from '../../../components/element';
+import { PageWrapper, Card, InputFormik, SelectFormik, DateInput, Button, DetailField, Status, Textarea } from '../../../components/element';
 import { 
   Steps, 
   Popover, 
@@ -24,17 +24,17 @@ const cookieStorage = new CookieStorage();
 const { Step } = Steps;
 
 const steps = [{
-    title: 'Document Type',
+    title: 'Tipe Dokumen',
     content: 'Zero Content',
     icon: <Icon type="profile" />
   },
   {
-    title: 'Surat Properti',
+    title: 'Detail Dokumen',
     content: 'First-content',
     icon: <Icon type="profile" />
   },
   {
-    title: 'Detail Properti',
+    title: 'Pihak Terkait',
     content: 'Second-content',
     icon: <Icon type="home" />
   },
@@ -145,6 +145,7 @@ export class Order extends PureComponent<Props> {
                           const onChangeSelect = (value) => {
                             setFieldValue('document_type', value)
                           }
+            
                           return (
                             <Form className="form-surat-nah">
                               <div className="row">
@@ -201,7 +202,9 @@ export class Order extends PureComponent<Props> {
                   kabupaten: '',
                   kecematan: '',
                   kelurahan: '',
-                  alamat_lengkap: ''
+                  alamat_lengkap: '',
+                  nilai_pengikatan: '',
+                  jalan: ''
                 }}
                 onSubmit={(value) => {
                   this.handleSubmitFirst()
@@ -213,6 +216,9 @@ export class Order extends PureComponent<Props> {
                   const onChangeSelect = (value) => {
                     setFieldValue('buktiKepemilikan', value)
                   }
+                  const onChangeTextarea = e => {
+                    setFieldValue(e.target.name, e.target.value);
+                  };
                   return (
                     <Form className="form-surat-nah">
                       <div className="row">
@@ -312,6 +318,14 @@ export class Order extends PureComponent<Props> {
                               error={errors.nilai_agunan && touched.nilai_agunan ? errors.nilai_agunan : null}
                             />
                           </div>
+                          <div className="col-md-4">
+                            <InputFormik
+                              name="nilai_pengikatan"
+                              label="Nilai Pengikatan"
+                              placeholder="Masukan nilai pengikatan..."
+                              error={errors.nilai_pengikatan && touched.nilai_pengikatan ? errors.no_mesin : null}
+                            />
+                          </div>
                         </div>
                         <hr />
                         <div className="row">
@@ -350,13 +364,28 @@ export class Order extends PureComponent<Props> {
                           </div>
                           <div className="col-md-4">
                             <SelectFormik
-                              name="provinsi"
-                              label="Provinsi"
-                              placeholder="Provinsi"
+                              name="kelurahan"
+                              label="Kelurahan"
+                              placeholder="Kelurahan"
                               onChange={onChangeSelect}
                               options={options}
-                              value={values.provinsi}
-                              error={errors.provinsi && touched.provinsi ? errors.provinsi : null}
+                              value={values.kelurahan}
+                              error={errors.kelurahan && touched.kelurahan ? errors.kelurahan : null}
+                            />
+                          </div>
+                          <div className="col-md-4">
+                            <Textarea
+                              rows="7"
+                              name="jalan"
+                              label="Jalan"
+                              placeholder="Jalan"
+                              value={values.jalan}
+                              error={
+                                errors.jalan && touched.jalan
+                                  ? errors.jalan
+                                  : null
+                              }
+                              onChange={onChangeTextarea}
                             />
                           </div>
                         </div>
@@ -483,7 +512,7 @@ export class Order extends PureComponent<Props> {
                                   <div className="col-md-4">
                                     <InputFormik
                                       name="tipe"
-                                      label="Tipe"
+                                      label="Tipe/Seri"
                                       placeholder="Masukan tipe..."
                                       error={errors.tipe && touched.tipe ? errors.tipe : null}
                                     />

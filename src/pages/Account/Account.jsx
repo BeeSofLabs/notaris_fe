@@ -7,6 +7,7 @@ import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import { Upload, Icon, message } from 'antd';
 import queryString from 'query-string';
+import moment from 'moment';
 
 import {
   PageWrapper,
@@ -18,6 +19,8 @@ import {
   Textarea
   // Upload
 } from '../../components/element';
+
+const dateFormat = 'YYYY/MM/DD';
 
 function getBase64(img, callback) {
   const reader = new FileReader();
@@ -58,11 +61,11 @@ export class Account extends PureComponent<Props> {
       ],
       optionsGender: [
         {
-          label: 'Laki-Laki',
+          label: 'Tn',
           value: 0
         },
         {
-          label: 'Perempuan',
+          label: 'Ny',
           value: 1
         }
       ],
@@ -98,10 +101,6 @@ export class Account extends PureComponent<Props> {
         {
           label: 'Istri',
           value: 1
-        },
-        {
-          label: 'Ahli Waris',
-          value: 2
         }
       ],
       role: '',
@@ -181,13 +180,14 @@ export class Account extends PureComponent<Props> {
   };
 
   renderDebitur() {
-    const {
+    let {
       optionsGender,
       imageUrl,
       imageUrlB,
       showPendamping,
       optionsStatus,
-      status
+      status,
+      role
     } = this.state;
     const uploadButton = (
       <div>
@@ -195,9 +195,26 @@ export class Account extends PureComponent<Props> {
         <div className="ant-upload-text">Upload</div>
       </div>
     );
+    if (role === 'db') {
+      optionsStatus = [
+        {
+          label: 'Suami',
+          value: 0
+        },
+        {
+          label: 'Istri',
+          value: 1
+        },
+        {
+          label: 'Ahli Waris',
+          value: 2
+        }
+      ]
+    }
     return (
       <Formik
         initialValues={{
+          namaLengkap: '',
           nomorKtp: '',
           jenis_kelamin: '',
           tempat_lahir: '',
@@ -268,6 +285,16 @@ export class Account extends PureComponent<Props> {
                 </div>
                 <div className="col-md-8">
                   <div className="row">
+                    <div className="col-md-6">
+                      <InputFormik
+                        name="namaLengkap"
+                        label="Nama Lengkap"
+                        placeholder="Nama lengkap"
+                        error={
+                          errors.namaLengkap && touched.namaLengkap ? errors.namaLengkap : null
+                        }
+                      />
+                    </div>
                     <div className="col-md-6">
                       <InputFormik
                         name="no_ktp"
@@ -347,7 +374,7 @@ export class Account extends PureComponent<Props> {
                       <InputFormik
                         name="longitude"
                         label="Longitude"
-                        placeholder="Masukan Luas Tanah"
+                        placeholder="..."
                         error={
                           errors.luasTanah && touched.luasTanah
                             ? errors.luasTanah
@@ -386,15 +413,19 @@ export class Account extends PureComponent<Props> {
                           />
                         </div>
                         <div className="col-md-12">
-                          <InputFormik
+                          <Textarea
+                            rows="7"
                             name="komparisi"
                             label="Komparisi"
-                            placeholder="Masukan Komparisi"
+                            placeholder="Masukan alamat"
+                            value={values.komparisi}
                             error={
-                              errors.komparisi && touched.komparisi
+                              errors.komparisi &&
+                              touched.komparisi
                                 ? errors.komparisi
                                 : null
                             }
+                            onChange={onChangeTextarea}
                           />
                         </div>
                       </div>
@@ -415,7 +446,7 @@ export class Account extends PureComponent<Props> {
                 )}
               </div>
               <hr />
-              {showPendamping && (
+              {(showPendamping) && (
                 <div className="col-md-4 mg-top-20">
                   <Button
                     className="button-left"
@@ -458,7 +489,7 @@ export class Account extends PureComponent<Props> {
                   <div className="col-md-4">
                     <InputFormik
                       name="nomorKtp_pendamping"
-                      label="Nomor KtP"
+                      label="Nomor KTP"
                       placeholder="Masukan no ktp"
                       error={
                         errors.nomorKtp_pendamping &&
@@ -515,7 +546,7 @@ export class Account extends PureComponent<Props> {
                         <InputFormik
                           name="longitude_pendamping"
                           label="Masukan Longitude"
-                          placeholder="Masukan Luas Tanah"
+                          placeholder="..."
                           error={
                             errors.luasTanah && touched.luasTanah
                               ? errors.luasTanah
@@ -539,16 +570,19 @@ export class Account extends PureComponent<Props> {
                   </div>
                   {status === 'bu' && (
                     <div className="col-md-4">
-                      <InputFormik
+                      <Textarea
+                        rows="7"
                         name="komparisi_pendamping"
-                        label="Komparisi"
-                        placeholder="Masukan Komparisi"
+                        label="Komparisi Pendamping"
+                        placeholder="Masukan komparisi"
+                        value={values.komparisi_pendamping}
                         error={
                           errors.komparisi_pendamping &&
                           touched.komparisi_pendamping
                             ? errors.komparisi_pendamping
                             : null
                         }
+                        onChange={onChangeTextarea}
                       />
                     </div>
                   )}
@@ -760,7 +794,7 @@ export class Account extends PureComponent<Props> {
                       <InputFormik
                         name="longitude"
                         label="Masukan Longitude"
-                        placeholder="Masukan Luas Tanah"
+                        placeholder="..."
                         error={
                           errors.luasTanah && touched.luasTanah
                             ? errors.luasTanah
@@ -772,7 +806,7 @@ export class Account extends PureComponent<Props> {
                       <InputFormik
                         name="latitude"
                         label="Masukan Latitude"
-                        placeholder="Masukan Latitude"
+                        placeholder="..."
                         error={
                           errors.latitude && touched.latitude
                             ? errors.latitude
@@ -818,10 +852,11 @@ export class Account extends PureComponent<Props> {
     return (
       <Formik
         initialValues={{
+          namaLengkap: '',
           nomor_sk: '',
           tgl_sk: '',
           nomor_akta: '',
-          tanggal_akta: '',
+          tanggal_akta: moment(new Date(), dateFormat),
           tempat_lahir: '',
           tanggal_lahir: '',
           prov_kerja: '',
@@ -832,7 +867,9 @@ export class Account extends PureComponent<Props> {
           alamat_kantor: '',
           no_rek: '',
           nama_bank: '',
-          komparisi: ''
+          komparisi: '',
+          longitude: '',
+          latitude: ''
         }}
         onSubmit={value => {}}
       >
@@ -871,6 +908,16 @@ export class Account extends PureComponent<Props> {
                 </div>
                 <div className="col-md-4">
                   <div className="row">
+                    <div className="col-md-12">
+                      <InputFormik
+                        name="namaLengkap"
+                        label="Nama Lengkap"
+                        placeholder="Nama lengkap"
+                        error={
+                          errors.namaLengkap && touched.namaLengkap ? errors.namaLengkap : null
+                        }
+                      />
+                    </div>      
                     <div className="col-md-12">
                       <InputFormik
                         name="no_ktp"
@@ -913,6 +960,7 @@ export class Account extends PureComponent<Props> {
                         }
                       />
                     </div>
+                    
                   </div>
                 </div>
                 <div className="col-md-4">
@@ -922,6 +970,7 @@ export class Account extends PureComponent<Props> {
                         name="tanggal_akta"
                         label="Tanggal Akta"
                         placeholder="Pilih Tangal Akta"
+                        value={values.tanggal_akta}
                         error={
                           errors.tanggal_akta && touched.tanggal_akta
                             ? errors.tanggal_akta
@@ -950,6 +999,16 @@ export class Account extends PureComponent<Props> {
                           errors.tanggal_lahir && touched.tanggal_lahir
                             ? errors.tanggal_lahir
                             : null
+                        }
+                      />
+                    </div>
+                    <div className="col-md-12">
+                      <InputFormik
+                        name="nomor_sk"
+                        label="Nomor SK"
+                        placeholder="Nomor SK"
+                        error={
+                          errors.nomor_sk && touched.nomor_sk ? errors.nomor_sk : null
                         }
                       />
                     </div>
@@ -1027,6 +1086,30 @@ export class Account extends PureComponent<Props> {
                     }
                   />
                 </div>
+                <div className="col-md-4">
+                  <InputFormik
+                    name="longitude"
+                    label="Longitude"
+                    placeholder="Masukan Luas Tanah"
+                    error={
+                      errors.luasTanah && touched.luasTanah
+                        ? errors.luasTanah
+                        : null
+                    }
+                  />
+                </div>
+                <div className="col-md-4">
+                  <InputFormik
+                    name="latitude"
+                    label="Latitude"
+                    placeholder="..."
+                    error={
+                      errors.latitude && touched.latitude
+                        ? errors.latitude
+                        : null
+                    }
+                  />
+                </div>
               </div>
               <hr />
               <div className="row">
@@ -1079,7 +1162,7 @@ export class Account extends PureComponent<Props> {
               </div>
               <div className="body-login">
                 <Card>
-                  {(role === 'db') && this.renderDebitur()}
+                  {(role === 'db' || role === 'kr' || role === 'pa') && this.renderDebitur()}
                   {(role === 'nt') && this.renderNotaris()}
                 </Card>
                 <div className="section-to-register">

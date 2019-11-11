@@ -9,6 +9,7 @@ import Order from './Product/Order'
 import Login from './Login'
 import Register from './Register'
 import Account from './Account'
+import Forgot from './Forgot'
 
 export { 
   asyncHome, 
@@ -19,5 +20,6 @@ export {
   Order,
   Login,
   Register,
-  Account
+  Account,
+  Forgot
 };
