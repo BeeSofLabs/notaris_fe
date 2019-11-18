@@ -2,24 +2,28 @@
   "errors": [],
   "warnings": [],
   "version": "4.39.2",
-  "hash": "518882060e13dbd83561",
+  "hash": "9392e1bdfd22c58873e5",
   "publicPath": "/assets/",
   "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
   "assetsByChunkName": {
     "Account": "Account.js",
-    "Account~Detail~Forgot~Home~List~Login~Order~Register": "Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+    "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register": "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+    "Dashboard": "Dashboard.js",
     "Detail": "Detail.js",
     "Forgot": "Forgot.js",
+    "History": "History.js",
     "Home": [
       "Home.css",
       "Home.js"
     ],
-    "List": "List.js",
-    "Login": "Login.js",
-    "Order": [
-      "Order.js",
-      "Order.149c15134c2f122cbe6a.hot-update.js"
+    "List": [
+      "List.js",
+      "List.b5d9cb4aae509a7bfeb1.hot-update.js"
     ],
+    "Login": "Login.js",
+    "Order": "Order.js",
+    "Payment": "Payment.js",
+    "PaymentDetail": "PaymentDetail.js",
     "Register": "Register.js",
     "UserInfo": [
       "UserInfo.css",
@@ -29,18 +33,11 @@
       "main.css",
       "main.js"
     ],
-    "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register": "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+    "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register": "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
     "vendors~Account~List": "vendors~Account~List.js",
     "vendors~Order~Register": "vendors~Order~Register.js"
   },
   "assets": [
-    {
-      "name": "149c15134c2f122cbe6a.hot-update.json",
-      "size": 47,
-      "chunks": [],
-      "chunkNames": [],
-      "emitted": false
-    },
     {
       "name": "Account.js",
       "size": 148435,
@@ -53,13 +50,24 @@
       "emitted": false
     },
     {
-      "name": "Account~Detail~Forgot~Home~List~Login~Order~Register.js",
-      "size": 141979,
+      "name": "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+      "size": 179303,
       "chunks": [
-        "Account~Detail~Forgot~Home~List~Login~Order~Register"
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
       ],
       "chunkNames": [
-        "Account~Detail~Forgot~Home~List~Login~Order~Register"
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
+      ],
+      "emitted": false
+    },
+    {
+      "name": "Dashboard.js",
+      "size": 12606,
+      "chunks": [
+        "Dashboard"
+      ],
+      "chunkNames": [
+        "Dashboard"
       ],
       "emitted": false
     },
@@ -86,6 +94,17 @@
       "emitted": false
     },
     {
+      "name": "History.js",
+      "size": 37026,
+      "chunks": [
+        "History"
+      ],
+      "chunkNames": [
+        "History"
+      ],
+      "emitted": false
+    },
+    {
       "name": "Home.css",
       "size": 30,
       "chunks": [
@@ -108,8 +127,19 @@
       "emitted": false
     },
     {
+      "name": "List.b5d9cb4aae509a7bfeb1.hot-update.js",
+      "size": 48822,
+      "chunks": [
+        "List"
+      ],
+      "chunkNames": [
+        "List"
+      ],
+      "emitted": false
+    },
+    {
       "name": "List.js",
-      "size": 71241,
+      "size": 101299,
       "chunks": [
         "List"
       ],
@@ -130,8 +160,8 @@
       "emitted": false
     },
     {
-      "name": "Order.149c15134c2f122cbe6a.hot-update.js",
-      "size": 122118,
+      "name": "Order.js",
+      "size": 125317,
       "chunks": [
         "Order"
       ],
@@ -141,13 +171,24 @@
       "emitted": false
     },
     {
-      "name": "Order.js",
-      "size": 123118,
+      "name": "Payment.js",
+      "size": 39504,
       "chunks": [
-        "Order"
+        "Payment"
       ],
       "chunkNames": [
-        "Order"
+        "Payment"
+      ],
+      "emitted": false
+    },
+    {
+      "name": "PaymentDetail.js",
+      "size": 70128,
+      "chunks": [
+        "PaymentDetail"
+      ],
+      "chunkNames": [
+        "PaymentDetail"
       ],
       "emitted": false
     },
@@ -185,8 +226,15 @@
       "emitted": false
     },
     {
+      "name": "b5d9cb4aae509a7bfeb1.hot-update.json",
+      "size": 46,
+      "chunks": [],
+      "chunkNames": [],
+      "emitted": false
+    },
+    {
       "name": "main.css",
-      "size": 915491,
+      "size": 920256,
       "chunks": [
         "main"
       ],
@@ -197,7 +245,7 @@
     },
     {
       "name": "main.js",
-      "size": 5043232,
+      "size": 5078753,
       "chunks": [
         "main"
       ],
@@ -214,13 +262,13 @@
       "emitted": false
     },
     {
-      "name": "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register.js",
-      "size": 16499754,
+      "name": "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+      "size": 18099849,
       "chunks": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register"
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
       ],
       "chunkNames": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register"
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
       ],
       "emitted": false
     },
@@ -275,13 +323,13 @@
     },
     "Home": {
       "chunks": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Home"
       ],
       "assets": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register.js",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Home.css",
         "Home.js"
       ],
@@ -301,29 +349,30 @@
     },
     "List": {
       "chunks": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "vendors~Account~List",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "List"
       ],
       "assets": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "vendors~Account~List.js",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register.js",
-        "List.js"
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "List.js",
+        "List.b5d9cb4aae509a7bfeb1.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
     },
     "Detail": {
       "chunks": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Detail"
       ],
       "assets": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register.js",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Detail.js"
       ],
       "children": {},
@@ -331,30 +380,29 @@
     },
     "Order": {
       "chunks": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "vendors~Order~Register",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Order"
       ],
       "assets": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "vendors~Order~Register.js",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register.js",
-        "Order.js",
-        "Order.149c15134c2f122cbe6a.hot-update.js"
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Order.js"
       ],
       "children": {},
       "childAssets": {}
     },
     "Login": {
       "chunks": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Login"
       ],
       "assets": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register.js",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Login.js"
       ],
       "children": {},
@@ -362,15 +410,15 @@
     },
     "Register": {
       "chunks": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "vendors~Order~Register",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Register"
       ],
       "assets": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "vendors~Order~Register.js",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Register.js"
       ],
       "children": {},
@@ -378,15 +426,15 @@
     },
     "Account": {
       "chunks": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "vendors~Account~List",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Account"
       ],
       "assets": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "vendors~Account~List.js",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Account.js"
       ],
       "children": {},
@@ -394,14 +442,70 @@
     },
     "Forgot": {
       "chunks": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Forgot"
       ],
       "assets": [
-        "vendors~Account~Detail~Forgot~Home~List~Login~Order~Register.js",
-        "Account~Detail~Forgot~Home~List~Login~Order~Register.js",
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Forgot.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "Payment": {
+      "chunks": [
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Payment"
+      ],
+      "assets": [
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Payment.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "PaymentDetail": {
+      "chunks": [
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "PaymentDetail"
+      ],
+      "assets": [
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "PaymentDetail.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "History": {
+      "chunks": [
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "History"
+      ],
+      "assets": [
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "History.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "Dashboard": {
+      "chunks": [
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Dashboard"
+      ],
+      "assets": [
+        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Dashboard.js"
       ],
       "children": {},
       "childAssets": {}

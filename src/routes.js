@@ -2,7 +2,7 @@
 
 import { usersAction, userAction } from './actions';
 import App from './app';
-import { asyncHome, asyncUserInfo, NotFound, List, Detail, Order, Login, Register, Account, Forgot } from './pages';
+import { asyncHome, asyncUserInfo, NotFound, List, Detail, Order, Login, Register, Account, Forgot, Payment, PaymentDetail, History, Dashboard, DashboardListOrder } from './pages';
 import RequireAuth from './components/Page/PublicComponent/index'
 
 export default [
@@ -64,6 +64,31 @@ export default [
         path: '/forgot',
         exact: true,
         component: Forgot
+      },
+      {
+        path: '/payment/:idOrder',
+        exact: true,
+        component: Payment
+      },
+      {
+        path: '/payment/detail/:idPayment',
+        axact: true,
+        component: PaymentDetail
+      },
+      {
+        path: '/history',
+        exact: true,
+        component: History
+      },
+      {
+        path: '/dashboard',
+        exact: true,
+        component: Dashboard
+      },
+      {
+        path: '/dashboard/list-order',
+        exact: true,
+        component: DashboardListOrder
       },
       {
         component: NotFound

@@ -122,54 +122,92 @@ export class List extends PureComponent<Props> {
       return <LoadingListSkeleton />
     }
 
-    if (error) {
-      return <h5 style={{color: 'red', textAlign: 'center'}}>Maaf ada masalah dengan server</h5>
-    }
+    // if (error) {
+    //   return <h5 style={{color: 'red', textAlign: 'center'}}>Maaf ada masalah dengan server</h5>
+    // }
 
-    if (!loadingList && !error && listNotaris.readyStatus === 'LIST_NOTARIS_SUCCESS') {
-      return (
-        <Card>
-          {
-            list_notaris.map(key => {
-              return (
-                <div className="list-body-content" key={key.id}>
-                  <div className="top-content">
-                    <div className="row">
-                      <div className="col-md-6">
-                        <div className="name-notaris">
-                          <a href={`/notaris/${key.id}`}><h3>{key.name}</h3></a>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        {/* <div className="star">
-                          <h1>{star}</h1>
-                          <Rate
-                            onChange={this.onChangeStar}
-                            value={star}
-                            allowHalf
-                          />
-                        </div> */}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mid-content">
-                    <div className="address">
-                      <p>Depok, Kab Bogor, Kota Bogor</p>
-                    </div>
-                  </div>
-                  <div className="bottom-content">
-                    <div className="detail-address">
-                      <p>Jl. Matraman No. 12</p>
-                      <p>10.000000 - 20.0000000</p>
-                    </div>
-                  </div>
+    // if (!loadingList && !error && listNotaris.readyStatus === 'LIST_NOTARIS_SUCCESS') {
+    //   return (
+    //     <Card>
+          
+    //       {/* {
+    //         list_notaris.map(key => {
+    //           return (
+    //             <div className="list-body-content" key={key.id}>
+    //               <div className="top-content">
+    //                 <div className="row">
+    //                   <div className="col-md-6">
+    //                     <div className="name-notaris">
+    //                       <a href={`/notaris/${key.id}`}><h3>{key.name}</h3></a>
+    //                     </div>
+    //                   </div>
+    //                   <div className="col-md-6">
+    //                     {/* <div className="star">
+    //                       <h1>{star}</h1>
+    //                       <Rate
+    //                         onChange={this.onChangeStar}
+    //                         value={star}
+    //                         allowHalf
+    //                       />
+    //                     </div> */}
+    //                   </div>
+    //                 </div>
+    //               </div>
+    //               <div className="mid-content">
+    //                 <div className="address">
+    //                   <p>Depok, Kab Bogor, Kota Bogor</p>
+    //                 </div>
+    //               </div>
+    //               <div className="bottom-content">
+    //                 <div className="detail-address">
+    //                   <p>Jl. Matraman No. 12</p>
+    //                   <p>10.000000 - 20.0000000</p>
+    //                 </div>
+    //               </div>
+    //             </div>
+    //           )
+    //         })
+    //       } */}
+    //     </Card>
+    //   )
+    // }
+
+    return (
+      <Card>
+        <div className="list-body-content">
+          <div className="top-content">
+            <div className="row">
+              <div className="col-md-6">
+                <div className="name-notaris">
+                  <a href={`/notaris/1`}><h3>Zilmas</h3></a>
                 </div>
-              )
-            })
-          }
-        </Card>
-      )
-    }
+              </div>
+              <div className="col-md-6">
+                {/* <div className="star">
+                  <h1>{star}</h1>
+                  <Rate
+                    onChange={this.onChangeStar}
+                    value={star}
+                    allowHalf
+                  />
+                </div> */}
+              </div>
+            </div>
+          </div>
+          <div className="mid-content">
+            <div className="address">
+              <p>Depok, Kab Bogor, Kota Bogor</p>
+            </div>
+          </div>
+          <div className="bottom-content">
+            <div className="detail-address">
+              <p>Jl. Matraman No. 12</p>
+              <p>10.000000 - 20.0000000</p>
+            </div>
+          </div>
+        </div>
+      </Card>
+    )
   }
 
   render() {

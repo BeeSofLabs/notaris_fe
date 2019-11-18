@@ -14,7 +14,8 @@ import {
   Steps, 
   Popover, 
   Icon, 
-  Checkbox
+  Checkbox,
+  Radio
 } from 'antd';
 import { CookieStorage } from 'cookie-storage'
 import { compressToEncodedURIComponent } from 'lz-string'
@@ -52,11 +53,13 @@ export class Order extends PureComponent<Props> {
 
     this.state = {
       current: 0,
-      document_type: ''
+      document_type: '',
+      valueAs: 1
     }
 
     this.handleSubmitFirst = this.handleSubmitFirst.bind(this)
     this.handleSubmitFirst = this.handleSubmitSecond.bind(this)
+    this.onChangeRad = this.onChangeRad.bind(this)
   }
 
   handleSubmitFirst (value) {
@@ -87,6 +90,12 @@ export class Order extends PureComponent<Props> {
       current: current - 1
     }, () => {
       window.scrollTo(0, 1000);
+    })
+  }
+
+  onChangeRad = (e) => {
+    this.setState({
+      valueAs: e.target.value
     })
   }
 
@@ -558,7 +567,6 @@ export class Order extends PureComponent<Props> {
               }
               {
                 current === 2 && <Card><div className="order-form"><div className="kelengkapan-section">
-                  <h4>Pilih Debitur</h4>
                   <Formik
                     initialValues={{
                       debitur: "",
@@ -574,35 +582,42 @@ export class Order extends PureComponent<Props> {
                           setFieldValue('buktiKepemilikan', value)
                         }
                         return (
-                          <Form>
-                            <div className="row">
-                              <div className="col-md-4">
-                                <SelectFormik
-                                  name="debitur"
-                                  label="Kreditur"
-                                  placeholder="Kreditur"
-                                  onChange={onChangeSelect}
-                                  options={options}
-                                  value={values.debitur}
-                                  error={errors.debitur && touched.debitur ? errors.debitur : null}
-                                />
+                          <Form className="form-pilih-debitur">
+                            <Radio.Group onChange={this.onChangeRad} value={this.state.valueAs}>
+                              <h4>Pilih Debitur
+                                <Radio value={1}></Radio>
+                              </h4>
+                              <div className="row">
+                                <div className="col-md-4">
+                                  <SelectFormik
+                                    name="debitur"
+                                    label="Kreditur"
+                                    placeholder="Kreditur"
+                                    onChange={onChangeSelect}
+                                    options={options}
+                                    value={values.debitur}
+                                    error={errors.debitur && touched.debitur ? errors.debitur : null}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                            <hr />
-                            <h4>Pilih Pemilik Agunan</h4>
-                            <div className="row">
-                              <div className="col-md-4">
-                                <SelectFormik
-                                  name="agunan"
-                                  label="Pemilik Agunan"
-                                  placeholder="Kreditur"
-                                  onChange={onChangeSelect}
-                                  options={options}
-                                  value={values.agunan}
-                                  error={errors.agunan && touched.agunan ? errors.agunan : null}
-                                />
+                              <hr />
+                              <h4>Pilih Pemilik Agunan
+                                <Radio value={2}></Radio>
+                              </h4>
+                              <div className="row">
+                                <div className="col-md-4">
+                                  <SelectFormik
+                                    name="agunan"
+                                    label="Pemilik Agunan"
+                                    placeholder="Kreditur"
+                                    onChange={onChangeSelect}
+                                    options={options}
+                                    value={values.agunan}
+                                    error={errors.agunan && touched.agunan ? errors.agunan : null}
+                                  />
+                                </div>
                               </div>
-                            </div>
+                            </Radio.Group>
                             <div className="row">
                               <div className="col-md-3 offset-9">
                                 <div className="button-section">

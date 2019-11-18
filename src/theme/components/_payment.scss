@@ -1,0 +1,169 @@
+.page-section {
+   margin: 60px auto 10px; 
+  
+    .body-section {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+   .title-section {
+    h4 {
+      font-size: 40px;
+      color: #010f71;
+      text-align: center;
+    }
+    p {
+      margin: 24px auto;
+      color: #687782;
+      font-size: 14px;
+      font-weight: normal;
+      text-align: center;
+    }
+  }
+
+  .detail-body-content {
+    padding: 25px 20px;
+
+    .title {
+      h3 {
+        font-size: 20px;
+      }
+    }
+
+    .number-order {
+      p {
+        font-weight: normal;
+        color:#0c65e4;
+      }
+    }
+
+    .bottom-content {
+      p {
+        color: #707070;
+        font-weight: normal;
+        line-height: 1.5;
+      }   
+    }
+  }
+}
+
+.title-body-content {
+  padding: 32px;
+  padding-bottom: 0!important; 
+
+  h3 {
+    font-size: 20px;
+    color: #2c2e30;
+    font-weight: bold;
+  }
+}
+
+.list-body-content {
+  padding: 24px 32px 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+
+  .title-content {
+    h3 {
+      color: #2c2e30;
+      font-size: 14px;
+      font-weight: normal;
+      margin-bottom: 16px;
+    }
+  }
+
+  ul {
+    li {
+      img {
+        vertical-align: middle;
+        margin-right: 20px;
+        margin-left: 20px;
+      }
+
+      .text-checkbox {
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+}
+
+.payment-wrapper {
+  margin: 0 auto 50px;
+
+  .wrapping-button {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0!important;
+  }
+}
+
+.detail-order {
+  .top-content {
+    padding: 32px 32px 24px;
+    border-bottom: 1px solid rgba(1, 15, 113, 0.1);
+
+    .title {
+      margin-bottom: 8px;
+
+      h4 {
+        color: #707070;
+        font-size: 14px;
+        font-weight: normal;
+      }
+    }
+
+    .body {
+      p {
+        color: #2c2e30;
+      }
+    }
+  }
+
+  .bottom-content {
+    padding: 24px 32px 24px;
+
+    .title {
+      margin-bottom: 8px;
+
+      h4 {
+        color: #2c2e30;
+      }
+    }
+
+    .body {
+      p {
+        color: #010f71;
+        font-size: 24px; 
+      }
+    }
+  }
+}
+
+.detail-payment {
+  padding: 32px;
+
+  .title {
+    margin-bottom: 24px;
+
+    h4 {
+      color: #010f71;
+      font-size: 14px;
+    }
+  }
+
+  .sub-title {
+    margin-bottom: 8px;
+
+    h5 {
+      color: #2c2e30;
+      font-weight: normal;
+    }
+  }
+
+  .body {
+    p {
+      color:#707070;
+      font-size: 20px;
+    }
+  }
+}
