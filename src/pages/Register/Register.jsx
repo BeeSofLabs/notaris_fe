@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Modal } from 'antd';
 import { CookieStorage } from 'cookie-storage';
+import { compressToEncodedURIComponent } from 'lz-string'
 import {
   PageWrapper,
   Card,
@@ -16,8 +17,10 @@ import {
   SelectFormik
 } from '../../components/element';
 
-import * as AuthRegisterAction from '../../actions/auth/register';
-import type { AuthRegister, Dispatch, ReduxState } from '../../types';
+
+const cookieStorage = new CookieStorage({
+  path: '/'
+});
 
 export class Register extends PureComponent<Props> {
   constructor(props) {
@@ -27,19 +30,23 @@ export class Register extends PureComponent<Props> {
       optionsRole: [
         {
           label: 'Debitur',
-          value: 'db'
+          value: 'debitur'
         },
         {
           label: 'Kreditur',
-          value: 'kr'
+          value: 'kreditur'
         },
         {
           label: 'Pemilik Agunan',
-          value: 'pa'
+          value: 'collateral_owner'
         },
         {
           label: 'Notaris',
-          value: 'nt'
+          value: 'notaris'
+        },
+        {
+          label: 'Bpn',
+          value: 'bpn'
         }
       ],
       optionsStatus: [
@@ -61,16 +68,13 @@ export class Register extends PureComponent<Props> {
 
   handleRegister(data) {
     const { fetchAuthRegisterIfNeeded } = this.props;
-    console.log(data);
     fetchAuthRegisterIfNeeded(data);
   }
 
   componentWillReceiveProps(nextProps) {
     const { authRegister } = this.props;
     const obj = {};
-    console.log('asds', authRegister, nextProps.authRegister);
     if (authRegister[obj] !== nextProps.authRegister[obj]) {
-      console.log('asd', nextProps);
       this.handleAuth(nextProps.authRegister[obj]);
     }
   }
@@ -100,7 +104,6 @@ export class Register extends PureComponent<Props> {
       );
     }
 
-    console.log('berhasil', data);
     Modal.success({
       content: data.info.data.message,
       onOk: () => (window.location = '/login')
@@ -153,22 +156,36 @@ export class Register extends PureComponent<Props> {
                       optionsStatus: [
                         {
                           label: 'Perorangan',
-                          value: 'pr'
+                          value: 'perorangan'
                         },
                         {
                           label: 'Badan Usaha',
-                          value: 'bu'
+                          value: 'badan_usaha'
                         }
                       ]
                     }}
                     validationSchema={Schema}
                     onSubmit={value => {
                       // this.handleRegister(value)
+                      let params = {
+                        name: value.full_name,
+                        email: value.email,
+                        password: value.password,
+                        password_confirmation: value.confirm_password,
+                        phone: value.nomor_hp,
+                        organizational_status:value.status.value,
+                        user_type:  value.role.value,
+                        approved: value.role.value === 'notaris' ? false : true            
+                      }
+                      const myStringParams = JSON.stringify(params)
+                      cookieStorage.setItem('pR', compressToEncodedURIComponent(myStringParams))
                       window.location = `/account?role=${value.role.value}&status=${value.status.value}`;
                     }}
                   >
                     {({ errors, touched, values, setFieldValue, onSubmit }) => {
-                      
+                      if (values.password !== values.confirm_password) {
+                        errors.confirm_password = "Password harus sama."
+                      }
                       const onChangeSelect = (name, value) => {
                         if (value.value === 'nt' && name === 'role') {
                           const optionsStatus = [{
@@ -182,11 +199,11 @@ export class Register extends PureComponent<Props> {
                             const optionsStatus = [
                               {
                                 label: 'Perorangan',
-                                value: 'pr'
+                                value: 'perorangan'
                               },
                               {
                                 label: 'Badan Usaha',
-                                value: 'bu'
+                                value: 'badan_usaha'
                               }
                             ]
                             setFieldValue('optionsStatus', optionsStatus)
@@ -221,6 +238,11 @@ export class Register extends PureComponent<Props> {
                                 options={values.optionsStatus}
                                 onChange={value =>
                                   onChangeSelect('status', value)
+                                }
+                                error={
+                                  errors.status && touched.status
+                                    ? errors.status.label
+                                    : null
                                 }
                               />
                             </div>

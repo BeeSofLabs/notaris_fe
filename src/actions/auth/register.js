@@ -7,7 +7,7 @@ import { CookieStorage } from 'cookie-storage'
 import { compressToEncodedURIComponent } from 'cookie-storage'
 
 const cookieStorage = new CookieStorage();
-const API_URL = `${Constants.API}/signup`;
+const API_URL = `${Constants.API}/api/v1/signup`;
 
 // Export this for unit testing more easily
 /* istanbul ignore next */
@@ -24,17 +24,8 @@ export const fetchRegister = (
     };
 
     let { data } = []
-    const dataSend = {
-      email: param.email,
-      password: param.password,
-      name: param.full_name,
-      password_confirmation: param.confirm_password,
-      address: param.address,
-      phone: param.nomor_hp
-    }
-    console.log('asd', dataSend)
 
-    data = await axios.post(`${URL}`, dataSend);
+    data = await axios.post(`${URL}`, param);
     /* istanbul ignore next */
     dispatch({ type: 'REGISTER_SUCCESS', param, data });
   } catch (err) {

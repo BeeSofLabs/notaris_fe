@@ -60,7 +60,7 @@ export class Home extends PureComponent<Props> {
         link: '/notaris?type=apht'
       },
       {
-        label: 'Fidusa',
+        label: 'Fidusia',
         id: 4,
         link: '/notaris?type=fidusa'
       }

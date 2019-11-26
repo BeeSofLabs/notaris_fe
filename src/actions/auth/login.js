@@ -7,7 +7,7 @@ import { CookieStorage } from 'cookie-storage'
 import { compressToEncodedURIComponent } from 'cookie-storage'
 
 const cookieStorage = new CookieStorage();
-const API_URL = `${Constants.API}/auth/login`;
+const API_URL = `${Constants.API}/api/v1/auth/login`;
 
 // Export this for unit testing more easily
 /* istanbul ignore next */

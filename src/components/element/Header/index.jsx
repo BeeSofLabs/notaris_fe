@@ -70,10 +70,10 @@ class Header extends Component {
                   {this.props.showNav ? (
                     <div className="navigation">
                       <ul>
-                        <li>Tentang Kami</li>
-                        <li>Layanan Kami</li>
-                        <li>Kebijakan Privasi</li>
-                        <li>Hubungi Kami</li>
+                        <li><a href="/notaris">Notaris</a></li>
+                        <li><a href="/notaris?type=skmht">SKMHT</a></li>
+                        <li><a href="/notaris?type=apht">APHT</a></li>
+                        <li><a href="/notaris?type=fidusia">Fidusia</a></li>
                       </ul>
                     </div>
                   ) : (

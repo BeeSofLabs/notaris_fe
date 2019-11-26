@@ -342,6 +342,7 @@
     "redux-thunk": "^2.3.0",
     "serialize-javascript": "^1.8.0",
     "serve-favicon": "^2.5.0",
+    "sweetalert2": "^9.3.17",
     "yup": "^0.27.0"
   },
   "devDependencies": {

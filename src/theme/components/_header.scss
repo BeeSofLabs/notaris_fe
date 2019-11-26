@@ -9,9 +9,14 @@
     bottom: 15px;
 
     ul {
+      margin-top: 20px;
       li {
         display: inline;
         margin-right: 40px;
+
+        a {
+          color: rgba(0, 0, 0, 0.65);
+        }
       }
     }
   }
