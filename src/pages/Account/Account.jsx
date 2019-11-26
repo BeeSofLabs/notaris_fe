@@ -1116,7 +1116,7 @@ export class Account extends PureComponent<Props> {
   }
 
   renderNotaris() {
-    const { optionBank, optionKerja, imageUrl, status, imageFotoUrl, imageKtpUrl, provOptions, cityOptions, distOptions } = this.state;
+    const { optionBank, optionKerja, imageUrl, status, imageFotoUrl, imageKtpUrl, provOptions, cityOptions, distOptions, loading } = this.state;
     const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
@@ -1547,8 +1547,12 @@ export class Account extends PureComponent<Props> {
                 </div>
               </div>
               <div className="button-section-form">
-                <Button className="button-right" type="submit" disabled={false}>
-                  Daftar
+                <Button 
+                  className="button-right" 
+                  type="submit" 
+                  disabled={loading}
+                >
+                  {loading ? 'Loading ...' : 'Daftar'}
                 </Button>
               </div>
             </Form>

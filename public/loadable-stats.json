@@ -2,7 +2,7 @@
   "errors": [],
   "warnings": [],
   "version": "4.39.2",
-  "hash": "1eadc8f4b4d2ee60a4ee",
+  "hash": "6c4575deb3596b3a588e",
   "publicPath": "/assets/",
   "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
   "assetsByChunkName": {
@@ -28,8 +28,7 @@
     ],
     "main": [
       "main.css",
-      "main.js",
-      "main.b3cef8f9c556c8d65739.hot-update.js"
+      "main.js"
     ],
     "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register": "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
     "vendors~Account~List": "vendors~Account~List.js",
@@ -38,14 +37,14 @@
   "assets": [
     {
       "name": "Account.js",
-      "size": 290726,
+      "size": 291031,
       "chunks": [
         "Account"
       ],
       "chunkNames": [
         "Account"
       ],
-      "emitted": false
+      "emitted": true
     },
     {
       "name": "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
@@ -213,31 +212,6 @@
       "emitted": false
     },
     {
-      "name": "b3cef8f9c556c8d65739.hot-update.json",
-      "size": 46,
-      "chunks": [],
-      "chunkNames": [],
-      "emitted": false
-    },
-    {
-      "name": "bea03fa7b232f34bc1a4.hot-update.json",
-      "size": 65,
-      "chunks": [],
-      "chunkNames": [],
-      "emitted": false
-    },
-    {
-      "name": "main.b3cef8f9c556c8d65739.hot-update.js",
-      "size": 1744,
-      "chunks": [
-        "main"
-      ],
-      "chunkNames": [
-        "main"
-      ],
-      "emitted": false
-    },
-    {
       "name": "main.css",
       "size": 920367,
       "chunks": [
@@ -257,7 +231,7 @@
       "chunkNames": [
         "main"
       ],
-      "emitted": false
+      "emitted": true
     },
     {
       "name": "photo-profil.19063548.jpg",
@@ -308,8 +282,7 @@
       ],
       "assets": [
         "main.css",
-        "main.js",
-        "main.b3cef8f9c556c8d65739.hot-update.js"
+        "main.js"
       ],
       "children": {},
       "childAssets": {}
@@ -322,8 +295,7 @@
       ],
       "assets": [
         "main.css",
-        "main.js",
-        "main.b3cef8f9c556c8d65739.hot-update.js"
+        "main.js"
       ],
       "children": {},
       "childAssets": {}
@@ -526,58 +498,5 @@
       "debug": false
     }
   },
-  "children": [
-    {
-      "errors": [],
-      "warnings": [],
-      "publicPath": "/assets/",
-      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
-      "assetsByChunkName": {},
-      "assets": [
-        {
-          "name": "bea03fa7b232f34bc1a4.hot-update.json",
-          "size": 65,
-          "chunks": [],
-          "chunkNames": [],
-          "emitted": false
-        }
-      ],
-      "filteredAssets": 0,
-      "entrypoints": {
-        "mini-css-extract-plugin": {
-          "chunks": [
-            "mini-css-extract-plugin"
-          ],
-          "assets": [
-            "*",
-            "mini-css-extract-plugin.bea03fa7b232f34bc1a4.hot-update.js"
-          ],
-          "children": {},
-          "childAssets": {}
-        }
-      },
-      "namedChunkGroups": {
-        "mini-css-extract-plugin": {
-          "chunks": [
-            "mini-css-extract-plugin"
-          ],
-          "assets": [
-            "*",
-            "mini-css-extract-plugin.bea03fa7b232f34bc1a4.hot-update.js"
-          ],
-          "children": {},
-          "childAssets": {}
-        }
-      },
-      "logging": {
-        "webpack.buildChunkGraph.visitModules": {
-          "entries": [],
-          "filteredEntries": 2,
-          "debug": false
-        }
-      },
-      "children": [],
-      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!node_modules/postcss-loader/src/index.js??ref--6-2!node_modules/sass-loader/dist/cjs.js??ref--6-3!src/theme/styles.scss"
-    }
-  ]
+  "children": []
 }
