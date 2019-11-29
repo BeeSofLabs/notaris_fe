@@ -107,10 +107,6 @@ export class Account extends PureComponent<Props> {
         {
           label: 'BRI',
           value: 1
-        },
-        {
-          label: 'Mandiri',
-          value: 0
         }
       ],
       optionsStatus: [
@@ -132,7 +128,8 @@ export class Account extends PureComponent<Props> {
       err: '',
       provOptions: [],
       cityOptions: [],
-      distOptions: []
+      distOptions: [],
+      default_tanggal_lahir: null
     };
 
     this.changeButtonPendamping = this.changeButtonPendamping.bind(this);
@@ -152,6 +149,12 @@ export class Account extends PureComponent<Props> {
     } catch (e) {
       window.location = '/';
     }
+    var d = new Date();
+    var toYear = d.getFullYear() - 20;
+    d.setFullYear(toYear)
+    this.setState({
+      default_tanggal_lahir: moment(d, dateFormat)
+    })
     fetchAreaProvinceIfNeeded(match);
   }
 
@@ -373,11 +376,12 @@ export class Account extends PureComponent<Props> {
       optionsStatus,
       status,
       role,
-      loading
+      loading,
+      default_tanggal_lahir
     } = this.state;
     let Schema = Yup.object().shape({
       namaLengkap: Yup.string().required('Tidak boleh kosong.'),
-      nomorKtp: Yup.string().required('Tidak boleh kosoong.'),
+      nomorKtp: Yup.string().matches(/^[0-9]*$/, 'Nomor berupa angka').max(20, 'Maksimal number 20 digit').required('No Identitas tidak boleh kosong'),
       jenis_kelamin: Yup.object().shape({
         label: Yup.string().required('Tidak boleh kosong.')
       }),
@@ -391,7 +395,7 @@ export class Account extends PureComponent<Props> {
     if (status === 'badan_usaha') {
       Schema = Yup.object().shape({
         namaLengkap: Yup.string().required('Tidak boleh kosong.'),
-        nomorKtp: Yup.string().required('Tidak boleh kosoong.'),
+        nomorKtp: Yup.string().matches(/^[0-9]*$/, 'Nomor berupa angka').max(20, 'Maksimal number 20 digit').required('No Identitas tidak boleh kosong'),
         jenis_kelamin: Yup.object().shape({
           label: Yup.string().required('Tidak boleh kosong.')
         }),
@@ -435,7 +439,7 @@ export class Account extends PureComponent<Props> {
           nomorKtp: '',
           jenis_kelamin: '',
           tempat_lahir: '',
-          tanggal_lahir: '',
+          tanggal_lahir: default_tanggal_lahir,
           alamat_ktp: '',
           longitude: '',
           latitude: '',
@@ -458,6 +462,7 @@ export class Account extends PureComponent<Props> {
         onSubmit={value => {
           const { fetchAuthRegisterIfNeeded } = this.props
           let params = JSON.parse(decompressFromEncodedURIComponent(cookieStorage.getItem('pR')));
+          params.name = value.namaLengkap;
           params.address = value.alamat_ktp;
           params.gender = value.jenis_kelamin.value || '';
           params.identity_number = parseInt(value.nomorKtp);
@@ -502,10 +507,10 @@ export class Account extends PureComponent<Props> {
               <div className="row">
                 <div className="col-md-4">
                   <div className="group-input-formik">
-                    <label>
+                    <label htmlFor="avatarKtp">
                       Foto KTP
                       <Upload
-                        name="avatar"
+                        name="avatarKtp"
                         listType="picture-card"
                         className="avatar-uploader"
                         // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
@@ -591,10 +596,10 @@ export class Account extends PureComponent<Props> {
               <div className="row">
                 <div className="col-md-4">
                   <div className="group-input-formik">
-                    <label>
+                    <label htmlFor="avatarFoto">
                       Foto Diri
                       <Upload
-                        name="avatar"
+                        name="avatarFoto"
                         listType="picture-card"
                         className="avatar-uploader"
                         showUploadList={false}
@@ -808,6 +813,7 @@ export class Account extends PureComponent<Props> {
                           ? errors.alamat_lengkap_pendamping
                           : null
                       }
+                      onChange={onChangeTextarea}
                     />
                   </div>
                   <div className="col-md-4">
@@ -1011,7 +1017,7 @@ export class Account extends PureComponent<Props> {
               <div className="row">
                 <div className="col-md-4">
                   <div className="group-input-formik">
-                    <label>
+                    <label htmlFor="avatarFoto">
                       Foto KTP
                       <Upload
                         name="avatar"
@@ -1116,7 +1122,7 @@ export class Account extends PureComponent<Props> {
   }
 
   renderNotaris() {
-    const { optionBank, optionKerja, imageUrl, status, imageFotoUrl, imageKtpUrl, provOptions, cityOptions, distOptions, loading } = this.state;
+    const { optionBank, optionKerja, imageUrl, status, imageFotoUrl, imageKtpUrl, provOptions, cityOptions, distOptions, loading, default_tanggal_lahir } = this.state;
     const uploadButton = (
       <div>
         <Icon type={this.state.loading ? 'loading' : 'plus'} />
@@ -1143,7 +1149,8 @@ export class Account extends PureComponent<Props> {
       tempat_lahir: Yup.string().required('Tidak boleh kosong.'),
       tanggal_lahir: Yup.string().required('Tidak boleh kosong.'),
       longitude: Yup.string().required('Tidak boleh kosong.'),
-      latitude: Yup.string().required('Tidak boleh kosong.')
+      latitude: Yup.string().required('Tidak boleh kosong.'),
+      nomor_ktp: Yup.string().matches(/^[0-9]*$/, 'Nomor berupa angka').max(20, 'Maksimal number 20 digit').required('No Identitas tidak boleh kosong')
     })
 
     if (status === 'badan_usaha') {
@@ -1168,7 +1175,7 @@ export class Account extends PureComponent<Props> {
         longitude: Yup.string().required('Tidak boleh kosong.'),
         latitude: Yup.string().required('Tidak boleh kosong.'),
         komparisi: Yup.string().required('Tidak boleh kosong.'),
-        nomor_ktp: Yup.string().required('Tidak boleh kosong')
+        nomor_ktp: Yup.string().matches(/^[0-9]*$/, 'Nomor berupa angka').max(20, 'Maksimal number 20 digit').required('No Identitas tidak boleh kosong')
       })
     }
 
@@ -1180,7 +1187,7 @@ export class Account extends PureComponent<Props> {
           tgl_sk: '',
           nomor_akta: '',
           tanggal_akta: moment(new Date(), dateFormat),
-          tempat_lahir: '',
+          tempat_lahir: default_tanggal_lahir,
           tanggal_lahir: '',
           prov_kerja: '',
           kot_kerja:'',
@@ -1199,7 +1206,7 @@ export class Account extends PureComponent<Props> {
         onSubmit={value => {
           const { fetchAuthRegisterIfNeeded } = this.props
           let params = JSON.parse(decompressFromEncodedURIComponent(cookieStorage.getItem('pR')));
-
+          params.name = value.namaLengkap;
           params.dob = value.tanggal_lahir;
           params.no_sk_notaris = value.nomor_sk;
           params.tgl_sk_notaris = value.tgl_sk;
@@ -1253,10 +1260,10 @@ export class Account extends PureComponent<Props> {
               <div className="row">
                 <div className="col-md-4">
                   <div className="group-input-formik">
-                    <label>
+                    <label htmlFor="avatarKtp">
                       Foto KTP
                       <Upload
-                        name="avatar"
+                        name="avatarKtp"
                         listType="picture-card"
                         className="avatar-uploader"
                         // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
@@ -1277,10 +1284,10 @@ export class Account extends PureComponent<Props> {
                     </label>
                   </div>
                   <div className="group-input-formik">
-                    <label>
+                    <label htmlFor="avatarFoto">
                       Foto Diri
                       <Upload
-                        name="avatar"
+                        name="avatarFoto"
                         listType="picture-card"
                         className="avatar-uploader"
                         showUploadList={false}
@@ -1503,7 +1510,7 @@ export class Account extends PureComponent<Props> {
                   <InputFormik
                     name="longitude"
                     label="Longitude"
-                    placeholder="Masukan Luas Tanah"
+                    placeholder="..."
                     error={
                       errors.luasTanah && touched.luasTanah
                         ? errors.luasTanah

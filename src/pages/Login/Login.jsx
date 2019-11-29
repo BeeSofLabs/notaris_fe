@@ -86,7 +86,11 @@ export class Login extends PureComponent<Props> {
         loading: false
       })
     }
-    
+    const dataProfile = JSON.stringify(data.info.data.user)
+    console.log()
+    cookieStorage.setItem('prof',
+      compressToEncodedURIComponent(dataProfile)
+    )
     cookieStorage.setItem(
       'auth_token',
       compressToEncodedURIComponent(data.info.data.auth_token)

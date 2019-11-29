@@ -80,9 +80,9 @@ export class Home extends PureComponent<Props> {
               <div className="body-banner">
                 <div className="row">
                   <div className="col-md-6">
-                    <h4>
+                    {/* <h4>
                       Kini Mencari Notaris <br /> Hanya Dengan Satu Klik
-                    </h4>
+                    </h4> */}
                     <div className="search-section">
                       <form onSubmit={this.handleSearch}>
                         <InputSearch
@@ -116,7 +116,9 @@ export class Home extends PureComponent<Props> {
                     <div className="col-md-3" key={label.id}>
                       <a href={label.link}>
                         <div className="box">
-                          <div className="icon-box" />
+                          <div className="icon-box">
+                            <img src={require('../../app/assets/img/icon-notaris_ppat/icon-pena-bulu.png')} alt="icon-notaris" width="100%"/>
+                          </div>
                           <div className="desc-box">
                             <h5>{label.label}</h5>
                           </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Menu, Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
 import { CookieStorage } from 'cookie-storage';
+import { decompressFromEncodedURIComponent } from 'lz-string' 
 
 const cookieStorage = new CookieStorage({
   path: '/'
@@ -13,7 +14,8 @@ class Header extends Component {
 
     this.state = {
       auth: '',
-      visible: false
+      visible: false,
+      profile: {}
     };
 
     this.handleVisibleChange = this.handleVisibleChange.bind(this);
@@ -21,14 +23,18 @@ class Header extends Component {
 
   componentDidMount() {
     if (cookieStorage.getItem('auth_token')) {
+      const dataProf = cookieStorage.getItem('prof')
+      const data = JSON.parse(decompressFromEncodedURIComponent(dataProf))
       this.setState({
-        auth: 'info'
+        auth: 'info',
+        profile: data
       });
     } else {
       this.setState({
         auth: 'login'
       });
     }
+    
   }
 
   handleVisibleChange = flag => {
@@ -41,8 +47,8 @@ class Header extends Component {
   }
 
   render() {
-    const { auth } = this.state;
-
+    const { auth, profile } = this.state;
+    console.log('asdads', profile)
     const menu = (
       <Menu>
         <ul className="menu-profile-logout">
@@ -63,7 +69,8 @@ class Header extends Component {
               <Row>
                 <Col md={6}>
                   <a href="/">
-                    <div className="logo" />
+                    {/* <div className="logo" /> */}
+                    <img src={require('../../../app/assets/img/icon-pena-bulu.png')} alt="icon-logo" width="50px" />
                   </a>
                 </Col>
                 <Col md={18}>
@@ -102,7 +109,7 @@ class Header extends Component {
                   }}
                   placement="bottomRight"
                 >
-                  <span className="profile-info">Ary Suryawan</span>
+                  <span className="profile-info">{profile.name || ''}</span>
                 </Dropdown>
               </Col>
             ) : (

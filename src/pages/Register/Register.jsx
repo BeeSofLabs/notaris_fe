@@ -124,9 +124,9 @@ export class Register extends PureComponent<Props> {
           label: Yup.string().required('Tidak boleh ksoong.')
         })
         .required('Tidak boleh kosong.'),
-      full_name: Yup.string().required('Tidak boleh ksoong.'),
+      // full_name: Yup.string().required('Tidak boleh ksoong.'),
       email: Yup.string().required('Tidak boleh ksoong.'),
-      nomor_hp: Yup.string().required('Tidak boleh kosong.'),
+      nomor_hp: Yup.string().matches(/^[0-9]*$/, 'Nomor berupa angka').max(15, 'Maksimal number 15 digit').required('No handphone tidak boleh kosong'),
       password: Yup.string().required('Tidak boleh ksoong.'),
       confirm_password: Yup.string().required('Tidak boleh ksoong.')
     });
@@ -168,7 +168,7 @@ export class Register extends PureComponent<Props> {
                     onSubmit={value => {
                       // this.handleRegister(value)
                       let params = {
-                        name: value.full_name,
+                        // name: value.full_name,
                         email: value.email,
                         password: value.password,
                         password_confirmation: value.confirm_password,
@@ -251,7 +251,7 @@ export class Register extends PureComponent<Props> {
                             </div>
                           </div>
                           <div className="row">
-                            <div className="col-md-6">
+                            {/* <div className="col-md-6">
                               <InputFormik
                                 name="full_name"
                                 label="Nama Lengkap"
@@ -262,7 +262,7 @@ export class Register extends PureComponent<Props> {
                                     : null
                                 }
                               />
-                            </div>
+                            </div> */}
 
                             <div className="col-md-6">
                               <InputFormik

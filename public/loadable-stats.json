@@ -2,7 +2,7 @@
   "errors": [],
   "warnings": [],
   "version": "4.39.2",
-  "hash": "6c4575deb3596b3a588e",
+  "hash": "627ace82396a6190ee90",
   "publicPath": "/assets/",
   "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
   "assetsByChunkName": {
@@ -21,7 +21,10 @@
     "Order": "Order.js",
     "Payment": "Payment.js",
     "PaymentDetail": "PaymentDetail.js",
-    "Register": "Register.js",
+    "Register": [
+      "Register.js",
+      "Register.5a44cf737a36869e6653.hot-update.js"
+    ],
     "UserInfo": [
       "UserInfo.css",
       "UserInfo.js"
@@ -36,19 +39,26 @@
   },
   "assets": [
     {
+      "name": "5a44cf737a36869e6653.hot-update.json",
+      "size": 50,
+      "chunks": [],
+      "chunkNames": [],
+      "emitted": false
+    },
+    {
       "name": "Account.js",
-      "size": 291031,
+      "size": 294655,
       "chunks": [
         "Account"
       ],
       "chunkNames": [
         "Account"
       ],
-      "emitted": true
+      "emitted": false
     },
     {
       "name": "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-      "size": 180039,
+      "size": 183441,
       "chunks": [
         "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
       ],
@@ -114,7 +124,7 @@
     },
     {
       "name": "Home.js",
-      "size": 71240,
+      "size": 72765,
       "chunks": [
         "Home"
       ],
@@ -136,7 +146,7 @@
     },
     {
       "name": "Login.js",
-      "size": 53190,
+      "size": 53949,
       "chunks": [
         "Login"
       ],
@@ -179,8 +189,19 @@
       "emitted": false
     },
     {
+      "name": "Register.5a44cf737a36869e6653.hot-update.js",
+      "size": 53856,
+      "chunks": [
+        "Register"
+      ],
+      "chunkNames": [
+        "Register"
+      ],
+      "emitted": false
+    },
+    {
       "name": "Register.js",
-      "size": 54446,
+      "size": 53933,
       "chunks": [
         "Register"
       ],
@@ -212,15 +233,22 @@
       "emitted": false
     },
     {
+      "name": "icon-pena-bulu.6e90af7b.png",
+      "size": 42734,
+      "chunks": [],
+      "chunkNames": [],
+      "emitted": false
+    },
+    {
       "name": "main.css",
-      "size": 920367,
+      "size": 920445,
       "chunks": [
         "main"
       ],
       "chunkNames": [
         "main"
       ],
-      "emitted": false
+      "emitted": true
     },
     {
       "name": "main.js",
@@ -231,7 +259,7 @@
       "chunkNames": [
         "main"
       ],
-      "emitted": true
+      "emitted": false
     },
     {
       "name": "photo-profil.19063548.jpg",
@@ -397,7 +425,8 @@
         "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "vendors~Account~Order~Register.js",
         "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Register.js"
+        "Register.js",
+        "Register.5a44cf737a36869e6653.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
