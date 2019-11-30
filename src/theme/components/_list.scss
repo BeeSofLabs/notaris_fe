@@ -112,3 +112,32 @@
     }
   }
 }
+
+.order-form {
+
+  .search {
+    position: relative;
+    input {
+      margin-top: 10px;
+      color: #707070;
+      box-shadow: none;
+      padding: 15px 36px 15px 45px;
+      border:1px solid  rgba(1, 15, 113, 0.3)
+      ;
+    }
+  }
+
+  .icon-search {
+    position: absolute;
+    width: 16px;
+    left: 25px;
+    top: 44px;
+    background: none;
+    border: none;
+    padding: 0;
+    
+    img {
+      width: 100%;
+    }
+  }
+}
