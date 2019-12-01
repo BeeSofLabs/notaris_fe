@@ -6,7 +6,7 @@ const cookieStorage = new CookieStorage();
 class Contants {
   static DEV = 'http://developer.jagoanpremi.com';
 
-  static API = 'https://cors-anywhere.herokuapp.com/http://notaris-app-staging.herokuapp.com';
+  static API = 'http://167.71.194.236';
 
   static WEB = 'http://localhost:3000';
 

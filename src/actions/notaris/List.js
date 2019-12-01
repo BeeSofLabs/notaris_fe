@@ -7,7 +7,7 @@ import { CookieStorage } from 'cookie-storage'
 import { compressToEncodedURIComponent } from 'cookie-storage'
 
 const cookieStorage = new CookieStorage();
-const API_URL = `${Constants.API}/users/notaris`;
+const API_URL = `${Constants.API}/api/v1/users/notaris`;
 
 // Export this for unit testing more easily
 /* istanbul ignore next */
@@ -25,7 +25,7 @@ export const fetchListNotaris = (
 
     let { data } = []
 
-    data = await axios.get(`${URL}`);
+    data = await axios.get(`${URL}?name=${param.name}&area=${param.area}&doc_type=${param.doc_type}&range_lower=${param.range_lower}&range_higher=${param.range_higher}`);
     /* istanbul ignore next */
     dispatch({ type: 'LIST_NOTARIS_SUCCESS', data });
   } catch (err) {

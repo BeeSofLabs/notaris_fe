@@ -47,22 +47,26 @@ export class Home extends PureComponent<Props> {
       {
         label: 'Notaris/PPAT',
         id: 1,
-        link: '/notaris'
+        link: '/notaris',
+        image: require('../../app/assets/img/icon-notaris_ppat/icon-pena-bulu.png')
       },
       {
         label: 'SKMHT',
         id: 2,
-        link: '/notaris?type=skmht'
+        link: '/notaris?type=skmht',
+        image: require('../../app/assets/img/imageMenuIcon/skmht.png')
       },
       {
         label: 'APHT',
         id: 3,
-        link: '/notaris?type=apht'
+        link: '/notaris?type=apht',
+        image: require('../../app/assets/img/imageMenuIcon/apht.png')
       },
       {
         label: 'Fidusia',
         id: 4,
-        link: '/notaris?type=fidusa'
+        link: '/notaris?type=fidusa',
+        image: require('../../app/assets/img/imageMenuIcon/fidusia.png')
       }
     ];
 
@@ -117,7 +121,7 @@ export class Home extends PureComponent<Props> {
                       <a href={label.link}>
                         <div className="box">
                           <div className="icon-box">
-                            <img src={require('../../app/assets/img/icon-notaris_ppat/icon-pena-bulu.png')} alt="icon-notaris" width="100%"/>
+                            <img src={label.image} alt="icon-notaris" width="100%"/>
                           </div>
                           <div className="desc-box">
                             <h5>{label.label}</h5>

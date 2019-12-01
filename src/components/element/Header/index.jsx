@@ -70,7 +70,7 @@ class Header extends Component {
                 <Col md={6}>
                   <a href="/">
                     {/* <div className="logo" /> */}
-                    <img src={require('../../../app/assets/img/icon-pena-bulu.png')} alt="icon-logo" width="50px" />
+                    <img src={require('../../../app/assets/img/imageMenuIcon/logo-notarius.jpeg')} alt="icon-logo" width="50px" />
                   </a>
                 </Col>
                 <Col md={18}>

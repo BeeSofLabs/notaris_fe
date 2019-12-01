@@ -1,8 +1,8 @@
 {
   "errors": [],
   "warnings": [],
-  "version": "4.39.2",
-  "hash": "6c0285b22e0c46f7a867",
+  "version": "4.41.2",
+  "hash": "953e60ed06c55af7cddd",
   "publicPath": "/assets/",
   "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
   "assetsByChunkName": {
@@ -12,148 +12,248 @@
     "Detail": "Detail.js",
     "Forgot": "Forgot.js",
     "History": "History.js",
-    "Home": ["Home.css", "Home.js"],
-    "List": "List.js",
+    "Home": [
+      "Home.css",
+      "Home.js"
+    ],
+    "List": [
+      "List.js",
+      "List.370327a1ad01dc6ac881.hot-update.js"
+    ],
     "Login": "Login.js",
     "Order": "Order.js",
     "Payment": "Payment.js",
     "PaymentDetail": "PaymentDetail.js",
     "Register": "Register.js",
-    "UserInfo": ["UserInfo.css", "UserInfo.js"],
-    "main": ["main.css", "main.js", "main.160571e52efceac2998c.hot-update.js"],
+    "UserInfo": [
+      "UserInfo.css",
+      "UserInfo.js"
+    ],
+    "main": [
+      "main.css",
+      "main.js"
+    ],
     "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register": "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
     "vendors~Account~List": "vendors~Account~List.js",
     "vendors~Account~Order~Register": "vendors~Account~Order~Register.js"
   },
   "assets": [
     {
-      "name": "160571e52efceac2998c.hot-update.json",
+      "name": "370327a1ad01dc6ac881.hot-update.json",
       "size": 46,
       "chunks": [],
       "chunkNames": [],
-      "emitted": false
-    },
-    {
-      "name": "5e766f47994e6fb6e410.hot-update.json",
-      "size": 65,
-      "chunks": [],
-      "chunkNames": [],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
       "emitted": false
     },
     {
       "name": "Account.js",
-      "size": 294655,
-      "chunks": ["Account"],
-      "chunkNames": ["Account"],
+      "size": 290152,
+      "chunks": [
+        "Account"
+      ],
+      "chunkNames": [
+        "Account"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-      "size": 183441,
+      "size": 183589,
       "chunks": [
         "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
       ],
       "chunkNames": [
         "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
       ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "Dashboard.js",
       "size": 12606,
-      "chunks": ["Dashboard"],
-      "chunkNames": ["Dashboard"],
+      "chunks": [
+        "Dashboard"
+      ],
+      "chunkNames": [
+        "Dashboard"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "Detail.js",
-      "size": 62632,
-      "chunks": ["Detail"],
-      "chunkNames": ["Detail"],
+      "size": 63421,
+      "chunks": [
+        "Detail"
+      ],
+      "chunkNames": [
+        "Detail"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "Forgot.js",
       "size": 24173,
-      "chunks": ["Forgot"],
-      "chunkNames": ["Forgot"],
+      "chunks": [
+        "Forgot"
+      ],
+      "chunkNames": [
+        "Forgot"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "History.js",
       "size": 37026,
-      "chunks": ["History"],
-      "chunkNames": ["History"],
+      "chunks": [
+        "History"
+      ],
+      "chunkNames": [
+        "History"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "Home.css",
       "size": 30,
-      "chunks": ["Home"],
-      "chunkNames": ["Home"],
+      "chunks": [
+        "Home"
+      ],
+      "chunkNames": [
+        "Home"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "Home.js",
-      "size": 72765,
-      "chunks": ["Home"],
-      "chunkNames": ["Home"],
+      "size": 89175,
+      "chunks": [
+        "Home"
+      ],
+      "chunkNames": [
+        "Home"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "List.370327a1ad01dc6ac881.hot-update.js",
+      "size": 59488,
+      "chunks": [
+        "List"
+      ],
+      "chunkNames": [
+        "List"
+      ],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
       "emitted": false
     },
     {
       "name": "List.js",
-      "size": 101298,
-      "chunks": ["List"],
-      "chunkNames": ["List"],
+      "size": 130509,
+      "chunks": [
+        "List"
+      ],
+      "chunkNames": [
+        "List"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "Login.js",
-      "size": 53949,
-      "chunks": ["Login"],
-      "chunkNames": ["Login"],
+      "size": 52671,
+      "chunks": [
+        "Login"
+      ],
+      "chunkNames": [
+        "Login"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "Order.js",
-      "size": 144570,
-      "chunks": ["Order"],
-      "chunkNames": ["Order"],
+      "size": 145394,
+      "chunks": [
+        "Order"
+      ],
+      "chunkNames": [
+        "Order"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "Payment.js",
       "size": 39504,
-      "chunks": ["Payment"],
-      "chunkNames": ["Payment"],
+      "chunks": [
+        "Payment"
+      ],
+      "chunkNames": [
+        "Payment"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "PaymentDetail.js",
-      "size": 70128,
-      "chunks": ["PaymentDetail"],
-      "chunkNames": ["PaymentDetail"],
+      "size": 70917,
+      "chunks": [
+        "PaymentDetail"
+      ],
+      "chunkNames": [
+        "PaymentDetail"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "Register.js",
       "size": 53933,
-      "chunks": ["Register"],
-      "chunkNames": ["Register"],
+      "chunks": [
+        "Register"
+      ],
+      "chunkNames": [
+        "Register"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "UserInfo.css",
       "size": 34,
-      "chunks": ["UserInfo"],
-      "chunkNames": ["UserInfo"],
+      "chunks": [
+        "UserInfo"
+      ],
+      "chunkNames": [
+        "UserInfo"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "UserInfo.js",
-      "size": 48790,
-      "chunks": ["UserInfo"],
-      "chunkNames": ["UserInfo"],
+      "size": 49579,
+      "chunks": [
+        "UserInfo"
+      ],
+      "chunkNames": [
+        "UserInfo"
+      ],
+      "info": {},
       "emitted": false
     },
     {
@@ -161,27 +261,39 @@
       "size": 42734,
       "chunks": [],
       "chunkNames": [],
+      "info": {},
       "emitted": false
     },
     {
-      "name": "main.160571e52efceac2998c.hot-update.js",
-      "size": 1744,
-      "chunks": ["main"],
-      "chunkNames": ["main"],
+      "name": "logo-notarius.981bc8a4.jpeg",
+      "size": 69570,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {},
       "emitted": false
     },
     {
       "name": "main.css",
-      "size": 920949,
-      "chunks": ["main"],
-      "chunkNames": ["main"],
+      "size": 929649,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "main.js",
-      "size": 5101706,
-      "chunks": ["main"],
-      "chunkNames": ["main"],
+      "size": 5646177,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "info": {},
       "emitted": false
     },
     {
@@ -189,42 +301,55 @@
       "size": 103425,
       "chunks": [],
       "chunkNames": [],
+      "info": {},
       "emitted": false
     },
     {
       "name": "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-      "size": 18099849,
+      "size": 17585719,
       "chunks": [
         "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
       ],
       "chunkNames": [
         "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
       ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "vendors~Account~List.js",
-      "size": 56435,
-      "chunks": ["vendors~Account~List"],
-      "chunkNames": ["vendors~Account~List"],
+      "size": 59994,
+      "chunks": [
+        "vendors~Account~List"
+      ],
+      "chunkNames": [
+        "vendors~Account~List"
+      ],
+      "info": {},
       "emitted": false
     },
     {
       "name": "vendors~Account~Order~Register.js",
-      "size": 573434,
-      "chunks": ["vendors~Account~Order~Register"],
-      "chunkNames": ["vendors~Account~Order~Register"],
+      "size": 420789,
+      "chunks": [
+        "vendors~Account~Order~Register"
+      ],
+      "chunkNames": [
+        "vendors~Account~Order~Register"
+      ],
+      "info": {},
       "emitted": false
     }
   ],
   "filteredAssets": 0,
   "entrypoints": {
     "main": {
-      "chunks": ["main"],
+      "chunks": [
+        "main"
+      ],
       "assets": [
         "main.css",
-        "main.js",
-        "main.160571e52efceac2998c.hot-update.js"
+        "main.js"
       ],
       "children": {},
       "childAssets": {}
@@ -232,11 +357,12 @@
   },
   "namedChunkGroups": {
     "main": {
-      "chunks": ["main"],
+      "chunks": [
+        "main"
+      ],
       "assets": [
         "main.css",
-        "main.js",
-        "main.160571e52efceac2998c.hot-update.js"
+        "main.js"
       ],
       "children": {},
       "childAssets": {}
@@ -257,8 +383,13 @@
       "childAssets": {}
     },
     "UserInfo": {
-      "chunks": ["UserInfo"],
-      "assets": ["UserInfo.css", "UserInfo.js"],
+      "chunks": [
+        "UserInfo"
+      ],
+      "assets": [
+        "UserInfo.css",
+        "UserInfo.js"
+      ],
       "children": {},
       "childAssets": {}
     },
@@ -273,7 +404,8 @@
         "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "vendors~Account~List.js",
         "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "List.js"
+        "List.js",
+        "List.370327a1ad01dc6ac881.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
@@ -434,54 +566,5 @@
       "debug": false
     }
   },
-  "children": [
-    {
-      "errors": [],
-      "warnings": [],
-      "publicPath": "/assets/",
-      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
-      "assetsByChunkName": {},
-      "assets": [
-        {
-          "name": "5e766f47994e6fb6e410.hot-update.json",
-          "size": 65,
-          "chunks": [],
-          "chunkNames": [],
-          "emitted": false
-        }
-      ],
-      "filteredAssets": 0,
-      "entrypoints": {
-        "mini-css-extract-plugin": {
-          "chunks": ["mini-css-extract-plugin"],
-          "assets": [
-            "*",
-            "mini-css-extract-plugin.5e766f47994e6fb6e410.hot-update.js"
-          ],
-          "children": {},
-          "childAssets": {}
-        }
-      },
-      "namedChunkGroups": {
-        "mini-css-extract-plugin": {
-          "chunks": ["mini-css-extract-plugin"],
-          "assets": [
-            "*",
-            "mini-css-extract-plugin.5e766f47994e6fb6e410.hot-update.js"
-          ],
-          "children": {},
-          "childAssets": {}
-        }
-      },
-      "logging": {
-        "webpack.buildChunkGraph.visitModules": {
-          "entries": [],
-          "filteredEntries": 2,
-          "debug": false
-        }
-      },
-      "children": [],
-      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!node_modules/postcss-loader/src/index.js??ref--6-2!node_modules/sass-loader/dist/cjs.js??ref--6-3!src/theme/styles.scss"
-    }
-  ]
+  "children": []
 }

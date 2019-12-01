@@ -37,23 +37,39 @@ export class List extends PureComponent<Props> {
       loadingList: false,
       type: '',
       error: false,
-      renderPage: false
+      renderPage: false,
+      wilayah: '',
+      range: '',
+      lower: '',
+      upper: ''
     };
 
     this.onChangeStar = this.onChangeStar.bind(this)
     this.handleList = this.handleList.bind(this)
+    this.onChangeKota = this.onChangeKota.bind(this)
+    this.onChangeRange = this.onChangeRange.bind(this)
+    this.onChangeType = this.onChangeType.bind(this)
+    this.onChange = this.onChange.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
   componentWillMount() {
     this.setState({
-      search: queryString.parse(this.props.location.search).name,
-      type: queryString.parse(this.props.location.search).type,
+      search: queryString.parse(this.props.location.search).name || '',
+      type: queryString.parse(this.props.location.search).type || '',
       renderPage: true
     })
   }
 
   componentDidMount() {
-    this.props.fetchListNotarisIfNeeded();
+    const param = {
+      name: this.state.search,
+      area: '',
+      doc_type: this.state.type,
+      range_lower: '',
+      range_higher: ''
+    }
+    this.props.fetchListNotarisIfNeeded(param);
   }
 
   componentWillReceiveProps (nextProps) {
@@ -92,16 +108,79 @@ export class List extends PureComponent<Props> {
     }
   }
 
-  onChange(value) {
-    console.log(`selected ${value}`);
+  onChange(e) {
+    this.setState({
+      search: e.target.value
+    })
+  }
+
+  onChangeKota(value) {
+    this.setState({
+      wilayah: value
+    })
+    const { search, type, wilayah, lower, upper } = this.state
+    const params = {
+      name: search,
+      area: value,
+      doc_type: type,
+      range_lower: lower,
+      range_higher: upper
+    }
+    this.props.fetchListNotarisIfNeeded(params)
+  }
+
+  onChangeRange(value) {
+    const arr = value.split('-')
+    this.setState({
+      range: value,
+      lower: arr[0],
+      upper: arr[1]
+    })
+    const { search, type, wilayah} = this.state
+    const params = {
+      name: search,
+      area: wilayah,
+      doc_type: type,
+      range_lower: arr[0],
+      range_higher: arr[1]
+    }
+    this.props.fetchListNotarisIfNeeded(params)
+  }
+
+  onChangeType(value) {
+    this.setState({
+      type: value
+    })
+    const { search, wilayah, lower, upper } = this.state
+    const params = {
+      name: search,
+      area: wilayah,
+      doc_type: value,
+      range_lower: lower,
+      range_higher: upper
+    }
+    this.props.fetchListNotarisIfNeeded(params)
   }
 
   onChangeStar = value => {
-    console.log(value);
     this.setState({
       star: value
     });
   };
+
+  handleSearch (e) {
+    e.preventDefault();
+    console.log('asd')
+    const { search, type, wilayah, lower, upper } = this.state
+    const params = {
+      name: search,
+      area: wilayah,
+      doc_type: type,
+      range_lower: lower,
+      range_higher: upper
+    }
+    this.props.fetchListNotarisIfNeeded(params)
+  }
 
   onBlur() {
     console.log('blur');
@@ -118,100 +197,101 @@ export class List extends PureComponent<Props> {
   renderListNotaris() {
     const { loadingList, error, list_notaris } = this.state
     const { listNotaris } = this.props
+    console.log('asd', this.state)
     if (loadingList) {
       return <LoadingListSkeleton />
     }
 
-    // if (error) {
-    //   return <h5 style={{color: 'red', textAlign: 'center'}}>Maaf ada masalah dengan server</h5>
-    // }
+    if (error) {
+      return <h5 style={{color: 'red', textAlign: 'center'}}>Maaf ada masalah dengan server</h5>
+    }
 
-    // if (!loadingList && !error && listNotaris.readyStatus === 'LIST_NOTARIS_SUCCESS') {
-    //   return (
-    //     <Card>
-          
-    //       {/* {
-    //         list_notaris.map(key => {
-    //           return (
-    //             <div className="list-body-content" key={key.id}>
-    //               <div className="top-content">
-    //                 <div className="row">
-    //                   <div className="col-md-6">
-    //                     <div className="name-notaris">
-    //                       <a href={`/notaris/${key.id}`}><h3>{key.name}</h3></a>
-    //                     </div>
-    //                   </div>
-    //                   <div className="col-md-6">
-    //                     {/* <div className="star">
-    //                       <h1>{star}</h1>
-    //                       <Rate
-    //                         onChange={this.onChangeStar}
-    //                         value={star}
-    //                         allowHalf
-    //                       />
-    //                     </div> */}
-    //                   </div>
-    //                 </div>
-    //               </div>
-    //               <div className="mid-content">
-    //                 <div className="address">
-    //                   <p>Depok, Kab Bogor, Kota Bogor</p>
-    //                 </div>
-    //               </div>
-    //               <div className="bottom-content">
-    //                 <div className="detail-address">
-    //                   <p>Jl. Matraman No. 12</p>
-    //                   <p>10.000000 - 20.0000000</p>
-    //                 </div>
-    //               </div>
-    //             </div>
-    //           )
-    //         })
-    //       } */}
-    //     </Card>
-    //   )
-    // }
-
-    return (
-      <Card>
-        <div className="list-body-content">
-          <div className="top-content">
-            <div className="row">
-              <div className="col-md-6">
-                <div className="name-notaris">
-                  <a href={`/notaris/1`}><h3>Zilmas</h3></a>
+    if (!loadingList && !error && listNotaris.readyStatus === 'LIST_NOTARIS_SUCCESS') {
+      return (
+        <Card>
+          {
+            list_notaris.map(key => {
+              return (
+                <div className="list-body-content" key={key.id}>
+                  <div className="top-content">
+                    <div className="row">
+                      <div className="col-md-6">
+                        <div className="name-notaris">
+                          <a href={`/notaris/${key.id}`}><h3>{key.name}</h3></a>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        {/* <div className="star">
+                          <h1>{star}</h1>
+                          <Rate
+                            onChange={this.onChangeStar}
+                            value={star}
+                            allowHalf
+                          />
+                        </div> */}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mid-content">
+                    <div className="address">
+                      <p>Depok, Kab Bogor, Kota Bogor</p>
+                    </div>
+                  </div>
+                  <div className="bottom-content">
+                    <div className="detail-address">
+                      <p>Jl. Matraman No. 12</p>
+                      <p>10.000000 - 20.0000000</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="col-md-6">
-                {/* <div className="star">
-                  <h1>{star}</h1>
-                  <Rate
-                    onChange={this.onChangeStar}
-                    value={star}
-                    allowHalf
-                  />
-                </div> */}
-              </div>
-            </div>
-          </div>
-          <div className="mid-content">
-            <div className="address">
-              <p>Depok, Kab Bogor, Kota Bogor</p>
-            </div>
-          </div>
-          <div className="bottom-content">
-            <div className="detail-address">
-              <p>Jl. Matraman No. 12</p>
-              <p>10.000000 - 20.0000000</p>
-            </div>
-          </div>
-        </div>
-      </Card>
-    )
+              )
+            })
+          } 
+        </Card>
+      )
+    }
+
+    // return (
+    //   <Card>
+    //     <div className="list-body-content">
+    //       <div className="top-content">
+    //         <div className="row">
+    //           <div className="col-md-6">
+    //             <div className="name-notaris">
+    //               <a href={`/notaris/1`}><h3>Zilmas</h3></a>
+    //             </div>
+    //           </div>
+    //           <div className="col-md-6">
+    //             {/* <div className="star">
+    //               <h1>{star}</h1>
+    //               <Rate
+    //                 onChange={this.onChangeStar}
+    //                 value={star}
+    //                 allowHalf
+    //               />
+    //             </div> */}
+    //           </div>
+    //         </div>
+    //       </div>
+    //       <div className="mid-content">
+    //         <div className="address">
+    //           <p>Depok, Kab Bogor, Kota Bogor</p>
+    //         </div>
+    //       </div>
+    //       <div className="bottom-content">
+    //         <div className="detail-address">
+    //           <p>Jl. Matraman No. 12</p>
+    //           <p>10.000000 - 20.0000000</p>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </Card>
+    // )
   }
 
   render() {
     const { star, search, list_notaris, type, renderPage } = this.state;
+    console.log('asd', this.state)
     if (renderPage) {
       return (
         <PageWrapper>
@@ -227,6 +307,7 @@ export class List extends PureComponent<Props> {
                             type="text"
                             value={search} 
                             placeholder="Cari ..."
+                            onChange={this.onChange}
                           />
                           <button type="submit" className="icon-search">
                             <img
@@ -243,7 +324,7 @@ export class List extends PureComponent<Props> {
                       style={{ width: '100%' }}
                       placeholder="Seluruh Indonesia"
                       optionFilterProp="children"
-                      onChange={this.onChange}
+                      onChange={this.onChangeKota}
                       filterOption={(input, option) =>
                         option.props.children
                           .toLowerCase()
@@ -261,9 +342,9 @@ export class List extends PureComponent<Props> {
                         <label>Type</label>
                         <Select
                           style={{ width: '80%' }}
-                          placeholder="smkht/apht/fidusia"
+                          // placeholder="smkht/apht/fidusia"
                           optionFilterProp="children"
-                          onChange={this.onChange}
+                          onChange={this.onChangeType}
                           defaultValue={type}
                           filterOption={(input, option) =>
                             option.props.children
@@ -286,16 +367,16 @@ export class List extends PureComponent<Props> {
                           style={{ width: '80%' }}
                           placeholder="0-5 Juta Rupiah"
                           optionFilterProp="children"
-                          onChange={this.onChange}
+                          onChange={this.onChangeRange}
                           filterOption={(input, option) =>
                             option.props.children
                               .toLowerCase()
                               .indexOf(input.toLowerCase()) >= 0
                           }
                         >
-                          <Option value="Jakarta">0-5 Juta Rupiah</Option>
-                          <Option value="Bekasi">5-15 Juta Rupiah</Option>
-                          <Option value="Bandung">15-25 Juta Rupiah</Option>
+                          <Option value="0-5000000">0-5 Juta Rupiah</Option>
+                          <Option value="5000000-15000000">5-15 Juta Rupiah</Option>
+                          <Option value="15000000-25000000">15-25 Juta Rupiah</Option>
                         </Select>
                       </div>
                     </div>
