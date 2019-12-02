@@ -28,6 +28,14 @@ export type AuthRegister = {
   }
 };
 
+export type ForgotPassword = {
+  +[param: Object]: {
+    +readyStatus: string,
+    +err: any,
+    +info: Object
+  }
+};
+
 export type AuthLogin = {
   +[param: Object]: {
     +readyStatus: string,
@@ -40,6 +48,12 @@ export type ListNotaris = {
   +readyStatus: string,
   +err: any,
   +list: Array<Object>
+};
+
+export type DetailNotaris = {
+  +readyStatus: string,
+  +err: any,
+  +data: Object
 };
 
 export type AreaProvince = {
@@ -98,10 +112,20 @@ export type Action =
   | { type: 'REGISTER_SUCCESS', param: Object, data: Object }
   | { type: 'REGISTER_FAILURE', param: Object, err: any }
 
+  // AUTH FORGOT-------------------------------------
+  | { type: 'FORGOT_REQUESTING', param: Object }
+  | { type: 'FORGOT_SUCCESS', param: Object, data: Object }
+  | { type: 'FORGOT_FAILURE', param: Object, err: any }
+
   // LIST NOTARIS-------------------------------------
   | { type: 'LIST_NOTARIS_REQUESTING', param: Object }
   | { type: 'LIST_NOTARIS_SUCCESS', param: Object, data: Object }
   | { type: 'LIST_NOTARIS_FAILURE', param: Object, err: any }
+
+  // DETAIL NOTARIS-------------------------------------
+  | { type: 'DETAIL_NOTARIS_REQUESTING', param: Object }
+  | { type: 'DETAIL_NOTARIS_SUCCESS', param: Object, data: Object }
+  | { type: 'DETAIL_NOTARIS_FAILURE', param: Object, err: any }
 
   // AREA PROVINCE-------------------------------------
   | { type: 'AREA_PROVINCE_REQUESTING', param: Object }

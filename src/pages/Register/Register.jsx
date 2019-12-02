@@ -44,10 +44,10 @@ export class Register extends PureComponent<Props> {
           label: 'Notaris',
           value: 'notaris'
         },
-        {
-          label: 'Bpn',
-          value: 'bpn'
-        }
+        // {
+        //   label: 'Bpn',
+        //   value: 'bpn'
+        // }
       ],
       optionsStatus: [
         {

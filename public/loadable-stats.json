@@ -2,7 +2,7 @@
   "errors": [],
   "warnings": [],
   "version": "4.41.2",
-  "hash": "953e60ed06c55af7cddd",
+  "hash": "95acbed5d4a3643a5378",
   "publicPath": "/assets/",
   "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
   "assetsByChunkName": {
@@ -10,16 +10,16 @@
     "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register": "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
     "Dashboard": "Dashboard.js",
     "Detail": "Detail.js",
-    "Forgot": "Forgot.js",
+    "Forgot": [
+      "Forgot.js",
+      "Forgot.62eceaa9f64a25f32101.hot-update.js"
+    ],
     "History": "History.js",
     "Home": [
       "Home.css",
       "Home.js"
     ],
-    "List": [
-      "List.js",
-      "List.370327a1ad01dc6ac881.hot-update.js"
-    ],
+    "List": "List.js",
     "Login": "Login.js",
     "Order": "Order.js",
     "Payment": "Payment.js",
@@ -39,8 +39,8 @@
   },
   "assets": [
     {
-      "name": "370327a1ad01dc6ac881.hot-update.json",
-      "size": 46,
+      "name": "62eceaa9f64a25f32101.hot-update.json",
+      "size": 48,
       "chunks": [],
       "chunkNames": [],
       "info": {
@@ -87,7 +87,7 @@
     },
     {
       "name": "Detail.js",
-      "size": 63421,
+      "size": 93354,
       "chunks": [
         "Detail"
       ],
@@ -98,8 +98,23 @@
       "emitted": false
     },
     {
+      "name": "Forgot.62eceaa9f64a25f32101.hot-update.js",
+      "size": 11250,
+      "chunks": [
+        "Forgot"
+      ],
+      "chunkNames": [
+        "Forgot"
+      ],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
       "name": "Forgot.js",
-      "size": 24173,
+      "size": 42147,
       "chunks": [
         "Forgot"
       ],
@@ -146,23 +161,8 @@
       "emitted": false
     },
     {
-      "name": "List.370327a1ad01dc6ac881.hot-update.js",
-      "size": 59488,
-      "chunks": [
-        "List"
-      ],
-      "chunkNames": [
-        "List"
-      ],
-      "info": {
-        "hotModuleReplacement": true,
-        "immutable": true
-      },
-      "emitted": false
-    },
-    {
       "name": "List.js",
-      "size": 130509,
+      "size": 130410,
       "chunks": [
         "List"
       ],
@@ -222,7 +222,7 @@
     },
     {
       "name": "Register.js",
-      "size": 53933,
+      "size": 53932,
       "chunks": [
         "Register"
       ],
@@ -286,7 +286,7 @@
     },
     {
       "name": "main.js",
-      "size": 5646177,
+      "size": 5661358,
       "chunks": [
         "main"
       ],
@@ -404,8 +404,7 @@
         "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "vendors~Account~List.js",
         "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "List.js",
-        "List.370327a1ad01dc6ac881.hot-update.js"
+        "List.js"
       ],
       "children": {},
       "childAssets": {}
@@ -497,7 +496,8 @@
       "assets": [
         "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Forgot.js"
+        "Forgot.js",
+        "Forgot.62eceaa9f64a25f32101.hot-update.js"
       ],
       "children": {},
       "childAssets": {}

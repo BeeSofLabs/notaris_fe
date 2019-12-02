@@ -170,7 +170,6 @@ export class List extends PureComponent<Props> {
 
   handleSearch (e) {
     e.preventDefault();
-    console.log('asd')
     const { search, type, wilayah, lower, upper } = this.state
     const params = {
       name: search,

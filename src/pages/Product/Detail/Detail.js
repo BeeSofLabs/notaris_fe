@@ -3,21 +3,182 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Rate } from 'antd';
-import type { Dispatch, ReduxState } from '../../../types';
 
 import { PageWrapper, Card, Button } from '../../../components/element';
 
-type Props = {};
+import * as NotarisDetailAction from '../../../actions/notaris/Detail'
+
+import {
+  DetailNotaris as DetailNotarisType,
+  Dispatch,
+  ReduxState
+} from '../../../types'
+
+type Props = {
+  detailNotaris: DetailNotarisType,
+  match: Object,
+  fetchDetailNotarisIfNeeded: (param: Object) => void,
+};
 
 export class Detail extends PureComponent<Props> {
   constructor(props) {
     super(props);
 
     this.state = {
-      star: 2
+      star: 2,
+      detailNotaris: ''
     };
 
     this.onChangeStar = this.onChangeStar.bind(this);
+  }
+
+  componentWillMount() {
+    const { fetchDetailNotarisIfNeeded, match } = this.props;
+
+    const params = {
+      id: match.params.id
+    }
+
+    fetchDetailNotarisIfNeeded(params)
+  }
+
+  // componentWillReceiveProps(nextProps) { 
+  //   const {
+  //     detailNotaris
+  //   } = this.props
+
+  //   if (detailNotaris !== nextProps.detailNotaris) {
+  //     this.handleDetail(nextProps.detailNotaris)
+  //   }
+  // }
+
+  // handleDetail = (detailNotaris) => {
+  //   if (!detailNotaris || detailNotaris.readyStatus === 'DETAIL_NOTARIS_REQUEST') {
+  //     return this.setState({
+  //       loadingList: true,
+  //       error:false
+  //     })
+  //   }
+
+  //   if (detailNotaris.readyStatus === 'DETAIL_NOTARIS_FAILURE') {
+  //     console.log('sd')
+  //     return this.setState({
+  //       loadingList: false,
+  //       error: true
+  //     })
+  //   }
+
+  //   if (detailNotaris.readyStatus === 'DETAIL_NOTARIS_SUCCESS') {
+  //     return this.setState({
+  //       list_notaris: listNotaris.list.data,
+  //       loadingList:false,
+  //       error: false
+  //     })
+  //   }
+  // }
+
+  renderDetail() {
+    const { detailNotaris } = this.props
+
+      if (!detailNotaris || detailNotaris.readyStatus === 'DETAIL_NOTARIS_REQUEST') {
+        return 'Loading'
+      }
+
+      if (detailNotaris.readyStatus === 'DETAIL_NOTARIS_FAILURE') {
+        return 'ada masalah'
+      }
+
+      if (detailNotaris.readyStatus === 'DETAIL_NOTARIS_SUCCESS') {
+        console.log(detailNotaris)
+        const data = detailNotaris.data.data[0]
+        return (
+          <>
+            <Card>
+              <div className="detail-body-content">
+                <div className="name-notaris">
+                  <h3>{data.name || "-"}</h3>
+                </div>
+                <div className="address">
+                  <p>Depok, Kab Bogor, Kota Bogor</p>
+                </div>
+                <div className="bottom-content">
+                  <div className="detail-address">
+                    <p>Jl. Matraman No. 12</p>
+                    <p>10.000000 - 20.0000000</p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            <Card>
+              <div className="detail-body-content">
+                <div className="row">
+                  <div className="col-md-12">
+                    <h3>Detail Profil Polis</h3>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="group-label">
+                      <div className="title-group">
+                        <h4>Nomor SK Notaris</h4>
+                      </div>
+                      <div className="deskripsi-group">
+                        <p>9081523239293923/239923/2323</p>
+                      </div>
+                    </div>
+
+                    <div className="group-label">
+                      <div className="title-group">
+                        <h4>Nomor Akta</h4>
+                      </div>
+                      <div className="deskripsi-group">
+                        <p>908152323929</p>
+                      </div>
+                    </div>
+
+                    <div className="group-label">
+                      <div className="title-group">
+                        <h4>Nomor Telpon</h4>
+                      </div>
+                      <div className="deskripsi-group">
+                        <p>+62 232332323</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="group-label">
+                      <div className="title-group">
+                        <h4>Tanggal SK Notaris</h4>
+                      </div>
+                      <div className="deskripsi-group">
+                        <p>19 Agustus 2016</p>
+                      </div>
+                    </div>
+
+                    <div className="group-label">
+                      <div className="title-group">
+                        <h4>Tanggal Akta</h4>
+                      </div>
+                      <div className="deskripsi-group">
+                        <p>19 Agustus 2016</p>
+                      </div>
+                    </div>
+
+                    <div className="group-label">
+                      <div className="title-group">
+                        <h4>Nomor Fax</h4>
+                      </div>
+                      <div className="deskripsi-group">
+                        <p>+62 2323232323</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+          </>
+        )
+      }
   }
 
   onChangeStar = value => {
@@ -35,7 +196,8 @@ export class Detail extends PureComponent<Props> {
           <div className="detail-section">
             <div className="row">
               <div className="col-md-12">
-                <Card>
+                {this.renderDetail()}
+                {/* <Card>
                   <div className="detail-body-content">
                     <div className="name-notaris">
                       <h3>Angelica Surjodiningrat</h3>
@@ -116,7 +278,7 @@ export class Detail extends PureComponent<Props> {
                       </div>
                     </div>
                   </div>
-                </Card>
+                </Card> */}
 
                 {/* <Card>
                   <div className="detail-body-content">
@@ -238,9 +400,16 @@ export class Detail extends PureComponent<Props> {
   }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({
+  detailNotaris
+}: ReduxState) => ({
+  detailNotaris
+});
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchDetailNotarisIfNeeded: (param: Object) => 
+    dispatch(NotarisDetailAction.fetchDetailNotarisIfNeeded(param))
+});
 
 export default connect(
   mapStateToProps,

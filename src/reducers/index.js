@@ -7,7 +7,9 @@ import home from './home';
 import userInfo from './userInfo';
 import authLogin from './auth/login'
 import listNotaris from './notaris/List'
+import detailNotaris from './notaris/Detail'
 import authRegister from './auth/register'
+import forgotPassword from './auth/forgotPassword'
 import areaProvince from './area/province'
 import areaVillage from './area/village'
 import areaDistrict from './area/district'
@@ -18,11 +20,13 @@ const reducers = {
   userInfo,
   authLogin,
   listNotaris,
+  detailNotaris,
   authRegister,
   areaProvince,
   areaVillage,
   areaCity,
-  areaDistrict
+  areaDistrict,
+  forgotPassword
 };
 
 export type Reducers = typeof reducers;

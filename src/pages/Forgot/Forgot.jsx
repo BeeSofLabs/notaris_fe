@@ -10,6 +10,14 @@ import {
   Button
 } from '../../components/element';
 
+import * as AuthForgotPassword from '../../actions/auth/forgotPassword'
+
+import type {
+  ForgotPassword,
+  Dispatch, 
+  ReduxState 
+} from '../../types'
+
 export class Forgot extends PureComponent<Props> {
   constructor(props) {
     super(props);
@@ -22,6 +30,7 @@ export class Forgot extends PureComponent<Props> {
 
   render() {
     const { err,loading } = this.state
+    const { fetchAuthForgotPasswordIfNeeded } = this.props
     return (
       <PageWrapper buttonLogin showNav>
         <div className="login-page-background">
@@ -46,6 +55,7 @@ export class Forgot extends PureComponent<Props> {
                     email: '',
                   }}
                   onSubmit={value => {
+                    fetchAuthForgotPasswordIfNeeded(value)
                     // this.handleLogin(value)
                   }}
                 >
@@ -100,9 +110,16 @@ export class Forgot extends PureComponent<Props> {
   }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({
+  forgotPassword
+}: ReduxState) => ({
+  forgotPassword
+});
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch :Dispatch) => ({
+  fetchAuthForgotPasswordIfNeeded: (param: Object) =>
+    dispatch(AuthForgotPassword.fetchAuthForgotPasswordIfNeeded(param))
+});
 
 export default connect(
   mapStateToProps,
