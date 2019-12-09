@@ -11,7 +11,7 @@ class Contants {
   static WEB = 'http://localhost:3000';
 
   static TOKEN = decompressFromEncodedURIComponent(
-    cookieStorage.getItem('jpToken')
+    cookieStorage.getItem('auth_token')
   );
 
   static EMAIL = decompressFromEncodedURIComponent(

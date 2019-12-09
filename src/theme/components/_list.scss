@@ -107,7 +107,12 @@
           color: #707070;
           font-weight: normal;
           line-height: 1.5;
-        }   
+
+          span {
+            float: right;
+          }
+        } 
+
       }
     }
   }
@@ -140,4 +145,42 @@
       width: 100%;
     }
   }
+}
+
+.filter-list {
+  margin-bottom: 30px;
+}
+
+.detail-address {
+  p {
+    color: #707070;
+    font-weight: normal;
+    line-height: 1.5;
+
+    span {
+      float: right;
+    }
+  } 
+
+}
+
+.list-body-history {
+  width: 100%;
+}
+
+.search-on-order {
+    label {
+      width: 100%;
+    }
+    input {
+      color: #707070;
+      box-shadow: none;
+      padding: 15px 36px 15px 45px;
+      border:1px solid  rgba(1, 15, 113, 0.3)
+      ;
+    }
+
+    .container-select {
+      margin-top: 10px;
+    }
 }

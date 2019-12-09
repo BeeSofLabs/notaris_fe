@@ -42,6 +42,18 @@ export class Detail extends PureComponent<Props> {
     fetchDetailNotarisIfNeeded(params)
   }
 
+  convertToRupiah = val => {
+    const numberString = val.toString();
+    const sisa = numberString.length % 3;
+    let rupiah = numberString.substr(0, sisa);
+    const ribuan = numberString.substr(sisa).match(/\d{3}/g);
+    if (ribuan) {
+      const separator = sisa ? '.' : '';
+      rupiah += separator + ribuan.join('.');
+    }
+    return `Rp ${rupiah}`;
+  };
+
   // componentWillReceiveProps(nextProps) { 
   //   const {
   //     detailNotaris
@@ -102,9 +114,15 @@ export class Detail extends PureComponent<Props> {
                   <p>Depok, Kab Bogor, Kota Bogor</p>
                 </div>
                 <div className="bottom-content">
-                  <div className="detail-address">
-                    <p>Jl. Matraman No. 12</p>
-                    <p>10.000000 - 20.0000000</p>
+                  <div className="row">
+                    <div className="col-md-5">
+                      <div className="detail-address">
+                        <p>Jl. Matraman No. 12</p>
+                        <p>{data.notary_services.map(key => (
+                          <li key={key.id}>{key.service_type} <span>{this.convertToRupiah(key.price)}</span></li>
+                        ))}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

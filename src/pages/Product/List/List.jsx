@@ -10,9 +10,15 @@ import queryString from 'query-string';
 import { PageWrapper, Card, LoadingListSkeleton } from '../../../components/element';
 
 import * as NotarisListAction from '../../../actions/notaris/List'
+import * as AreaProvinceAction from '../../../actions/area/province';
+import * as AreaCityAction from '../../../actions/area/city'
+import * as AreaDistrictAction from '../../../actions/area/district';
 
 import {
   ListNotaris as ListNotarisType,
+  AreaProvince as AreaProvinceType,
+  AreaCity as AreaCityType,
+  AreaDistrict as AreaDistrictType, 
   Dispatch,
   ReduxState
 } from '../../../types'
@@ -41,12 +47,22 @@ export class List extends PureComponent<Props> {
       wilayah: '',
       range: '',
       lower: '',
-      upper: ''
+      upper: '',
+      provOptions: [],
+      cityOptions: [],
+      distOptions: [],
+      showCity: false,
+      showDist: false,
+      prov: {},
+      city: {},
+      dist: {}
     };
 
     this.onChangeStar = this.onChangeStar.bind(this)
     this.handleList = this.handleList.bind(this)
     this.onChangeKota = this.onChangeKota.bind(this)
+    this.onChangeProv = this.onChangeProv.bind(this)
+    this.onChangeDist = this.onChangeDist.bind(this)
     this.onChangeRange = this.onChangeRange.bind(this)
     this.onChangeType = this.onChangeType.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -62,6 +78,11 @@ export class List extends PureComponent<Props> {
   }
 
   componentDidMount() {
+    const {
+      fetchAreaProvinceIfNeeded,
+      fetchListNotarisIfNeeded,
+      match
+    } = this.props
     const param = {
       name: this.state.search,
       area: '',
@@ -69,19 +90,216 @@ export class List extends PureComponent<Props> {
       range_lower: '',
       range_higher: ''
     }
-    this.props.fetchListNotarisIfNeeded(param);
+    fetchListNotarisIfNeeded(param)
+    fetchAreaProvinceIfNeeded(match)
   }
 
   componentWillReceiveProps (nextProps) {
     const {
-      listNotaris
+      listNotaris,
+      areaProvince, 
+      areaCity, 
+      areaDistrict
     } = this.props
 
     const obj = {}
     if (listNotaris !== nextProps.listNotaris) {
       this.handleList(nextProps.listNotaris)
     }
+    if (nextProps.areaCity[obj] !== areaCity[obj]) {
+      this.areaCityData(nextProps.areaCity[obj]);
+    }
+
+    if (nextProps.areaProvince[obj] !== areaProvince[obj]) {
+      this.areaProvinceData(nextProps.areaProvince[obj]);
+    }
+
+    if (nextProps.areaDistrict[obj] !== areaDistrict[obj]) {
+      this.areaDistrictData(nextProps.areaDistrict[obj]);
+    }
   }
+
+  areaCityData = areaCity => {
+    const getAreaCity = areaCity;
+    if (!getAreaCity || getAreaCity.readyStatus === 'AREA_CITY_REQUESTING') {
+      this.setState({
+        cityOptions: []
+      })
+    } else if (getAreaCity.readyStatus === 'AREA_CITY_FAILURE') {
+      return <p>Oops, Failed to load info!</p>;
+    } else {
+      let data = [];
+      const listDropdown = _.map(getAreaCity.info.data.cities, key => {
+        data = {
+          label: key.city_name,
+          value: key.id
+        };
+        return data;
+      });
+      listDropdown.unshift({
+        label: 'All',
+        value: 0
+      })
+      this.setState({
+        cityOptions: listDropdown
+      })
+    }
+  };
+
+  areaDistrictData = areaDistrict => {
+    const getAreaDistrict = areaDistrict;
+    if (
+      !getAreaDistrict ||
+      getAreaDistrict.readyStatus === 'AREA_DISTRICT_REQUESTING'
+    ) {
+      this.setState({
+        distOptions: []
+      })
+    } else if (getAreaDistrict.readyStatus === 'AREA_DISTRICT_FAILURE') {
+      return <p>Oops, Failed to load info!</p>;
+    } else {
+      let data = [];
+      const listDropdown = _.map(getAreaDistrict.info.data.districts, key => {
+        data = {
+          label: key.district_name,
+          value: key.id
+        };
+        return data;
+      });
+      listDropdown.unshift({
+        label: 'All',
+        value: 0
+      })
+      this.setState({
+        distOptions: listDropdown
+      })
+    }
+  }
+
+  areaProvinceData = areaProvince => {
+    const getAreaProvince = areaProvince;
+
+    if (
+      !getAreaProvince ||
+      getAreaProvince.readyStatus === 'AREA_PROVINCE_REQUESTING'
+    ) {
+      console.log('loading');
+    } else if (getAreaProvince.readyStatus === 'AREA_PROVINCE_FAILURE') {
+      console.log('failed');
+    } else {
+      let data = [];
+      const listDropdown = _.map(
+        getAreaProvince.info.data.provinces,
+        key => {
+          data = {
+            label: key.province_name,
+            value: key.id
+          };
+          return data;
+        }
+      );
+      listDropdown.unshift({
+        label: 'All',
+        value: 0
+      })
+      this.setState({
+        provOptions: listDropdown,
+      });
+    }
+  };
+
+  onChangeProv = (key) => {
+    const {
+      fetchAreaCityIfNeeded
+    } = this.props;
+    this.setState({
+      distOptions: [],
+      showCity: key.key === 0 ? false : true,
+      showDist: false,
+      prov: key,
+      city: {},
+      dist: {},
+    })
+
+    const params = {
+      provId: key.key
+    }
+
+    if (key.key !== 0) {
+      fetchAreaCityIfNeeded(params);
+    } else {
+      const { search, type, prov, lower, upper } = this.state
+      const params = {
+        name: search,
+        area: "",
+        doc_type: type,
+        range_lower: lower,
+        range_higher: upper
+      }
+      this.props.fetchListNotarisIfNeeded(params)
+    }
+  }
+
+  onChangeDist = (key) => {
+    const { search, type, prov, lower, upper, city } = this.state
+    this.setState({
+      dist: key,
+      wilayah: key.key === 0 ? city.label : key.label
+    })
+    const params = {
+      name: search,
+      area: key.key !== 0 ? key.label : city.label,
+      doc_type: type,
+      range_lower: lower,
+      range_higher: upper
+    }
+    this.props.fetchListNotarisIfNeeded(params)
+  }
+
+  convertToRupiah = val => {
+    const numberString = val.toString();
+    const sisa = numberString.length % 3;
+    let rupiah = numberString.substr(0, sisa);
+    const ribuan = numberString.substr(sisa).match(/\d{3}/g);
+    if (ribuan) {
+      const separator = sisa ? '.' : '';
+      rupiah += separator + ribuan.join('.');
+    }
+    return `Rp ${rupiah}`;
+  };
+
+  onChangeKota = (key) => {
+    const {
+      fetchAreaDistrictIfNeeded,
+    } = this.props;
+    const { prov } = this.state
+    this.setState({
+      showCity: true,
+      showDist: key.key === 0 ? false : true,
+      city: key,
+      dist: {},
+      wilayah: key.key === 0 ? prov.label : key.label
+    })
+
+
+    const params = {
+      cityId: key.key
+    }
+    if (key.key !== 0) {
+      fetchAreaDistrictIfNeeded(params);
+    } else {
+      const { search, type, prov, lower, upper } = this.state
+      const params = {
+        name: search,
+        area: prov.label,
+        doc_type: type,
+        range_lower: lower,
+        range_higher: upper
+      }
+      this.props.fetchListNotarisIfNeeded(params)
+    }
+  }
+
 
   handleList (listNotaris) {
     if (!listNotaris || listNotaris.readyStatus === 'LIST_NOTARIS_REQUEST') {
@@ -194,9 +412,8 @@ export class List extends PureComponent<Props> {
   }
 
   renderListNotaris() {
-    const { loadingList, error, list_notaris } = this.state
+    const { loadingList, error, list_notaris, provOptions } = this.state
     const { listNotaris } = this.props
-    console.log('asd', this.state)
     if (loadingList) {
       return <LoadingListSkeleton />
     }
@@ -206,6 +423,9 @@ export class List extends PureComponent<Props> {
     }
 
     if (!loadingList && !error && listNotaris.readyStatus === 'LIST_NOTARIS_SUCCESS') {
+      if (list_notaris.length === 0) {
+        return "Maaf data tidak ditemukan."
+      }
       return (
         <Card>
           {
@@ -237,9 +457,15 @@ export class List extends PureComponent<Props> {
                     </div>
                   </div>
                   <div className="bottom-content">
-                    <div className="detail-address">
-                      <p>Jl. Matraman No. 12</p>
-                      <p>10.000000 - 20.0000000</p>
+                    <div className="row">
+                      <div className="col-md-5">
+                        <div className="detail-address">
+                          <p>Jl. Matraman No. 12</p>
+                          <p>{key.notary_services.map(data => (
+                            <li key={data.id}>{data.service_type} <span>{this.convertToRupiah(data.price)}</span></li>
+                          ))}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -289,8 +515,7 @@ export class List extends PureComponent<Props> {
   }
 
   render() {
-    const { star, search, list_notaris, type, renderPage } = this.state;
-    console.log('asd', this.state)
+    const { star, search, list_notaris, type, renderPage, provOptions, cityOptions, distOptions } = this.state;
     if (renderPage) {
       return (
         <PageWrapper>
@@ -298,7 +523,7 @@ export class List extends PureComponent<Props> {
             <div className="list-section">
               <div className="list-filter">
                 <div className="row">
-                  <div className="col-md-3">
+                  <div className="col-md-4">
                     <div className="search">
                       <label forHtml="search">
                         <form onSubmit={this.handleSearch}>
@@ -318,24 +543,8 @@ export class List extends PureComponent<Props> {
                       </label>
                     </div>
                   </div>
-                  <div className="col-md-2">
-                    <Select
-                      style={{ width: '100%' }}
-                      placeholder="Seluruh Indonesia"
-                      optionFilterProp="children"
-                      onChange={this.onChangeKota}
-                      filterOption={(input, option) =>
-                        option.props.children
-                          .toLowerCase()
-                          .indexOf(input.toLowerCase()) >= 0
-                      }
-                    >
-                      <Option value="Jakarta">Jakarta</Option>
-                      <Option value="Bekasi">Bekasi</Option>
-                      <Option value="Bandung">Bandung</Option>
-                    </Select>
-                  </div>
-                  <div className="col-md-3">
+                  
+                  <div className="col-md-4">
                     <div className="filter-harga">
                       <div className="wrapper-select">
                         <label>Type</label>
@@ -351,6 +560,7 @@ export class List extends PureComponent<Props> {
                               .indexOf(input.toLowerCase()) >= 0
                           }
                         >
+                          
                           <Option value="skmht">SKMHT</Option>
                           <Option value="apht">APHT</Option>
                           <Option value="fidusia">FIDUSIA</Option>
@@ -383,6 +593,71 @@ export class List extends PureComponent<Props> {
                 </div>
               </div>
               <div className="list-body">
+                <div className="filter-list">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <Select
+                        style={{ width: '100%' }}
+                        labelInValue
+                        placeholder="Provinsi"
+                        optionFilterProp="children"
+                        onChange={this.onChangeProv}
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        {
+                          provOptions.map(value => (
+                            <Option value={value.value} key={value.value}>{value.label}</Option>
+                          ))
+                        }
+                      </Select>
+                    </div>
+                    {this.state.showCity && <div className="col-md-4">
+                      <Select
+                        style={{ width: '100%' }}
+                        placeholder="Kota/Kabupaten"
+                        optionFilterProp="children"
+                        labelInValue
+                        onChange={this.onChangeKota}
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        {
+                          cityOptions.map(value => (
+                            <Option value={value.value} key={value.value}>{value.label}</Option>
+                          ))
+                        }
+                      </Select>
+                    </div>}
+                    {this.state.showDist && <div className="col-md-4">
+                      <Select
+                        style={{ width: '100%' }}
+                        placeholder="Kota/Kabupaten"
+                        optionFilterProp="children"
+                        labelInValue
+                        onChange={this.onChangeDist}
+                        filterOption={(input, option) =>
+                          option.props.children
+                            .toLowerCase()
+                            .indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        {
+                          distOptions.map(value => (
+                            <Option value={value.value} key={value.value}>{value.label}</Option>
+                          ))
+                        }
+                      </Select>
+                    </div>}
+                  </div>
+                </div>
+                
                 {this.renderListNotaris()}
                 {/*  */}
               </div>
@@ -395,14 +670,26 @@ export class List extends PureComponent<Props> {
 }
 
 const mapStateToProps = ({
-  listNotaris
+  listNotaris,
+  areaProvince,
+  areaDistrict,
+  areaCity,
 }: ReduxState) => ({
-  listNotaris
+  listNotaris,
+  areaProvince,
+  areaDistrict,
+  areaCity,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchListNotarisIfNeeded: (param: Object) =>
-    dispatch(NotarisListAction.fetchListNotarisIfNeeded(param))
+    dispatch(NotarisListAction.fetchListNotarisIfNeeded(param)),
+  fetchAreaProvinceIfNeeded: (param: Object) =>
+    dispatch(AreaProvinceAction.fetchAreaProvinceIfNeeded(param)),
+  fetchAreaCityIfNeeded: (param: Object) =>
+    dispatch(AreaCityAction.fetchAreaCityIfNeeded(param)),
+  fetchAreaDistrictIfNeeded: (param: Object) =>
+    dispatch(AreaDistrictAction.fetchAreaDistrictIfNeeded(param)),
 });
 
 export default connect(

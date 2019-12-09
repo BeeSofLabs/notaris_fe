@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import type { Dispatch, ReduxState } from '../../../types';
+
 import {
   Formik,
   Form,
@@ -19,6 +20,11 @@ import {
 } from 'antd';
 import { CookieStorage } from 'cookie-storage'
 import { compressToEncodedURIComponent } from 'lz-string'
+import AsyncSelect from 'react-select/async';
+import axios from 'axios';
+import Constants from '../../../helpers/constants';
+
+import CheckboxList from './List';
 
 const cookieStorage = new CookieStorage();
 
@@ -60,12 +66,14 @@ export class Order extends PureComponent<Props> {
       current: 0,
       document_type: '',
       valueAs: 1,
-      search: ''
+      search: '',
+      listAgunan: ''
     }
 
     this.handleSubmitFirst = this.handleSubmitFirst.bind(this)
     this.handleSubmitFirst = this.handleSubmitSecond.bind(this)
     this.onChangeRad = this.onChangeRad.bind(this)
+    this.handleChangeSearchColleteral = this.handleChangeSearchColleteral.bind(this)
   }
 
   handleSubmitFirst (value) {
@@ -85,6 +93,56 @@ export class Order extends PureComponent<Props> {
       current: current + 1
     }, () => {
       window.scrollTo(0, 1000);
+    })
+  }
+
+  handleChangeSearchColleteral = (value) => {
+    axios.defaults.headers.common = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': 'example-of-custom-header',
+      'Accept-Version': 1,
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: Constants.TOKEN
+    };
+
+    return axios.get(`${Constants.API}/api/v1/collateral?user_id=${value.value}`).then(res => {
+      console.log('sad', res)
+    })
+  }
+
+  filterData = (data) => {
+    axios.defaults.headers.common = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': 'example-of-custom-header',
+      'Accept-Version': 1,
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: Constants.TOKEN
+    };
+
+    return axios.get(`${Constants.API}/api/v1/users/collateral?owner=${data}`).then((res) => {
+      console.log('object :', res);
+
+      let dataTemp = res.data.collateral_owners;
+      let dataRes = []
+      dataTemp.forEach(key => {
+        dataRes.push({
+          label: key.name,
+          value: key.id
+        })
+      });
+      return dataRes
+    })
+  };
+
+  promiseOptions = (data) => {
+      return new Promise(resolve => {
+        setTimeout(() => {
+        resolve(this.filterData(data));
+      }, 1000);
     })
   }
 
@@ -122,7 +180,22 @@ export class Order extends PureComponent<Props> {
       label: 'Fidusia',
       value: 2
     }]
-    console.log(current)
+    const SchemaDocumentType = Yup.object().shape({
+      document_type: Yup.object().shape({
+        label: Yup.string().required('Tidak boleh kosong.')
+      })
+    })
+
+    const SchemaDocumentForm = Yup.object().shape({
+      no_perjanjian: Yup.string().required('Tidak boleg kosong.'),
+      plafond: Yup.string().matches(/^[0-9]*$/, 'Plafond berupa angka').required("Tidak boleh kosong."),
+      tanggal_akad: Yup.string().required('Tidak boleh kosong.'),
+      tgl_jatuh_tempo: Yup.string().required('Tidak boleh kosong'),
+      tarif_bunga: Yup.string().required('Tidak boleh kosong.'),
+      jangka_waktu: Yup.string().matches(/^[0-9]*$/, 'Plafond berupa angka').required("Tidak boleh kosong."),
+      agunan_pokok: Yup.string().matches(/^[0-9]*$/, 'Plafond berupa angka').required("Tidak boleh kosong."),
+      angsuran_bunga: Yup.string().matches(/^[0-9]*$/, 'Plafond berupa angka').required("Tidak boleh kosong.")
+    })
     return (
       <PageWrapper>
         <div className="container">
@@ -143,8 +216,8 @@ export class Order extends PureComponent<Props> {
                         initialValues={{
                           document_type: "",
                         }}
+                        // validationSchema={SchemaDocumentType}
                         onSubmit={(value) => {
-                          console.log(value)
                           cookieStorage.setItem(
                             'tpy',
                             compressToEncodedURIComponent(value.document_type.label)
@@ -173,7 +246,7 @@ export class Order extends PureComponent<Props> {
                                     onChange={onChangeSelect}
                                     options={options}
                                     value={values.document_type}
-                                    error={errors.document_type && touched.document_type ? errors.document_type : null}
+                                    error={errors.document_type && touched.document_type ? errors.document_type.label : null}
                                   />
                                 </div>
                               </div>
@@ -216,8 +289,12 @@ export class Order extends PureComponent<Props> {
                       onSubmit={(value) => {
                         this.handleSubmitFirst()
                       }}
+                      // validationSchema={SchemaDocumentForm}
                     >
                       {({ errors, touched, values, setFieldValue }) => {
+                        const onChangeDate = (name ,date, dateString) => {
+                          setFieldValue(name, date);
+                        };
                         return (
                           <Form className="form-surat-nah">
                             <div className="row">
@@ -243,6 +320,8 @@ export class Order extends PureComponent<Props> {
                                   name="tanggal_akad"
                                   label="Tanggal Akad"
                                   placeholder="Pilih Tangal Akad"
+                                  value={values.tanggal_akad}
+                                  onChange={(date, dateString) => onChangeDate('tanggal_akad', date, dateString)}
                                   error={errors.tanggal_akad && touched.tanggal_akad ? errors.tanggal_akad : null}
                                 />
                               </div>
@@ -251,6 +330,8 @@ export class Order extends PureComponent<Props> {
                                   name="tgl_jatuh_tempo"
                                   label="Tanggal Jatuh Tempo"
                                   placeholder="Pilih Tangal Jatuh Tempo"
+                                  value={values.tgl_jatuh_tempo}
+                                  onChange={(date, dateString) => onChangeDate('tgl_jatuh_tempo', date, dateString)}
                                   error={errors.tgl_jatuh_tempo && touched.tgl_jatuh_tempo ? errors.tgl_jatuh_tempo : null}
                                 />
                               </div>
@@ -312,11 +393,11 @@ export class Order extends PureComponent<Props> {
                   <div className="order-form form-search-pemilik">
                     <div className="row">
                       <div className="col-md-4">
-                        <div className="search">
+                        <div className="search-on-order">
                           <label forHtml="search">
                             Pemilik Agunan
                             <form onSubmit={this.handleSearch}>
-                              <input 
+                              {/* <input 
                                 type="text"
                                 value={search || ''} 
                                 placeholder="Cari ..."
@@ -326,14 +407,27 @@ export class Order extends PureComponent<Props> {
                                   src={require('../../../app/assets/img/search.svg')}
                                   alt="search"
                                 />
-                              </button>
+                              </button> */}
+                              <AsyncSelect 
+                                cacheOptions 
+                                defaultOptions 
+                                onChange={this.handleChangeSearchColleteral}
+                                loadOptions={this.promiseOptions}
+                                className="container-select"
+                              />
                             </form>
                           </label>
+                        </div>
+                      </div>
+                      <div className="col-md-8">
+                        <div className="list-agunan">
+                          <CheckboxList />
                         </div>
                       </div>
                     </div>
                   </div>
                   <hr />
+                  
                 </Card>
               }
               {/* {

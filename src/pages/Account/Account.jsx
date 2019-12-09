@@ -257,8 +257,6 @@ export class Account extends PureComponent<Props> {
     }
   };
 
-
-
   handleAuth(data) {
     if (!data || data.readyStatus === 'REGISTER_REQUESTING') {
       return this.setState(

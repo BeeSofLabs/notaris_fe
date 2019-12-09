@@ -4,6 +4,7 @@ import { usersAction, userAction } from './actions';
 import App from './app';
 import { asyncHome, asyncUserInfo, NotFound, List, Detail, Order, Login, Register, Account, Forgot, Payment, PaymentDetail, History, Dashboard, DashboardListOrder } from './pages';
 import RequireAuth from './components/Page/PublicComponent/index'
+import RequireAuthAgunan from './components/Page/AuthComponent/RequireAuthAgunan'
 
 export default [
   {
@@ -84,6 +85,11 @@ export default [
         path: '/dashboard',
         exact: true,
         component: Dashboard
+      },
+      {
+        path: '/agunans',
+        exact: true,
+        component: RequireAuthAgunan(Dashboard)
       },
       {
         path: '/dashboard/list-order',

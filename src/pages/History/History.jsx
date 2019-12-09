@@ -25,53 +25,47 @@ export class History extends PureComponent<Props> {
                 <p>Anda memiliki order yang telah dibuat. Untuk melanjutkan proses order,<br /> silakan pilih order yang Anda inginkan</p>
               </div>
               <div className="body-section">
-                <div className="row">
-                  <div className="col-md-12">
-                    <Card>
-                      <div className="detail-body-content">
-                        <div className="title">
-                          <h3>SKMHT/APHT</h3>
-                        </div>
-                        <div className="number-order">
-                          <p>ID FI89421486919-091</p>
-                        </div>
-                        <div className="bottom-content">
-                          <p>12 September 2019</p>
-                          <p>Rojali Ahmad - Kreditur</p>
-                        </div>
-                      </div>
-                    </Card>
-                  
-                    <Card>
-                      <div className="title-body-content">
-                        <h3>Metode Pembayaran</h3>
-                      </div>
-                      <div className="list-body-content">
-                        <div className="title-content">
-                          <h3>Virtual Account</h3>
-                        </div>
-                        <div className="body-content">
-                          <ul>
-                            <li>
-                              <Checkbox><img src={require('../../app/assets/img/bca.png')} alt="bank bca" /><span className="text-checkbox">BCA</span></Checkbox>
-                            </li>
-                          </ul>
+                <div className="list-body list-body-history">
+                  <Card>
+                    <div className="list-body-content">
+                      <div className="top-content">
+                        <div className="row">
+                          <div className="col-md-6">
+                            <div className="name-notaris">
+                              <a href={`/notaris/`}><h3>sdasd</h3></a>
+                            </div>
+                          </div>
+                          <div className="col-md-6">
+                            {/* <div className="star">
+                              <h1>{star}</h1>
+                              <Rate
+                                onChange={this.onChangeStar}
+                                value={star}
+                                allowHalf
+                              />
+                            </div> */}
+                          </div>
                         </div>
                       </div>
-                      <div className="list-body-content">
-                        <div className="title-content">
-                          <h3>Credit Card</h3>
-                        </div>
-                        <div className="body-content">
-                          <ul>
-                            <li>
-                              <Checkbox>Credit Card</Checkbox>
-                            </li>
-                          </ul>
+                      <div className="mid-content">
+                        <div className="address">
+                          <p>Depok, Kab Bogor, Kota Bogor</p>
                         </div>
                       </div>
-                    </Card>
-                  </div>
+                      <div className="bottom-content">
+                        <div className="row">
+                          <div className="col-md-5">
+                            <div className="detail-address">
+                              <p>Jl. Matraman No. 12</p>
+                              {/* <p>{key.notary_services.map(data => (
+                                <li key={data.id}>{data.service_type} <span>{this.convertToRupiah(data.price)}</span></li>
+                              ))}</p> */}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
                 </div>
               </div>
             </div>
