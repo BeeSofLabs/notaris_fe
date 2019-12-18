@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import type { Dispatch, ReduxState } from '../../../types';
-
+import * as moment from 'moment';
 import {
   Formik,
   Form,
@@ -19,7 +19,7 @@ import {
   Radio
 } from 'antd';
 import { CookieStorage } from 'cookie-storage'
-import { compressToEncodedURIComponent } from 'lz-string'
+import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string'
 import AsyncSelect from 'react-select/async';
 import axios from 'axios';
 import Constants from '../../../helpers/constants';
@@ -36,12 +36,12 @@ const steps = [{
     icon: <Icon type="profile" />
   },
   {
-    title: 'Detail Dokumen',
+    title: 'Form Dokumen',
     content: 'First-content',
     icon: <Icon type="profile" />
   }, 
   {
-    title: 'Detail Dokumen',
+    title: 'Form Agunan',
     content: 'First-content',
     icon: <Icon type="profile" />
   },
@@ -67,13 +67,77 @@ export class Order extends PureComponent<Props> {
       document_type: '',
       valueAs: 1,
       search: '',
-      listAgunan: ''
+      listAgunan: {
+        status: 'NOT',
+        items: []
+      },
+      agunan: [],
+      paramOrder: {},
+      kreditur: null,
+      debitur: null,
+      user_id: null,
+      notary_id: null,
+      terkait: '',
+      pemilikAgunan: null
     }
 
     this.handleSubmitFirst = this.handleSubmitFirst.bind(this)
     this.handleSubmitFirst = this.handleSubmitSecond.bind(this)
     this.onChangeRad = this.onChangeRad.bind(this)
     this.handleChangeSearchColleteral = this.handleChangeSearchColleteral.bind(this)
+    this.handleGetAgunan = this.handleGetAgunan.bind(this)
+    this.handleSubmitOrder = this.handleSubmitOrder.bind(this)
+    this.handleChangeSearchTerkait = this.handleChangeSearchTerkait.bind(this)
+  }
+
+  componentDidMount() {
+    const cookieStorage = new CookieStorage()
+    const dataProf = cookieStorage.getItem('prof')
+    const data = JSON.parse(decompressFromEncodedURIComponent(dataProf))
+    console.log('as', data.user_tipe)
+    if (data.user_tipe === "debtor") {
+      this.setState({
+        user_id: data.id,
+        debitur: data.id,
+        notary_id: parseInt(this.props.match.params.id),
+        terkait: 'kreditur'
+      })
+    } else {
+      this.setState({
+        user_id: data.id,
+        kreditur: data.id,
+        notary_id: parseInt(this.props.match.params.id),
+        terkait: 'debitur'
+      })
+    }
+  }
+
+  handleSubmitOrder() {
+    console.log(this.state)
+    const order = {
+      status: "submission", // draft, submission
+      agunan_pokok: parseInt(this.state.paramOrder.agunan_pokok),
+      angsuran_bunga: parseInt(this.state.paramOrder.angsuran_bunga),
+      total_price: 5000000,
+      no_perjanjian: this.state.paramOrder.no_perjanjian,
+      plafond: parseInt(this.state.paramOrder.plafond),
+      tgl_akad:moment(new Date(this.state.paramOrder.tanggal_akad)).format("DDMMYYYY"),
+      jangka_waktu: parseInt(this.state.paramOrder.jangka_waktu),
+      document_type: this.state.document_type,
+      notary_id: this.state.notary_id,
+      user_id: this.state.user_id,
+      debtor_id: this.state.debitur,
+      creditor_id: this.state.kreditur,
+      collateral_owner_id: this.state.pemilikAgunan,
+      immovable_collateral_ids: this.state.agunan,
+    }
+    console.log('order', order)
+  }
+
+  handleGetAgunan = (value) => {
+    this.setState({
+      agunan: value
+    })
   }
 
   handleSubmitFirst (value) {
@@ -96,6 +160,13 @@ export class Order extends PureComponent<Props> {
     })
   }
 
+  handleChangeSearchTerkait = (sesi, value) => {
+    console.log(sesi, value)
+    this.setState({
+      [sesi]: value.value
+    })
+  }
+
   handleChangeSearchColleteral = (value) => {
     axios.defaults.headers.common = {
       'X-Requested-With': 'XMLHttpRequest',
@@ -107,8 +178,34 @@ export class Order extends PureComponent<Props> {
       Authorization: Constants.TOKEN
     };
 
+    this.setState({
+      listAgunan: {
+        status: 'LOADING',
+        items:[]
+      },
+      pemilikAgunan: value.value
+    })
+
     return axios.get(`${Constants.API}/api/v1/collateral?user_id=${value.value}`).then(res => {
-      console.log('sad', res)
+      let data = []
+      const { document_type } = this.state
+      if (document_type === 'fidusia') {
+        res.data.immovable_collaterals.map(key => {
+          key.category = 'Tidak Bergerak';
+          data.push(key)
+        })
+      } else {
+        res.data.movable_collaterals.map(key => {
+          key.category = 'Bergerak';
+          data.push(key)
+        })
+      }
+      this.setState({
+        listAgunan: {
+          status: 'SUCCESS',
+          items: data
+        }
+      })
     })
   }
 
@@ -124,7 +221,6 @@ export class Order extends PureComponent<Props> {
     };
 
     return axios.get(`${Constants.API}/api/v1/users/collateral?owner=${data}`).then((res) => {
-      console.log('object :', res);
 
       let dataTemp = res.data.collateral_owners;
       let dataRes = []
@@ -138,12 +234,80 @@ export class Order extends PureComponent<Props> {
     })
   };
 
-  promiseOptions = (data) => {
-      return new Promise(resolve => {
-        setTimeout(() => {
-        resolve(this.filterData(data));
-      }, 1000);
+  filterDataDebitur = (data) => {
+    axios.defaults.headers.common = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': 'example-of-custom-header',
+      'Accept-Version': 1,
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: Constants.TOKEN
+    };
+
+    return axios.get(`${Constants.API}/api/v1/users/debitor??owner=${data}`).then((res) => {
+
+      let dataTemp = res.data.debitors;
+      let dataRes = []
+      dataTemp.forEach(key => {
+        dataRes.push({
+          label: key.name,
+          value: key.id
+        })
+      });
+      return dataRes
     })
+  };
+
+  filterDataKreditur = (data) => {
+    axios.defaults.headers.common = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': 'example-of-custom-header',
+      'Accept-Version': 1,
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: Constants.TOKEN
+    };
+
+    return axios.get(`${Constants.API}/api/v1/users/creditor?owner=${data}`).then((res) => {
+
+      let dataTemp = res.data.creditors;
+      let dataRes = []
+      dataTemp.forEach(key => {
+        dataRes.push({
+          label: key.name,
+          value: key.id
+        })
+      });
+      return dataRes
+    })
+  };
+
+  promiseOptions = (sesi, data) => {
+    if (sesi === 'agunan') {
+      return new Promise(resolve => {
+          setTimeout(() => {
+          resolve(this.filterData(data));
+        }, 1000);
+      })
+    }
+    if (sesi === 'debitur') {
+      return new Promise(resolve => {
+          setTimeout(() => {
+          resolve(this.filterDataDebitur(data));
+        }, 1000);
+      })
+    }
+
+    if (sesi === 'kreditur') {
+      return new Promise(resolve => {
+          setTimeout(() => {
+          resolve(this.filterDataKreditur(data));
+        }, 1000);
+      })
+    }
+    return []
   }
 
   prev = () => {
@@ -163,22 +327,42 @@ export class Order extends PureComponent<Props> {
     })
   }
 
+  renderListAgunan = () => {
+    const { listAgunan } = this.state
+
+    if (listAgunan.status === 'NOT') {
+      return <p className="erorr">Cari data agunan</p>
+    }
+
+    if (listAgunan.status === 'LOADING') {
+      return <p>Loading ...</p>
+    }
+
+    if (listAgunan.status === 'SUCCESS') {
+      return <CheckboxList 
+        listAgunan={listAgunan}
+        handleGetAgunan={this.handleGetAgunan}
+      />
+    }
+  }
+
   render() {
     const {
       current,
       document_type,
-      search
+      search,
+      listAgunan,
+      paramOrder
     } = this.state
-
     const options = [{
-      label: 'SHM',
-      value: 0
+      label: 'SKMHT',
+      value: 'skmht'
     }, {
       label: 'APHT',
-      value: 1
+      value: 'apht'
     }, {
       label: 'Fidusia',
-      value: 2
+      value: 'fidusia'
     }]
     const SchemaDocumentType = Yup.object().shape({
       document_type: Yup.object().shape({
@@ -216,14 +400,14 @@ export class Order extends PureComponent<Props> {
                         initialValues={{
                           document_type: "",
                         }}
-                        // validationSchema={SchemaDocumentType}
+                        validationSchema={SchemaDocumentType}
                         onSubmit={(value) => {
                           cookieStorage.setItem(
                             'tpy',
                             compressToEncodedURIComponent(value.document_type.label)
                           );
                           this.setState({
-                            document_type: value.document_type.label
+                            document_type: value.document_type.value
                           })
                           this.handleSubmitFirst()
                         }}
@@ -287,6 +471,9 @@ export class Order extends PureComponent<Props> {
                         angsuran_bunga: ''
                       }}
                       onSubmit={(value) => {
+                        this.setState({
+                          paramOrder: value
+                        })
                         this.handleSubmitFirst()
                       }}
                       // validationSchema={SchemaDocumentForm}
@@ -412,7 +599,7 @@ export class Order extends PureComponent<Props> {
                                 cacheOptions 
                                 defaultOptions 
                                 onChange={this.handleChangeSearchColleteral}
-                                loadOptions={this.promiseOptions}
+                                loadOptions={(data) => this.promiseOptions('agunan', data)}
                                 className="container-select"
                               />
                             </form>
@@ -421,12 +608,31 @@ export class Order extends PureComponent<Props> {
                       </div>
                       <div className="col-md-8">
                         <div className="list-agunan">
-                          <CheckboxList />
+                          <div className="title-section">
+                            <h4>Pilih Agunan</h4>
+                          </div>
+                          {
+                            this.renderListAgunan()
+                          }
+                            
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-3 offset-9">
+                        <div className="button-section">
+                          <Button
+                            className="button-left"
+                            type="submit"
+                            disabled={false}
+                            onClick={() => {this.handleSubmitFirst()}}
+                          >
+                            Lanjut
+                          </Button>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <hr />
                   
                 </Card>
               }
@@ -823,39 +1029,38 @@ export class Order extends PureComponent<Props> {
                         return (
                           <Form className="form-pilih-debitur">
                             <Radio.Group onChange={this.onChangeRad} value={this.state.valueAs}>
-                              <h4>Pilih Debitur
-                                <Radio value={1}></Radio>
-                              </h4>
-                              <div className="row">
-                                <div className="col-md-4">
-                                  <SelectFormik
-                                    name="debitur"
-                                    label="Kreditur"
-                                    placeholder="Kreditur"
-                                    onChange={onChangeSelect}
-                                    options={options}
-                                    value={values.debitur}
-                                    error={errors.debitur && touched.debitur ? errors.debitur : null}
-                                  />
+                              {this.state.terkait === 'debitur' && <div className="group-choose">
+                                <h4>Pilih Debitur
+                                  {/* <Radio value={1}></Radio> */}
+                                </h4>
+                                <div className="row">
+                                  <div className="col-md-4">
+                                    <AsyncSelect 
+                                      cacheOptions 
+                                      defaultOptions 
+                                      onChange={(value) => this.handleChangeSearchTerkait('debitur', value)}
+                                      loadOptions={(data) => this.promiseOptions('debitur', data)}
+                                      className="container-select"
+                                    />
+                                  </div>
                                 </div>
-                              </div>
-                              <hr />
-                              <h4>Pilih Pemilik Agunan
-                                <Radio value={2}></Radio>
-                              </h4>
-                              <div className="row">
-                                <div className="col-md-4">
-                                  <SelectFormik
-                                    name="agunan"
-                                    label="Pemilik Agunan"
-                                    placeholder="Kreditur"
-                                    onChange={onChangeSelect}
-                                    options={options}
-                                    value={values.agunan}
-                                    error={errors.agunan && touched.agunan ? errors.agunan : null}
-                                  />
+                              </div>}
+                              {this.state.terkait === 'kreditur' && <div className='group-choose'>
+                                <h4>Pilih Kreditur
+                                  {/* <Radio value={2}></Radio> */}
+                                </h4>
+                                <div className="row">
+                                  <div className="col-md-4">
+                                    <AsyncSelect 
+                                      cacheOptions 
+                                      defaultOptions 
+                                      onChange={(value) => this.handleChangeSearchTerkait('kreditur', value)}
+                                      loadOptions={(data) => this.promiseOptions('kreditur', data)}
+                                      className="container-select"
+                                    />
+                                  </div>
                                 </div>
-                              </div>
+                              </div>}
                             </Radio.Group>
                             <div className="row">
                               <div className="col-md-3 offset-9">
@@ -991,6 +1196,7 @@ export class Order extends PureComponent<Props> {
                           className="button-left"
                           type="submit"
                           disabled={false}
+                          onClick={this.handleSubmitOrder}
                         >
                           Lanjut
                         </Button>

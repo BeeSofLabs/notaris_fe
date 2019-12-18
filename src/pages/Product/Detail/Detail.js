@@ -3,6 +3,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Rate } from 'antd';
+import { CookieStorage } from 'cookie-storage';
 
 import { PageWrapper, Card, Button } from '../../../components/element';
 
@@ -20,13 +21,18 @@ type Props = {
   fetchDetailNotarisIfNeeded: (param: Object) => void,
 };
 
+const cookieStorage = new CookieStorage({
+  path: '/'
+});
+
 export class Detail extends PureComponent<Props> {
   constructor(props) {
     super(props);
 
     this.state = {
       star: 2,
-      detailNotaris: ''
+      detailNotaris: '',
+      auth: false
     };
 
     this.onChangeStar = this.onChangeStar.bind(this);
@@ -37,6 +43,12 @@ export class Detail extends PureComponent<Props> {
 
     const params = {
       id: match.params.id
+    }
+
+    if (cookieStorage.getItem('prof')) {
+      this.setState({
+        auth: true,
+      });
     }
 
     fetchDetailNotarisIfNeeded(params)
@@ -91,6 +103,7 @@ export class Detail extends PureComponent<Props> {
 
   renderDetail() {
     const { detailNotaris } = this.props
+    const { auth } = this.state
 
       if (!detailNotaris || detailNotaris.readyStatus === 'DETAIL_NOTARIS_REQUEST') {
         return 'Loading'

@@ -10,6 +10,7 @@ import config from '../config';
 import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-select-me/lib/ReactSelectMe.css';
+import 'sweetalert2/src/sweetalert2.scss'
 import 'normalize.css/normalize.css'; // eslint-disable-line import/first
 import '../theme/styles.scss';
 

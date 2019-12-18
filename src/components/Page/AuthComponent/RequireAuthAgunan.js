@@ -25,7 +25,7 @@ export default function(ComposedComponent) {
             return <ComposedComponent {...this.props} />;
           }
         } else {
-          return <Redirect to='/' />;
+          // return <Redirect to='/' />;
           return ''
         }
     }

@@ -26,11 +26,43 @@ export class Forgot extends PureComponent<Props> {
       loading: false,
       err: ''
     }
+
+    this.handleAuth = this.handleAuth.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      forgotPassword
+    } = this.props
+    console.log(forgotPassword, nextProps.forgotPassword)
+    const obj ={}
+    if (forgotPassword[obj] !== nextProps.forgotPassword[obj]) {
+      this.handleAuth(nextProps.forgotPassword[obj]);
+    }
+  }
+
+  handleAuth (data) {
+    if (!data || data.readyStatus === "FORGOT_REQUESTING") {
+      return this.setState({
+        loading: true,
+        err: ''
+      }, () => {
+        this.forceUpdate()
+      })
+    }
+
+    if (data.readyStatus === "FORGOT_FAILURE") {
+      return this.setState({
+        err: data.err,
+        loading: false
+      })
+    }
   }
 
   render() {
     const { err,loading } = this.state
     const { fetchAuthForgotPasswordIfNeeded } = this.props
+    console.log('asd', this.state)
     return (
       <PageWrapper buttonLogin showNav>
         <div className="login-page-background">

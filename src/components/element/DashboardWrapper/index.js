@@ -10,7 +10,7 @@ class DashboardWrapper extends Component {
     const { children } = this.props 
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Sider
+        {!this.props.noMenu && <Sider
           width="256"
           breakpoint="lg"
           collapsedWidth="0"
@@ -58,9 +58,9 @@ class DashboardWrapper extends Component {
               <Menu.Item key="5">Kelengkapan Pihak Lain</Menu.Item>
             </SubMenu>
           </Menu>
-        </Sider>
+        </Sider>}
         <Layout>
-          <Content style={{ margin: '0 16px', padding: '40px 40px' }}>
+          <Content style={{ margin: '0 16px', padding: '40px 40px', background: '#f8f8f8' }}>
             {
               children
             }

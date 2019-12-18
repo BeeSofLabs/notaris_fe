@@ -81,15 +81,15 @@ export default [
         exact: true,
         component: History
       },
+      // {
+      //   path: '/dashboard',
+      //   exact: true,
+      //   component: Dashboard
+      // },
       {
-        path: '/dashboard',
+        path: '/agunan',
         exact: true,
         component: Dashboard
-      },
-      {
-        path: '/agunans',
-        exact: true,
-        component: RequireAuthAgunan(Dashboard)
       },
       {
         path: '/dashboard/list-order',

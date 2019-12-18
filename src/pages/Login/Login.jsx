@@ -91,14 +91,16 @@ export class Login extends PureComponent<Props> {
     cookieStorage.setItem('prof',
       compressToEncodedURIComponent(dataProfile)
     )
+    cookieStorage.setItem('rolenot',
+      compressToEncodedURIComponent(data.info.data.user.user_tipe)
+    )
     cookieStorage.setItem(
       'auth_token',
       compressToEncodedURIComponent(data.info.data.auth_token)
     );
-
-    if (data.info.data.user.user_tipe === "collateral_owner") {
-      window.location = '/agunans'
-    }
+    // if (data.info.data.user.user_tipe === "collateral_owner") {
+    //   window.location = '/agunans'
+    // }
     window.location = "/"
   }
 

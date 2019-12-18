@@ -106,3 +106,32 @@
     }
   }
 }
+
+.title-section-agunan {
+  color: #00052e;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.body-section-agunan {
+  margin-top: 40px;
+}
+
+.MuiTableRow-root	 {
+  border: none!important;
+
+  .MuiTableCell-root {
+    border: none!important;
+  }
+}
+
+.titleModal {
+  h4 {
+    text-align: center;
+    font-size: 18px;
+    color: #00052e;
+    font-weight: bold;
+    font-family: 'Lato';
+    margin-bottom: 40px;
+  }
+}

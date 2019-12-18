@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -16,6 +16,19 @@ const useStyles = makeStyles({
     minWidth: 650,
   },
 });
+
+const StyledTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: '#f4f5f8',
+    color: '#00052e',
+    fontWeight: 'bold',
+    borderBottom: 'none',
+    fontFamily: 'Lato'
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -40,21 +53,19 @@ export default function SimpleTable(props) {
             {
               props.headRow.map(key => {
                 return (
-                  <TableCell>{key}</TableCell>
+                  <StyledTableCell>{key}</StyledTableCell>
                 )
               })
             }
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            {props.children}
+          {props.children}
             {/* <TableCell component="th" scope="row">
               Zilmas
             </TableCell>
             <TableCell>Arjuna</TableCell>
             <TableCell>BrataS</TableCell> */}
-          </TableRow>
         </TableBody>
       </Table>
     </Paper>
