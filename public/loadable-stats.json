@@ -2,17 +2,15 @@
   "errors": [],
   "warnings": [],
   "version": "4.41.2",
-  "hash": "65455865523ee7d2c2a7",
+  "hash": "25b7c0da7c405913e44a",
   "publicPath": "/assets/",
   "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
   "assetsByChunkName": {
     "Account": "Account.js",
-    "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register": "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-    "Account~List": "Account~List.js",
-    "Dashboard": [
-      "Dashboard.js",
-      "Dashboard.1c5f33d9f7cd62cdb649.hot-update.js"
-    ],
+    "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register": "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+    "Account~AddAgunan~List": "Account~AddAgunan~List.js",
+    "AddAgunan": "AddAgunan.js",
+    "Dashboard": "Dashboard.js",
     "Detail": "Detail.js",
     "Forgot": "Forgot.js",
     "History": "History.js",
@@ -34,25 +32,15 @@
       "main.css",
       "main.js"
     ],
-    "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register": "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+    "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd": "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+    "vendors~Account~AddAgunan~Order~Register": "vendors~Account~AddAgunan~Order~Register.js",
     "vendors~Account~List": "vendors~Account~List.js",
-    "vendors~Account~Order~Register": "vendors~Account~Order~Register.js",
+    "vendors~AddAgunan~Dashboard~Order": "vendors~AddAgunan~Dashboard~Order.js",
     "vendors~Dashboard": "vendors~Dashboard.js",
     "vendors~Dashboard~Order": "vendors~Dashboard~Order.js",
     "vendors~Order": "vendors~Order.js"
   },
   "assets": [
-    {
-      "name": "1c5f33d9f7cd62cdb649.hot-update.json",
-      "size": 51,
-      "chunks": [],
-      "chunkNames": [],
-      "info": {
-        "hotModuleReplacement": true,
-        "immutable": true
-      },
-      "emitted": false
-    },
     {
       "name": "Account.js",
       "size": 242287,
@@ -66,47 +54,44 @@
       "emitted": false
     },
     {
-      "name": "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-      "size": 183809,
+      "name": "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+      "size": 183819,
       "chunks": [
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
       ],
       "chunkNames": [
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
       ],
       "info": {},
       "emitted": false
     },
     {
-      "name": "Account~List.js",
-      "size": 42255,
+      "name": "Account~AddAgunan~List.js",
+      "size": 42265,
       "chunks": [
-        "Account~List"
+        "Account~AddAgunan~List"
       ],
       "chunkNames": [
-        "Account~List"
+        "Account~AddAgunan~List"
       ],
       "info": {},
       "emitted": false
     },
     {
-      "name": "Dashboard.1c5f33d9f7cd62cdb649.hot-update.js",
-      "size": 31915,
+      "name": "AddAgunan.js",
+      "size": 181090,
       "chunks": [
-        "Dashboard"
+        "AddAgunan"
       ],
       "chunkNames": [
-        "Dashboard"
+        "AddAgunan"
       ],
-      "info": {
-        "hotModuleReplacement": true,
-        "immutable": true
-      },
-      "emitted": false
+      "info": {},
+      "emitted": true
     },
     {
       "name": "Dashboard.js",
-      "size": 97231,
+      "size": 104570,
       "chunks": [
         "Dashboard"
       ],
@@ -114,7 +99,7 @@
         "Dashboard"
       ],
       "info": {},
-      "emitted": false
+      "emitted": true
     },
     {
       "name": "Detail.js",
@@ -190,7 +175,7 @@
     },
     {
       "name": "Login.js",
-      "size": 53462,
+      "size": 53638,
       "chunks": [
         "Login"
       ],
@@ -202,7 +187,7 @@
     },
     {
       "name": "Order.js",
-      "size": 184580,
+      "size": 201311,
       "chunks": [
         "Order"
       ],
@@ -290,7 +275,7 @@
     },
     {
       "name": "main.css",
-      "size": 970100,
+      "size": 972558,
       "chunks": [
         "main"
       ],
@@ -302,7 +287,7 @@
     },
     {
       "name": "main.js",
-      "size": 5707674,
+      "size": 5715227,
       "chunks": [
         "main"
       ],
@@ -310,24 +295,28 @@
         "main"
       ],
       "info": {},
-      "emitted": false
+      "emitted": true
     },
     {
-      "name": "photo-profil.19063548.jpg",
-      "size": 103425,
-      "chunks": [],
-      "chunkNames": [],
+      "name": "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+      "size": 17585728,
+      "chunks": [
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd"
+      ],
+      "chunkNames": [
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd"
+      ],
       "info": {},
       "emitted": false
     },
     {
-      "name": "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-      "size": 17585719,
+      "name": "vendors~Account~AddAgunan~Order~Register.js",
+      "size": 420799,
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
+        "vendors~Account~AddAgunan~Order~Register"
       ],
       "chunkNames": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register"
+        "vendors~Account~AddAgunan~Order~Register"
       ],
       "info": {},
       "emitted": false
@@ -345,13 +334,13 @@
       "emitted": false
     },
     {
-      "name": "vendors~Account~Order~Register.js",
-      "size": 420789,
+      "name": "vendors~AddAgunan~Dashboard~Order.js",
+      "size": 244212,
       "chunks": [
-        "vendors~Account~Order~Register"
+        "vendors~AddAgunan~Dashboard~Order"
       ],
       "chunkNames": [
-        "vendors~Account~Order~Register"
+        "vendors~AddAgunan~Dashboard~Order"
       ],
       "info": {},
       "emitted": false
@@ -382,7 +371,7 @@
     },
     {
       "name": "vendors~Order.js",
-      "size": 886608,
+      "size": 2330361,
       "chunks": [
         "vendors~Order"
       ],
@@ -390,7 +379,7 @@
         "vendors~Order"
       ],
       "info": {},
-      "emitted": false
+      "emitted": true
     }
   ],
   "filteredAssets": 0,
@@ -421,13 +410,13 @@
     },
     "Home": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Home"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Home.css",
         "Home.js"
       ],
@@ -447,17 +436,17 @@
     },
     "List": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
         "vendors~Account~List",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "Account~List",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~AddAgunan~List",
         "List"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
         "vendors~Account~List.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Account~List.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~AddAgunan~List.js",
         "List.js"
       ],
       "children": {},
@@ -465,13 +454,13 @@
     },
     "Detail": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Detail"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Detail.js"
       ],
       "children": {},
@@ -479,19 +468,21 @@
     },
     "Order": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "vendors~Account~Order~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "vendors~Account~AddAgunan~Order~Register",
+        "vendors~AddAgunan~Dashboard~Order",
         "vendors~Dashboard~Order",
         "vendors~Order",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Order"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "vendors~Account~Order~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "vendors~Account~AddAgunan~Order~Register.js",
+        "vendors~AddAgunan~Dashboard~Order.js",
         "vendors~Dashboard~Order.js",
         "vendors~Order.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Order.js"
       ],
       "children": {},
@@ -499,13 +490,13 @@
     },
     "Login": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Login"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Login.js"
       ],
       "children": {},
@@ -513,15 +504,15 @@
     },
     "Register": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "vendors~Account~Order~Register",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "vendors~Account~AddAgunan~Order~Register",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Register"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "vendors~Account~Order~Register.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "vendors~Account~AddAgunan~Order~Register.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Register.js"
       ],
       "children": {},
@@ -529,19 +520,19 @@
     },
     "Account": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "vendors~Account~Order~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "vendors~Account~AddAgunan~Order~Register",
         "vendors~Account~List",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "Account~List",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~AddAgunan~List",
         "Account"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "vendors~Account~Order~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "vendors~Account~AddAgunan~Order~Register.js",
         "vendors~Account~List.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Account~List.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~AddAgunan~List.js",
         "Account.js"
       ],
       "children": {},
@@ -549,13 +540,13 @@
     },
     "Forgot": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Forgot"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Forgot.js"
       ],
       "children": {},
@@ -563,13 +554,13 @@
     },
     "Payment": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Payment"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "Payment.js"
       ],
       "children": {},
@@ -577,13 +568,13 @@
     },
     "PaymentDetail": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "PaymentDetail"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "PaymentDetail.js"
       ],
       "children": {},
@@ -591,13 +582,13 @@
     },
     "History": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "History"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
         "History.js"
       ],
       "children": {},
@@ -605,19 +596,40 @@
     },
     "Dashboard": {
       "chunks": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "vendors~AddAgunan~Dashboard~Order",
         "vendors~Dashboard~Order",
         "vendors~Dashboard",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
         "Dashboard"
       ],
       "assets": [
-        "vendors~Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "vendors~AddAgunan~Dashboard~Order.js",
         "vendors~Dashboard~Order.js",
         "vendors~Dashboard.js",
-        "Account~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
-        "Dashboard.js",
-        "Dashboard.1c5f33d9f7cd62cdb649.hot-update.js"
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Dashboard.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "AddAgunan": {
+      "chunks": [
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd",
+        "vendors~Account~AddAgunan~Order~Register",
+        "vendors~AddAgunan~Dashboard~Order",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register",
+        "Account~AddAgunan~List",
+        "AddAgunan"
+      ],
+      "assets": [
+        "vendors~Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetai~52ad77bd.js",
+        "vendors~Account~AddAgunan~Order~Register.js",
+        "vendors~AddAgunan~Dashboard~Order.js",
+        "Account~AddAgunan~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~PaymentDetail~Register.js",
+        "Account~AddAgunan~List.js",
+        "AddAgunan.js"
       ],
       "children": {},
       "childAssets": {}

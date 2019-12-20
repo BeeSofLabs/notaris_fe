@@ -10,6 +10,7 @@ import {
   Form,
 } from 'formik'
 import * as Yup from 'yup'
+import Swal from 'sweetalert2/dist/sweetalert2'
 import { PageWrapper, Card, InputFormik, SelectFormik, DateInput, Button, DetailField, Status, Textarea } from '../../../components/element';
 import { 
   Steps, 
@@ -78,23 +79,32 @@ export class Order extends PureComponent<Props> {
       user_id: null,
       notary_id: null,
       terkait: '',
-      pemilikAgunan: null
+      pemilikAgunan: null,
+      listCheckboxAgunan: [],
+      checkedPersetujuan: false
     }
 
     this.handleSubmitFirst = this.handleSubmitFirst.bind(this)
-    this.handleSubmitFirst = this.handleSubmitSecond.bind(this)
+    // this.handleSubmitFirst = this.handleSubmitSecond.bind(this)
     this.onChangeRad = this.onChangeRad.bind(this)
     this.handleChangeSearchColleteral = this.handleChangeSearchColleteral.bind(this)
     this.handleGetAgunan = this.handleGetAgunan.bind(this)
     this.handleSubmitOrder = this.handleSubmitOrder.bind(this)
     this.handleChangeSearchTerkait = this.handleChangeSearchTerkait.bind(this)
+    this.onChangePersetujuan = this.onChangePersetujuan.bind(this)
   }
+
+  onChangePersetujuan = e => {
+    console.log('asd', e.target.checked)
+    this.setState({
+      checkedPersetujuan: e.target.checked,
+    });
+  };
 
   componentDidMount() {
     const cookieStorage = new CookieStorage()
     const dataProf = cookieStorage.getItem('prof')
     const data = JSON.parse(decompressFromEncodedURIComponent(dataProf))
-    console.log('as', data.user_tipe)
     if (data.user_tipe === "debtor") {
       this.setState({
         user_id: data.id,
@@ -113,7 +123,6 @@ export class Order extends PureComponent<Props> {
   }
 
   handleSubmitOrder() {
-    console.log(this.state)
     const order = {
       status: "submission", // draft, submission
       agunan_pokok: parseInt(this.state.paramOrder.agunan_pokok),
@@ -131,16 +140,53 @@ export class Order extends PureComponent<Props> {
       collateral_owner_id: this.state.pemilikAgunan,
       immovable_collateral_ids: this.state.agunan,
     }
-    console.log('order', order)
+
+    return axios.post(`${Constants.API}/api/v1/orders/create`, { ...order }).then((res) => {
+      console.log('asd', res)
+      return Swal.fire({
+        icon:'success',
+        html: `<div class="text-popup"><h5>Order Telah berhasil di buat</h5></div>`,
+        confirmButtonText: 'Ok',
+        customClass: {
+          container: 'popup-container poptup-button-red',
+        },
+        width: '400px',
+        preConfirm: () => {
+          this.props.history.push('/')
+        },
+        allowOutsideClick: false,
+      })
+    }).catch(()=> {
+      Swal.fire({
+        icon: 'error',
+        html: `<div class="text-popup"><h5>Silahkan coba lagi.</h5></div>`,
+        confirmButtonText: 'Oke',
+        customClass: {
+          container: 'popup-container',
+        },
+        width: '400px',
+      })
+    })
   }
 
   handleGetAgunan = (value) => {
+    const { listAgunan } = this.state
+    let dataTemp = []
+    value.map(key => {
+      let dataFilter = _.find(listAgunan.items, e => e.id === key)
+
+      dataTemp.push(
+        dataFilter
+      )
+    })
     this.setState({
-      agunan: value
+      agunan: value,
+      listCheckboxAgunan: dataTemp
     })
   }
 
   handleSubmitFirst (value) {
+    
     return this.next()
   }
 
@@ -159,6 +205,18 @@ export class Order extends PureComponent<Props> {
       window.scrollTo(0, 1000);
     })
   }
+
+  convertToRupiah = val => {
+    const numberString = val.toString();
+    const sisa = numberString.length % 3;
+    let rupiah = numberString.substr(0, sisa);
+    const ribuan = numberString.substr(sisa).match(/\d{3}/g);
+    if (ribuan) {
+      const separator = sisa ? '.' : '';
+      rupiah += separator + ribuan.join('.');
+    }
+    return `Rp ${rupiah}`;
+  };
 
   handleChangeSearchTerkait = (sesi, value) => {
     console.log(sesi, value)
@@ -190,13 +248,13 @@ export class Order extends PureComponent<Props> {
       let data = []
       const { document_type } = this.state
       if (document_type === 'fidusia') {
-        res.data.immovable_collaterals.map(key => {
-          key.category = 'Tidak Bergerak';
+        res.data.movable_collaterals.map(key => {
+          key.category = 'Bergerak';
           data.push(key)
         })
       } else {
-        res.data.movable_collaterals.map(key => {
-          key.category = 'Bergerak';
+        res.data.immovable_collaterals.map(key => {
+          key.category = 'Tidak Bergerak';
           data.push(key)
         })
       }
@@ -349,10 +407,9 @@ export class Order extends PureComponent<Props> {
   render() {
     const {
       current,
-      document_type,
-      search,
       listAgunan,
-      paramOrder
+      agunan,
+      listCheckboxAgunan
     } = this.state
     const options = [{
       label: 'SKMHT',
@@ -369,6 +426,8 @@ export class Order extends PureComponent<Props> {
         label: Yup.string().required('Tidak boleh kosong.')
       })
     })
+
+    console.log('asd', listAgunan, agunan, listCheckboxAgunan)
 
     const SchemaDocumentForm = Yup.object().shape({
       no_perjanjian: Yup.string().required('Tidak boleg kosong.'),
@@ -476,7 +535,7 @@ export class Order extends PureComponent<Props> {
                         })
                         this.handleSubmitFirst()
                       }}
-                      // validationSchema={SchemaDocumentForm}
+                      validationSchema={SchemaDocumentForm}
                     >
                       {({ errors, touched, values, setFieldValue }) => {
                         const onChangeDate = (name ,date, dateString) => {
@@ -488,7 +547,7 @@ export class Order extends PureComponent<Props> {
                               <div className="col-md-4">
                                 <InputFormik
                                   name="no_perjanjian"
-                                  label="No Perjanjiant"
+                                  label="No Perjanjian"
                                   placeholder="..."
                                   error={errors.no_perjanjian && touched.no_perjanjian ? errors.no_perjanjian : null}
                                 />
@@ -1088,73 +1147,106 @@ export class Order extends PureComponent<Props> {
                 <Card>
                   <div className="order-form">
                     <div className="review-order">
-                      <div className="title-section">
-                        <h4>Surat Agunan</h4>
-                      </div>
+                      
                       <div className="body-section">
-                        <div className="row">
-                          <div className="col-md-6">
-                            <DetailField label="Bukti Kepemilikan" value="SHM" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="No. Sertifikat" value="1234901469806" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="Nama Pemilik" value="Ary Suryawan" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="Tanggal Penerbitan" value="03 Februari 1973" />
-                          </div>
-                        </div>
-                        <hr />
-                        <h4>Detail Agunan</h4>
-                        <div className="row">
-                          <div className="col-md-6">
-                            <DetailField label="Luas Tanah" value="1028 m2" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="No Gambar Situasi/Surat Ukur" value="41238061" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="Tanggal GS/SU" value="12 September 1990" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="Nomor Identifikasi Bidang tanah" value="13248964" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="Surat Pemberitahuan PBB" value="9186-321" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="Nomor objek pajak (NOP)" value="32081803139410142" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="Nilai Agunan" value="Rp 1.000.000.000" />
-                          </div>
-                        </div>
-                        <hr />
-                        <div className="row">
-                          <div className="col-md-6">
-                            <DetailField label="Provinsi" value="DKI Jakarta" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="Kabupaten/Kota" value="Jakarta Selatan" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="Kecamatan" value="Pejaten" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="Kelurahan/Desa" value="Pejaten Barat" />
-                          </div>
-                          <div className="col-md-6">
-                            <DetailField label="Alamat" value="Ruko Tendean Square Jalan Wolter Monginsidi No. 19 16 2, RT.16/RW.2, Petogogan, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12170" />
-                          </div>
-                        </div>
+                        {
+                          listCheckboxAgunan.map((key, id) => {
+                            if (key.category === 'Bergerak') {
+                              return (
+                                <>
+                                  <div className="title-section">
+                                    <h4>Surat Agunan {id+1}</h4>
+                                  </div>
+                                  <div className="row">
+                                    <div className="col-md-6">
+                                      <DetailField label="Bukti Kepemilikan" value={key.proof_of_ownership} />
+                                    </div>
+                                    <div className="col-md-6">
+                                      <DetailField label="Nama Pemilik" value={key.owner} />
+                                    </div>
+                                    <div className="col-md-6">
+                                      <DetailField label="Atas Nama" value={key.name_representative} />
+                                    </div>
+                                    <div className="col-md-6">
+                                      <DetailField label="No Bukti" value={key.no_evidence} />
+                                    </div>
+                                    <div className="col-md-6">
+                                      <DetailField label="Tanggal Penerbitan" value={key.publication_date} />
+                                    </div>
+                                    <div className="col-md-6">
+                                      <DetailField label="Nomor Mesin" value={key.machine_number} />
+                                    </div>
+                                    <div className="col-md-6">
+                                      <DetailField label="Nomor Rangka" value={key.chassis_number} />
+                                    </div>
+                                    <div className="col-md-6">
+                                      <DetailField label="Merek" value={key.brand} />
+                                    </div>
+                                    <div className="col-md-6">
+                                      <DetailField label="Jenis" value={key.classification} />
+                                    </div>
+                                    <div className="col-md-6">
+                                      <DetailField label="Warna" value={key.color} />
+                                    </div>
+                                    <div className="col-md-6">
+                                      <DetailField label="Nilai Agunan" value={this.convertToRupiah(key.collateral_value)} />
+                                    </div>
+                                    <div className="col-md-6">
+                                      <DetailField label="Nilai Pengikatan" value={this.convertToRupiah(key.binding_value)} />
+                                    </div>
+                                  </div>
+                                  <hr/>
+                                </>
+                              )
+                            }
+                            return (
+                              <>
+                                <div className="title-section">
+                                  <h4>Surat Agunan {id+1}</h4>
+                                </div>
+                                <div className="row">
+                                  <div className="col-md-6">
+                                    <DetailField label="Bukti Kepemilikan" value={key.proof_of_ownership} />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <DetailField label="Nama Pemilik" value={key.owner} />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <DetailField label="Luas Tanah" value={`${key.land_area} m`} />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <DetailField label="No Gambar Situasi/Surat Ukur" value={key.letter_of_measurement} />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <DetailField label="Tanggal GS/SU" value={key.publication_date} />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <DetailField label="Nomor Identifikasi Bidang tanah" value={key.no_land_identity} />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <DetailField label="Surat Pemberitahuan PBB" value={key.letter_of_pbbtax} />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <DetailField label="Nomor objek pajak (NOP)" value={key.nop} />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <DetailField label="Nilai Agunan" value={this.convertToRupiah(key.collateral_value)} />
+                                  </div>
+                                  <div className="col-md-6">
+                                    <DetailField label="Nilai Pengikatan" value={this.convertToRupiah(key.binding_value)} />
+                                  </div>
+                                </div>
+                                <hr/>
+                              </>
+                            )
+                          })
+                        }
                       </div>
                       
                     </div>
                   </div>
                 </Card>
-                <Card>
+                {/* <Card>
                   <div className="order-form notaris-review">
                     <div className="title-section">
                       <h4>Notaris</h4>
@@ -1180,35 +1272,41 @@ export class Order extends PureComponent<Props> {
                       </div>
                     </div>
                   </div>
-                </Card>
-                <div className="button-last">
-                  <div className="row">
-                    <div className="col-md-9">
-                      <div className="checkbox-section">
-                        <Checkbox>
-                          Data diatas sudah benar dan dapat dipertanggungjawabkan, dan saya telah menyetujui Syarat & Ketentuan yang berlaku
-                        </Checkbox>
-                      </div>
-                    </div>
-                    <div className="col-md-3">
-                      <div className="button-section">
-                        <Button
-                          className="button-left"
-                          type="submit"
-                          disabled={false}
-                          onClick={this.handleSubmitOrder}
-                        >
-                          Lanjut
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </Card>*/}
                 </React.Fragment>
                 }
             </div>
           </div>
         </div>
+        {current === 4 && <div className="button-last"> 
+          <div className="container">
+            <div className="row">
+              <div className="col-md-9">
+                <div className="checkbox-section">
+                  <Checkbox
+                    checked={this.state.checkedPersetujuan}
+                    onChange={this.onChangePersetujuan}
+                  >
+                    Data diatas sudah benar dan dapat dipertanggungjawabkan, dan saya telah menyetujui Syarat & Ketentuan yang berlaku
+                  </Checkbox>
+                </div>
+              </div>
+              <div className="col-md-3">
+                <div className="button-section">
+                  <Button
+                    className="button-left"
+                    type="submit"
+                    disabled={!this.state.checkedPersetujuan}
+                    onClick={this.handleSubmitOrder}
+                  >
+                    Submit
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>}
+        
       </PageWrapper>
     )
   }

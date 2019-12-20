@@ -12,11 +12,14 @@ import { Modal } from 'antd';
 import { PageWrapper, Card, Button, DashboardWrapper } from '../../components/element'
 import AuthAgunan from '../../components/Page/AuthComponent/AuthAgunan'
 import { Checkbox } from 'antd'
+import Swal from 'sweetalert2/dist/sweetalert2'
 
 import ListTables from './ListTables'
 import SimpleTabs from './SimpleTabs'
 import SimpleMenu from './SimpleMenu'
-
+const cookieStorage = new CookieStorage({
+  path: '/'
+});
 import Constants from '../../helpers/constants';
 
 
@@ -39,7 +42,6 @@ export class Dashboard extends PureComponent<> {
   }
 
   handleCancel = e => {
-    console.log('asd', e)
     this.setState({
       visible: false,
     });
@@ -72,7 +74,6 @@ export class Dashboard extends PureComponent<> {
         key.category = 'Bergerak';
         data.push(key)
       })
-      console.log('asd', data)
       this.setState({
         listAgunan: {
           status: 'SUCCESS',
@@ -88,75 +89,126 @@ export class Dashboard extends PureComponent<> {
     });
   };
 
+  handleDelete(id, category) {
+    const params = {
+      collateral_type: category,
+	    id: id
+    }
+    axios.delete(`${Constants.API}/api/v1/collateral`, params).then(res => {
+      return Swal.fire({
+        icon:'success',
+        html: `<div class="text-popup"><h5>Data berhasil dihapus</h5></div>`,
+        confirmButtonText: 'Ok',
+        customClass: {
+          container: 'popup-container poptup-button-red',
+        },
+        width: '400px',
+        preConfirm: () => {
+          location.reload()
+        },
+        allowOutsideClick: false,
+      })
+    }).catch(err => {
+      return Swal.fire({
+        icon: 'error',
+        html: `<div class="text-popup"><h5>Silahkan coba lagi.</h5></div>`,
+        confirmButtonText: 'Oke',
+        customClass: {
+          container: 'popup-container',
+        },
+        width: '400px',
+      })
+    })
+  }
+
   render() {
     const { listAgunan, visible } = this.state
     return (
         <DashboardWrapper noMenu>
-          <div className="title-section-agunan">
-            {/* <SimpleTabs /> */}
-            <h4>List Agunan</h4>
-          </div>
-          <div className="row">
-           <div className="col-md-2">
-              <Button onClick={this.showModal} disabled={false}>
-                Tambah Agunan
-              </Button>
-              <Modal
-                visible={this.state.visible}
-                onCancel={this.handleCancel}
-                closeIcon={null}
-                closable={null}
-                footer={null}
-              >
-                <div className="titleModal">
-                  <h4>Pilih Jenis Agunan Yang Ingin <br/>ditambahkan</h4>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <Button 
-                        className="button-right" 
-                        type="button"
-                        disabled={false}
-                        onClick={() => { this.props.history.push('/agunan/bergerak/add') }}
-                      >
-                        Bergerak
-                      </Button>
-                    </div>
-                    <div className="col-md-6">
-                      <Button 
-                        className="button-right" 
-                        type="button" 
-                        disabled={false}
-                        onClick={() => { this.props.history.push('/agunan/tidak-bergerak/add') }}
-                      >
-                        Tidak Bergerak
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </Modal>
+          <div className="page-section">
+            <div className="title-section">
+              <h4>List Agunan</h4>
             </div>
-          </div>
-          <div className="body-section-agunan">
-            <ListTables headRow={row}>
-              {
-                listAgunan.items.map(key => (
-                  <TableRow key={key.id}>
-                    <TableCell component="th" scope="row">
-                      {key.owner}
-                    </TableCell>
-                    <TableCell>
-                      {key.proof_of_ownership}
-                    </TableCell>
-                    <TableCell>
-                      {key.category}
-                    </TableCell>
-                    <TableCell>
-                      hapus
-                    </TableCell>
-                  </TableRow>
-                ))
-              }
-            </ListTables>
+            <div className="body-section">
+              <div className="row">
+              <div className="col-md-3">
+                  <Button onClick={this.showModal} disabled={false}>
+                    Tambah Agunan
+                  </Button>
+                  <Modal
+                    visible={this.state.visible}
+                    onCancel={this.handleCancel}
+                    closeIcon={null}
+                    closable={null}
+                    footer={null}
+                  >
+                    <div className="titleModal">
+                      <h4>Pilih Jenis Agunan Yang Ingin <br/>ditambahkan</h4>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <Button 
+                            className="button-right" 
+                            type="button"
+                            disabled={false}
+                            onClick={() => { this.props.history.push('/agunan/bergerak/add') }}
+                          >
+                            Bergerak
+                          </Button>
+                        </div>
+                        <div className="col-md-6">
+                          <Button 
+                            className="button-right" 
+                            type="button" 
+                            disabled={false}
+                            onClick={() => { this.props.history.push('/agunan/tidak-bergerak/add') }}
+                          >
+                            Tidak Bergerak
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </Modal>
+                </div>
+                <div className="col-md-6">
+
+                </div>
+                <div className="col-md-3">
+                  <Button onClick={() => { cookieStorage.clear(); window.location = '/'; }} disabled={false}>
+                    Logout
+                  </Button>
+                </div>
+              </div>
+
+              <div className="body-section-agunan">
+              <ListTables headRow={row}>
+                {
+                  listAgunan.items.map(key => (
+                    <TableRow key={key.id}>
+                      <TableCell component="th" scope="row">
+                        {key.owner}
+                      </TableCell>
+                      <TableCell>
+                        {key.proof_of_ownership}
+                      </TableCell>
+                      <TableCell>
+                        {key.category}
+                      </TableCell>
+                      <TableCell>
+                        <Button 
+                            className="button-right" 
+                            type="button" 
+                            disabled={false}
+                            onClick={() => this.handleDelete(key.id, key.category)}
+                          >
+                            Delete
+                          </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                }
+              </ListTables>
+            </div>
+            </div>
           </div>
         </DashboardWrapper>
     )

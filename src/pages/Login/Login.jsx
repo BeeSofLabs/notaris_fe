@@ -98,10 +98,11 @@ export class Login extends PureComponent<Props> {
       'auth_token',
       compressToEncodedURIComponent(data.info.data.auth_token)
     );
-    // if (data.info.data.user.user_tipe === "collateral_owner") {
-    //   window.location = '/agunans'
-    // }
-    window.location = "/"
+    if (data.info.data.user.user_tipe === "collateral_owner") {
+      window.location = '/agunan'
+    } else {
+      window.location = "/"
+    }
   }
 
   render() {

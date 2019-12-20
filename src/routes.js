@@ -2,7 +2,7 @@
 
 import { usersAction, userAction } from './actions';
 import App from './app';
-import { asyncHome, asyncUserInfo, NotFound, List, Detail, Order, Login, Register, Account, Forgot, Payment, PaymentDetail, History, Dashboard, DashboardListOrder } from './pages';
+import { asyncHome, asyncUserInfo, NotFound, List, Detail, Order, Login, Register, Account, Forgot, Payment, PaymentDetail, History, Dashboard, DashboardListOrder, AddAgunan } from './pages';
 import RequireAuth from './components/Page/PublicComponent/index'
 import RequireAuthAgunan from './components/Page/AuthComponent/RequireAuthAgunan'
 
@@ -90,6 +90,11 @@ export default [
         path: '/agunan',
         exact: true,
         component: Dashboard
+      },
+      {
+        path: '/agunan/:section/add',
+        exact: true,
+        component: AddAgunan
       },
       {
         path: '/dashboard/list-order',

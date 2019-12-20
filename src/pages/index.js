@@ -15,6 +15,7 @@ import PaymentDetail from './PaymentDetail'
 import History from './History'
 import Dashboard from './Dashboard'
 import DashboardListOrder from './SectionDashboard/Order/List'
+import AddAgunan from './AddAgunan'
 
 export { 
   asyncHome, 
@@ -31,5 +32,6 @@ export {
   PaymentDetail,
   History,
   Dashboard,
-  DashboardListOrder
+  DashboardListOrder,
+  AddAgunan
 };
