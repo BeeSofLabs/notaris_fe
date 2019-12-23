@@ -25,7 +25,7 @@ export default (
         ${head.base.toString()}
         ${head.meta.toString()}
         ${head.link.toString()}
-
+        <script src="https://unpkg.com/privy-sdk@next"></script>
         <!-- Insert bundled styles into <link> tag -->
         ${extractor.getLinkTags()}
         ${extractor.getStyleTags()}

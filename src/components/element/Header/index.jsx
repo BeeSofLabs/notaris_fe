@@ -99,19 +99,24 @@ class Header extends Component {
               ''
             )}
             {auth == 'info' ? (
-              <Col md={6}>
-                <Dropdown
-                  overlay={menu}
-                  onVisibleChange={this.handleVisibleChange}
-                  visible={this.state.visible}
-                  overlayStyle={{
-                    width: '200px'
-                  }}
-                  placement="bottomRight"
-                >
-                  <span className="profile-info">{profile.name || ''}</span>
-                </Dropdown>
-              </Col>
+              <>
+                <Col md={3}>
+                  <a href="/history" className="link-history">History</a>
+                </Col>
+                <Col md={3}>
+                  <Dropdown
+                    overlay={menu}
+                    onVisibleChange={this.handleVisibleChange}
+                    visible={this.state.visible}
+                    overlayStyle={{
+                      width: '200px'
+                    }}
+                    placement="bottomRight"
+                  >
+                    <span className="profile-info">{profile.name || ''}</span>
+                  </Dropdown>
+                </Col>
+              </>
             ) : (
               ''
             )}

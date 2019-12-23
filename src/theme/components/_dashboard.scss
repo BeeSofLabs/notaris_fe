@@ -81,11 +81,18 @@
  }
 }
 
+.link-history  {
+  top: 15px;
+  position: relative;
+  text-align: right;
+  float: right;
+}
+
 
 .search-input-table {
   width: 100%;
   border-radius: 90px; 
-  box-shadow: 0 1px 15px 0 rgba(69, 65, 78, 0.08);
+  box-shadow: 0 1px 15px 0 rgba(221, 217, 231, 0.08);
   position: relative;
   padding: 8px; 
 

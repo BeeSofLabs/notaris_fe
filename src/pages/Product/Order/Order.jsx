@@ -142,7 +142,6 @@ export class Order extends PureComponent<Props> {
     }
 
     return axios.post(`${Constants.API}/api/v1/orders/create`, { ...order }).then((res) => {
-      console.log('asd', res)
       return Swal.fire({
         icon:'success',
         html: `<div class="text-popup"><h5>Order Telah berhasil di buat</h5></div>`,
@@ -305,7 +304,7 @@ export class Order extends PureComponent<Props> {
 
     return axios.get(`${Constants.API}/api/v1/users/debitor??owner=${data}`).then((res) => {
 
-      let dataTemp = res.data.debitors;
+      let dataTemp = res.data.debtors;
       let dataRes = []
       dataTemp.forEach(key => {
         dataRes.push({

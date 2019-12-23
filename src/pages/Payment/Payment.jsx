@@ -4,15 +4,87 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { PageWrapper, Card, Button } from '../../components/element'
 import { Checkbox } from 'antd'
-
+import { compressToEncodedURIComponent } from 'lz-string'
+import Constants from '../../helpers/constants' 
+import axios from 'axios'
 
 export class Payment extends PureComponent<Props> {
   constructor(props) {
     super(props)
 
     this.state = {
-      zilmas: ''
+      detailOrder: {
+        status: 'Loading',
+        data: {}
+      },
+      dataBank: [{
+        code: "014",
+        name: "BANK BCA"
+      }],
+      checked: false
     }
+
+    this.handleChangeChecked = this.handleChangeChecked.bind(this)
+  }
+
+  componentDidMount() {
+    axios.defaults.headers.common = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': 'example-of-custom-header',
+      'Accept-Version': 1,
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: Constants.TOKEN
+    };
+
+    axios.get(`${Constants.API}/api/v1/orders/show/${this.props.match.params.idOrder}`).then(res => {
+      return this.setState({
+        detailOrder: {
+          status: 'Success',
+          detail: res.data.order
+        }
+      })
+    }).catch(err => {
+      this.setState({
+        listOrder: {
+          status: 'Failed',
+          data: {}
+        }
+      })
+    })
+  }
+
+  handleChangeChecked() {
+    this.setState({ checked: !this.state.checked });
+  }
+
+  handleSubmitPayment() {
+    axios.defaults.headers.common = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': 'example-of-custom-header',
+      'Accept-Version': 1,
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: Constants.TOKEN
+    };
+
+    const param = {
+      order_id: this.props.match.params.idOrder,
+      phone: "085697366188",
+      bank_code: "008",
+      bank_account: "08879987779879987",
+      note: "bayar cash payment alfamart"
+    }
+
+    axios.post(`${Constants.API}/api/v1/payment/bank/transfer`, param).then(res => {
+      console.log(res)
+      const data = compressToEncodedURIComponent(JSON.stringify(res.data))
+      return this.props.history.push(`/payment/detail/${data}`)
+    }).catch(err => {
+     console.log(err)
+    })
   }
 
   render() {
@@ -54,12 +126,15 @@ export class Payment extends PureComponent<Props> {
                         <div className="body-content">
                           <ul>
                             <li>
-                              <Checkbox><img src={require('../../app/assets/img/bca.png')} alt="bank bca" /><span className="text-checkbox">BCA</span></Checkbox>
+                              <Checkbox
+                                checked={this.state.checked}
+                                onChange={this.handleChangeChecked}
+                              ><img src={require('../../app/assets/img/bca.png')} alt="bank bca" /><span className="text-checkbox">BCA</span></Checkbox>
                             </li>
                           </ul>
                         </div>
                       </div>
-                      <div className="list-body-content">
+                      {/* <div className="list-body-content">
                         <div className="title-content">
                           <h3>Credit Card</h3>
                         </div>
@@ -70,7 +145,7 @@ export class Payment extends PureComponent<Props> {
                             </li>
                           </ul>
                         </div>
-                      </div>
+                      </div> */}
                     </Card>
                   </div>
                 </div>
@@ -88,7 +163,7 @@ export class Payment extends PureComponent<Props> {
                     <Button 
                       type="button"
                       className="button-right"
-                      onClick={() => window.location = `/payment/detail/23`}
+                      onClick={() => this.handleSubmitPayment()}
                       disabled={false}
                     >
                       Lanjutkan Pembayaran

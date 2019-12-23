@@ -110,6 +110,8 @@
         font-size: 14px;
         font-weight: normal;
       }
+
+      
     }
 
     .body {
@@ -165,5 +167,17 @@
       color:#707070;
       font-size: 20px;
     }
+  }
+}
+
+.list-body-content {
+  label {
+    color: #687782;
+    font-size: 18px;
+  }
+  p {
+    color: #010f71;
+    font-size: 18px;
+    margin-top: 10px;
   }
 }

@@ -16,6 +16,8 @@ import History from './History'
 import Dashboard from './Dashboard'
 import DashboardListOrder from './SectionDashboard/Order/List'
 import AddAgunan from './AddAgunan'
+import Assign from './Assign'
+import LoadingAssign from './LoadingAssign/LoadingAssign'
 
 export { 
   asyncHome, 
@@ -33,5 +35,7 @@ export {
   History,
   Dashboard,
   DashboardListOrder,
-  AddAgunan
+  AddAgunan,
+  Assign,
+  LoadingAssign
 };

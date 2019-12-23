@@ -323,6 +323,9 @@ input {
   color: #fff;
   border-radius: 90px;
 
+  &:disabled {
+    background: #eee;
+  }
   &:focus {
     border: none;
     outline: none;

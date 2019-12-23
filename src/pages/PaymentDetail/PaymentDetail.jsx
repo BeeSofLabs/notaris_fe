@@ -4,18 +4,40 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { PageWrapper, Card, Button } from '../../components/element'
 import { Checkbox } from 'antd'
-
+import { decompressFromEncodedURIComponent } from 'lz-string'
+import * as moment from 'moment'
 
 export class PaymentDetail extends PureComponent<Props> {
   constructor(props) {
     super(props)
 
     this.state = {
-      zilmas: ''
+      detailPayment: {}
     }
   }
 
+  componentDidMount() {
+    const data = JSON.parse(decompressFromEncodedURIComponent(this.props.match.params.idPayment))
+    this.setState({
+      detailPayment: data.data.response
+    })
+  }
+
+  convertToRupiah = val => {
+    const numberString = val.toString();
+    const sisa = numberString.length % 3;
+    let rupiah = numberString.substr(0, sisa);
+    const ribuan = numberString.substr(sisa).match(/\d{3}/g);
+    if (ribuan) {
+      const separator = sisa ? '.' : '';
+      rupiah += separator + ribuan.join('.');
+    }
+    return `Rp ${rupiah}`;
+  };
+
   render() {
+    const { detailPayment } = this.state
+    console.log('asd', detailPayment)
     return (
       <PageWrapper>
         <div className="payment-wrapper">
@@ -37,7 +59,7 @@ export class PaymentDetail extends PureComponent<Props> {
                                 <h4>Nomor Transaksi</h4>
                               </div>
                               <div className="body">
-                                <p>INV91754109-01</p>
+                                <p>{detailPayment.transaction_id}</p>
                               </div>
                             </div>
                             <div className="col-md-5">
@@ -45,7 +67,7 @@ export class PaymentDetail extends PureComponent<Props> {
                                 <h4>Batas Waktu Pembayaran</h4>
                               </div>
                               <div className="body">
-                                <p>Kamis, 17 Mei 2019, 21:08 WIB</p>
+                                <p>{detailPayment.datetime && moment(detailPayment.datetime).format('DD MMMM YYYY h:mm:ss')} WIB</p>
                               </div>
                             </div>
                           </div>
@@ -57,7 +79,7 @@ export class PaymentDetail extends PureComponent<Props> {
                                 <h4>Total Pembayaran</h4>
                               </div>
                               <div className="body">
-                                <p>Rp 4.752.000</p>
+                                <p>{detailPayment.amount && this.convertToRupiah(detailPayment.amount)}</p>
                               </div>
                             </div>
                           </div>
@@ -79,7 +101,7 @@ export class PaymentDetail extends PureComponent<Props> {
                               <h5>Virtual Account</h5>
                             </div>
                             <div className="body">
-                              <p>1983 7541 9023 8934</p>
+                              <p>{detailPayment.destination_number}</p>
                             </div>
                           </div>
                         </div>
@@ -104,7 +126,7 @@ export class PaymentDetail extends PureComponent<Props> {
                       onClick={() => window.location = `/notaris/${this.props.match.params.id}/order`}
                       disabled={false}
                     >
-                      Lanjutkan Pembayaran
+                      Klaim sudah bayar
                     </Button>
                   </div>
                 </div>

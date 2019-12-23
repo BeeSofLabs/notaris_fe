@@ -133,3 +133,137 @@
 .popup-container-actions{
   justify-content: flex-end;
 }
+
+.on-order-list {
+  span {
+    float: none!important;
+    top: 3px;
+    left: 10px;
+    position: relative;
+  }
+}
+
+.link-order {
+  color: #0c65e4 !important;
+
+  span {
+    position: relative;
+    top: 4px;
+    left: 10px;
+  }
+}
+
+.section-pihak-terkait {
+  padding: 32px;
+
+  .title {
+    h4 {
+      font-size: 20px;
+      font-family: 'Lato';
+    }
+  }
+
+  .body {
+    margin-top: 24px;
+  }
+}
+
+.top-side {
+  padding: 32px;
+  border-bottom: 1px solid rgba(1, 15, 113, 0.1);
+
+  label {
+    color: #010f71;
+    font-family: 'Lato';
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #575962;
+    font-family: 'Lato';
+    font-size: 14px;
+  }
+}
+.bottom-side {
+  padding: 32px;
+  border-bottom: 1px solid rgba(1, 15, 113, 0.1);
+  
+  label {
+    color: #a7a7a7;
+    font-family: 'Lato';
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #575962;
+    font-family: 'Lato';
+    font-size: 14px;
+  }
+}
+
+.assign-wrapper {
+  margin-top: 60px;
+}
+
+.photo-profil {
+  width: 80px;
+  height: 80px;
+  border-radius: 90px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
+}
+.name-notaris {
+  h5 {
+    color: #19225e;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-family: 'Lato';
+  }
+  span {
+    color: #575962;
+    font-size: 14px;
+    font-family: 'Lato';
+    font-weight: normal;
+  }
+}
+
+.list-assign {
+  margin-bottom: 30px;
+  position: relative;
+
+  .status-assign {
+    text-align: right;
+  }
+
+  .button-assign {
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+
+    button {
+      background: none;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.info-text {
+  color: #19225e;
+  font-size: 13px;
+  margin-top: 14px;
+}
+
+.status-user {
+  position: relative;
+  top: 10px;
+}
+
