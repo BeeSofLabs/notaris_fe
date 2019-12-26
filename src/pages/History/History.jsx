@@ -47,6 +47,35 @@ export class History extends PureComponent<Props> {
     })
   }
 
+  handleStatus(status) {
+    switch(status) {
+      case 'draft':
+        return 'draft';
+      case 'submmission': 
+        return 'Submission';
+      case 'approval': 
+        return 'Submission';
+      case 'waiting_payment':
+        return 'Waiting Payment';
+      case 'paid':
+        return 'Paid';
+      case 'covernote':
+        return 'Covernote';;
+      case 'claim': 
+        return 'Claim';
+      case 'close_claim':
+          return 'Close Claim';
+      case 'completed':
+         return 'Completed';
+      case 'expired':
+        return 'Expired';
+      case 'cancel': 
+        return 'cancel';
+      case 'deleted': 
+        return 'cancel';
+    }
+  }
+
   renderButton(status, id) {
     if (status === 'waiting_payment') {
       return <Button
@@ -65,6 +94,16 @@ export class History extends PureComponent<Props> {
         onClick={() => this.props.history.push(`/assign/${id}`)}
       >
         Persetujuan
+      </Button>
+    }
+
+    if (status === 'claim') {
+      return <Button
+        type="button"
+        disabled={false}
+        onClick={() => this.props.history.push(`/chat/${id}`)}
+      >
+        Chat
       </Button>
     }
   }
@@ -94,7 +133,7 @@ export class History extends PureComponent<Props> {
                                 </div>
                                 <div className="mid-content">
                                   <div className="address">
-                                    <p>ID {key.id}</p>
+                                    <p>ID {key.no_request_order}</p>
                                   </div>
                                 </div>
                                 <div className="bottom-content">
@@ -114,7 +153,7 @@ export class History extends PureComponent<Props> {
                               </div>
                               <div className="col-md-4">
                                 <label>Status</label>
-                                <p>{(key.id%2) == 0 ? 'Menunggu Pembayaran' : 'Approve'}</p>
+                                <p>{this.handleStatus((key.id%2) == 0 ? 'claim' : 'approval', key.id)}</p>
                                 {/* <div className="star">
                                   <h1>{star}</h1>
                                   <Rate
@@ -127,15 +166,12 @@ export class History extends PureComponent<Props> {
                               <div className="col-md-4">
                                 <a href={`/history/${key.id}`} className="link-order"><Icon type="eye" /><span>Lihat detail </span></a>
                                 <div className="bottom-content">
-                                  {this.renderButton((key.id%2) == 0 ? 'waiting_payment' : 'approval', key.id)}
+                                  {this.renderButton((key.id%2) == 0 ? 'claim' : 'approval', key.id)}
                                 </div>
                               </div>
                             </div>
                           </div>
-                         
-                          
                         </div>
-                  
                       ))
                     }
                     </Card>

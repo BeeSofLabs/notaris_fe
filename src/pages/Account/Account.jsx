@@ -414,7 +414,7 @@ export class Account extends PureComponent<Props> {
         <div className="ant-upload-text">Upload</div>
       </div>
     );
-    if ((role === 'debitur') || (role === 'kreditur') || (role === 'collateral_owner') ) {
+    if ((role === 'debitur') || (role === 'creditor') || (role === 'collateral_owner') ) {
       optionsStatus = [
         {
           label: 'Suami',
@@ -1585,7 +1585,7 @@ export class Account extends PureComponent<Props> {
               </div>
               <div className="body-login">
                 <Card>
-                  {(role === 'debitur' || role === 'kreditur' || role === 'collateral_owner') && this.renderDebitur()}
+                  {(role === 'debitur' || role === 'creditor' || role === 'collateral_owner') && this.renderDebitur()}
                   {(role === 'notaris') && this.renderNotaris()}
                 </Card>
                 <div className="section-to-register">

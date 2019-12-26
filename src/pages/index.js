@@ -18,6 +18,7 @@ import DashboardListOrder from './SectionDashboard/Order/List'
 import AddAgunan from './AddAgunan'
 import Assign from './Assign'
 import LoadingAssign from './LoadingAssign/LoadingAssign'
+import ChatRoom from './ChatRoom'
 
 export { 
   asyncHome, 
@@ -37,5 +38,6 @@ export {
   DashboardListOrder,
   AddAgunan,
   Assign,
-  LoadingAssign
+  LoadingAssign,
+  ChatRoom
 };

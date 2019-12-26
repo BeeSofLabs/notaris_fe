@@ -226,7 +226,7 @@ class Assign extends Component {
               <Card>
                 <div className="top-side">
                   <label>{detailAssgin.data.document_type}</label>
-                  <p>ID Order {detailAssgin.data.id}</p>
+                  <p>ID Order {detailAssgin.data.no_request_order}</p>
                 </div>
                 <div className="bottom-side">
                   <label>Pembuat Order</label>

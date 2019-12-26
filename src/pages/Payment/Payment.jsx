@@ -7,6 +7,8 @@ import { Checkbox } from 'antd'
 import { compressToEncodedURIComponent } from 'lz-string'
 import Constants from '../../helpers/constants' 
 import axios from 'axios'
+import * as moment from 'moment'
+
 
 export class Payment extends PureComponent<Props> {
   constructor(props) {
@@ -87,6 +89,34 @@ export class Payment extends PureComponent<Props> {
     })
   }
 
+  paymentDetail() {
+    const { detailOrder } = this.state
+    console.log('zsd', detailOrder)
+
+    if (detailOrder.status === 'Loading') {
+      return 'Loading ...'
+    }
+    
+    if (detailOrder.status === 'Success') {
+      return (
+        <Card>
+          <div className="detail-body-content">
+            <div className="title">
+              <h3>{detailOrder.detail.document_type}</h3>
+            </div>
+            <div className="number-order">
+              <p>ID {detailOrder.detail.no_request_order}</p>
+            </div>
+            <div className="bottom-content">
+              <p> {moment(detailOrder.detail.created_at).format('DD MMMM YYYY')}</p>
+              <p>{detailOrder.detail.creditor_user.name} - Kreditur</p>
+            </div>
+          </div>
+        </Card>
+      )
+    }
+  }
+
   render() {
     return (
       <PageWrapper>
@@ -100,21 +130,8 @@ export class Payment extends PureComponent<Props> {
               <div className="body-section">
                 <div className="row">
                   <div className="col-md-12">
-                    <Card>
-                      <div className="detail-body-content">
-                        <div className="title">
-                          <h3>SKMHT/APHT</h3>
-                        </div>
-                        <div className="number-order">
-                          <p>ID FI89421486919-091</p>
-                        </div>
-                        <div className="bottom-content">
-                          <p>12 September 2019</p>
-                          <p>Rojali Ahmad - Kreditur</p>
-                        </div>
-                      </div>
-                    </Card>
-                  
+                    {this.paymentDetail()}
+                    
                     <Card>
                       <div className="title-body-content">
                         <h3>Metode Pembayaran</h3>

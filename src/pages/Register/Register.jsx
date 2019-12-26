@@ -34,7 +34,7 @@ export class Register extends PureComponent<Props> {
         },
         {
           label: 'Kreditur',
-          value: 'kreditur'
+          value: 'creditor'
         },
         {
           label: 'Pemilik Agunan',
@@ -174,7 +174,7 @@ export class Register extends PureComponent<Props> {
                         password_confirmation: value.confirm_password,
                         phone: value.nomor_hp,
                         organizational_status:value.status.value,
-                        user_type:  value.role.value,
+                        user_tipe:  value.role.value,
                         approved: value.role.value === 'notaris' ? false : true            
                       }
                       const myStringParams = JSON.stringify(params)
