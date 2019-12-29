@@ -2,7 +2,7 @@
 
 import { usersAction, userAction } from './actions';
 import App from './app';
-import { asyncHome, asyncUserInfo, ChatRoom, LoadingAssign, Assign, NotFound, List, Detail, Order, Login, Register, Account, Forgot, Payment, PaymentDetail, History, Dashboard, DashboardListOrder, AddAgunan } from './pages';
+import { asyncHome, asyncUserInfo, ChatRoom, LoadingAssign, Assign, NotFound, List, Detail, Order, Login, Register, Account, Forgot, Payment, PaymentDetail, History, Dashboard, DashboardListOrder, AddAgunan, DashboardProfile } from './pages';
 import RequireAuth from './components/Page/PublicComponent/index'
 import RequireAuthAgunan from './components/Page/AuthComponent/RequireAuthAgunan'
 
@@ -100,6 +100,11 @@ export default [
         path: '/dashboard/list-order',
         exact: true,
         component: DashboardListOrder
+      },
+      {
+        path: '/dashboard/profile',
+        exact: true,
+        component: DashboardProfile
       },
       {
         path: '/assign/:id',

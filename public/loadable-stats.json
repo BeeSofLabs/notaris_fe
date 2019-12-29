@@ -2,19 +2,16 @@
   "errors": [],
   "warnings": [],
   "version": "4.41.2",
-  "hash": "a789284d6b06201076eb",
+  "hash": "ccbefc99af51822d5ca0",
   "publicPath": "/assets/",
   "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
   "assetsByChunkName": {
     "Account": "Account.js",
-    "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8": "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+    "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa": "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
     "Account~AddAgunan~List": "Account~AddAgunan~List.js",
     "AddAgunan": "AddAgunan.js",
     "Assign": "Assign.js",
-    "ChatRoom": [
-      "ChatRoom.js",
-      "ChatRoom.5a32af78aa1cc783f9d0.hot-update.js"
-    ],
+    "ChatRoom": "ChatRoom.js",
     "Dashboard": "Dashboard.js",
     "Detail": "Detail.js",
     "Forgot": "Forgot.js",
@@ -28,6 +25,10 @@
     "Order": "Order.js",
     "Payment": "Payment.js",
     "PaymentDetail": "PaymentDetail.js",
+    "Profile": [
+      "Profile.js",
+      "Profile.bcd6ce2c6b516511e35b.hot-update.js"
+    ],
     "Register": "Register.js",
     "UserInfo": [
       "UserInfo.css",
@@ -37,7 +38,7 @@
       "main.css",
       "main.js"
     ],
-    "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844": "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
+    "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9": "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
     "vendors~Account~AddAgunan~Order~Register": "vendors~Account~AddAgunan~Order~Register.js",
     "vendors~Account~List": "vendors~Account~List.js",
     "vendors~AddAgunan~Dashboard~Order": "vendors~AddAgunan~Dashboard~Order.js",
@@ -46,17 +47,6 @@
     "vendors~Order": "vendors~Order.js"
   },
   "assets": [
-    {
-      "name": "5a32af78aa1cc783f9d0.hot-update.json",
-      "size": 50,
-      "chunks": [],
-      "chunkNames": [],
-      "info": {
-        "hotModuleReplacement": true,
-        "immutable": true
-      },
-      "emitted": false
-    },
     {
       "name": "Account.js",
       "size": 242287,
@@ -70,13 +60,13 @@
       "emitted": false
     },
     {
-      "name": "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
-      "size": 147157,
+      "name": "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
+      "size": 147750,
       "chunks": [
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8"
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa"
       ],
       "chunkNames": [
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8"
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa"
       ],
       "info": {},
       "emitted": false
@@ -107,7 +97,7 @@
     },
     {
       "name": "Assign.js",
-      "size": 45624,
+      "size": 51645,
       "chunks": [
         "Assign"
       ],
@@ -118,23 +108,8 @@
       "emitted": false
     },
     {
-      "name": "ChatRoom.5a32af78aa1cc783f9d0.hot-update.js",
-      "size": 32288,
-      "chunks": [
-        "ChatRoom"
-      ],
-      "chunkNames": [
-        "ChatRoom"
-      ],
-      "info": {
-        "hotModuleReplacement": true,
-        "immutable": true
-      },
-      "emitted": false
-    },
-    {
       "name": "ChatRoom.js",
-      "size": 32365,
+      "size": 43127,
       "chunks": [
         "ChatRoom"
       ],
@@ -277,6 +252,33 @@
       "emitted": false
     },
     {
+      "name": "Profile.bcd6ce2c6b516511e35b.hot-update.js",
+      "size": 32303,
+      "chunks": [
+        "Profile"
+      ],
+      "chunkNames": [
+        "Profile"
+      ],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "Profile.js",
+      "size": 32380,
+      "chunks": [
+        "Profile"
+      ],
+      "chunkNames": [
+        "Profile"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
       "name": "Register.js",
       "size": 53932,
       "chunks": [
@@ -313,6 +315,17 @@
       "emitted": false
     },
     {
+      "name": "bcd6ce2c6b516511e35b.hot-update.json",
+      "size": 49,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
       "name": "icon-pena-bulu.6e90af7b.png",
       "size": 42734,
       "chunks": [],
@@ -330,7 +343,7 @@
     },
     {
       "name": "main.css",
-      "size": 974637,
+      "size": 976704,
       "chunks": [
         "main"
       ],
@@ -342,7 +355,7 @@
     },
     {
       "name": "main.js",
-      "size": 21388485,
+      "size": 21395720,
       "chunks": [
         "main"
       ],
@@ -361,13 +374,13 @@
       "emitted": false
     },
     {
-      "name": "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
+      "name": "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
       "size": 1985578,
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844"
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9"
       ],
       "chunkNames": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844"
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9"
       ],
       "info": {},
       "emitted": false
@@ -473,13 +486,13 @@
     },
     "Home": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Home"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Home.css",
         "Home.js"
       ],
@@ -499,16 +512,16 @@
     },
     "List": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
         "vendors~Account~List",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Account~AddAgunan~List",
         "List"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
         "vendors~Account~List.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Account~AddAgunan~List.js",
         "List.js"
       ],
@@ -517,13 +530,13 @@
     },
     "Detail": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Detail"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Detail.js"
       ],
       "children": {},
@@ -531,21 +544,21 @@
     },
     "Order": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
         "vendors~Account~AddAgunan~Order~Register",
         "vendors~AddAgunan~Dashboard~Order",
         "vendors~Dashboard~Order",
         "vendors~Order",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Order"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
         "vendors~Account~AddAgunan~Order~Register.js",
         "vendors~AddAgunan~Dashboard~Order.js",
         "vendors~Dashboard~Order.js",
         "vendors~Order.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Order.js"
       ],
       "children": {},
@@ -553,13 +566,13 @@
     },
     "Login": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Login"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Login.js"
       ],
       "children": {},
@@ -567,15 +580,15 @@
     },
     "Register": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
         "vendors~Account~AddAgunan~Order~Register",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Register"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
         "vendors~Account~AddAgunan~Order~Register.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Register.js"
       ],
       "children": {},
@@ -583,18 +596,18 @@
     },
     "Account": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
         "vendors~Account~AddAgunan~Order~Register",
         "vendors~Account~List",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Account~AddAgunan~List",
         "Account"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
         "vendors~Account~AddAgunan~Order~Register.js",
         "vendors~Account~List.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Account~AddAgunan~List.js",
         "Account.js"
       ],
@@ -603,13 +616,13 @@
     },
     "Forgot": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Forgot"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Forgot.js"
       ],
       "children": {},
@@ -617,13 +630,13 @@
     },
     "Payment": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Payment"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Payment.js"
       ],
       "children": {},
@@ -631,13 +644,13 @@
     },
     "PaymentDetail": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "PaymentDetail"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "PaymentDetail.js"
       ],
       "children": {},
@@ -645,13 +658,13 @@
     },
     "History": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "History"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "History.js"
       ],
       "children": {},
@@ -659,19 +672,19 @@
     },
     "Dashboard": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
         "vendors~AddAgunan~Dashboard~Order",
         "vendors~Dashboard~Order",
         "vendors~Dashboard",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Dashboard"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
         "vendors~AddAgunan~Dashboard~Order.js",
         "vendors~Dashboard~Order.js",
         "vendors~Dashboard.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Dashboard.js"
       ],
       "children": {},
@@ -679,18 +692,18 @@
     },
     "AddAgunan": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
         "vendors~Account~AddAgunan~Order~Register",
         "vendors~AddAgunan~Dashboard~Order",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Account~AddAgunan~List",
         "AddAgunan"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
         "vendors~Account~AddAgunan~Order~Register.js",
         "vendors~AddAgunan~Dashboard~Order.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Account~AddAgunan~List.js",
         "AddAgunan.js"
       ],
@@ -699,13 +712,13 @@
     },
     "Assign": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "Assign"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
         "Assign.js"
       ],
       "children": {},
@@ -713,15 +726,29 @@
     },
     "ChatRoom": {
       "chunks": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8",
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
         "ChatRoom"
       ],
       "assets": [
-        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~c278f844.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~d8df6ce8.js",
-        "ChatRoom.js",
-        "ChatRoom.5a32af78aa1cc783f9d0.hot-update.js"
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
+        "ChatRoom.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    },
+    "Profile": {
+      "chunks": [
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa",
+        "Profile"
+      ],
+      "assets": [
+        "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
+        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
+        "Profile.js",
+        "Profile.bcd6ce2c6b516511e35b.hot-update.js"
       ],
       "children": {},
       "childAssets": {}

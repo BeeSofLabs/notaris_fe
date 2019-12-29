@@ -42,7 +42,14 @@ class DashboardWrapper extends Component {
             </Row>
           </div>
           <Menu defaultSelectedKeys={['3']} mode="inline">
+
             <Menu.Item key="1">Dashboard</Menu.Item>
+            <Menu.Item key="1">
+              <a href="/dashboard/profile">
+                Profile
+              </a>
+            </Menu.Item>
+
             <SubMenu
               key="sub1"
               title={

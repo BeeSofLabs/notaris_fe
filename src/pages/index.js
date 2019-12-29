@@ -19,6 +19,7 @@ import AddAgunan from './AddAgunan'
 import Assign from './Assign'
 import LoadingAssign from './LoadingAssign/LoadingAssign'
 import ChatRoom from './ChatRoom'
+import DashboardProfile from './DashboardNotaris/Profile'
 
 export { 
   asyncHome, 
@@ -39,5 +40,6 @@ export {
   AddAgunan,
   Assign,
   LoadingAssign,
-  ChatRoom
+  ChatRoom,
+  DashboardProfile
 };

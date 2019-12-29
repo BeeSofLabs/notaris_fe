@@ -26,6 +26,7 @@ class Assign extends Component {
 
     this.handleSign = this.handleSign.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
+    this.handleSignSubmit = this.handleSignSubmit.bind(this)
   }
 
   showModal() {
@@ -73,40 +74,71 @@ class Assign extends Component {
       visible: !this.state.visible
     })
 
-    // setTimeout(() => {
-    //   Privy.init({
-    //     merchantKey: 'ZI3212',
-    //   })
-    //   Privy.openDoc('6c251be8f8f3fffa8f9fc59f56a52e91d0ebade4c4c9e386472d456d6c067651', {
-    //     dev      : true,
-    //     container: '.privy-document',
-    //     privyId  : 'ZI3212', //Autofill privyID
-    //     signature: {
-    //       page : 2,
-    //       x    : 130,
-    //       y    : 468,
-    //       fixed: false
-    //     }
-    //   })
-    //   .on('after-action', (data) => {
-    //     // Redirecti after sign/review doc
-    //     // location.href = '//www.google.com'
-    //   })
-    //   .on('after-sign', (data) => {
-    //     console.log('jalan')
-    //     // Redirecti after sign doc
-    //     // location.href = '//www.aftersign.com' // After sign doc
-    //   })
-    //   .on('after-review', (data) => {
-    //     // location.href = '//www.afterreview.com' // After review doc
-    //   })
-    // }, 2000)
-    
+    setTimeout(() => {
+      Privy.init({
+        merchantKey: 'ZI3212',
+      })
+      Privy.openDoc('6c251be8f8f3fffa8f9fc59f56a52e91d0ebade4c4c9e386472d456d6c067651', {
+        dev      : true,
+        container: '.privy-document',
+        privyId  : 'ZI3212', //Autofill privyID
+        signature: {
+          page : 2,
+          x    : 130,
+          y    : 468,
+          fixed: false
+        }
+      })
+      .on('after-action', (data) => {
+        // Redirecti after sign/review doc
+        // location.href = '//www.google.com'
+      })
+      .on('after-sign', (data) => {
+        this.props.location.history.push(`/assign/${this.props.match.params.id}/auth`)
+        // Redirecti after sign doc
+        // location.href = '//www.aftersign.com' // After sign doc
+      })
+      .on('after-review', (data) => {
+        // location.href = '//www.afterreview.com' // After review doc
+      })
+    }, 2000)
   }
 
   handleCancel() {
     this.setState({
       visible: !this.state.visible
+    })
+  }
+
+  handleSignSubmit() {
+    axios.defaults.headers.common = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': 'example-of-custom-header',
+      'Accept-Version': 1,
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: Constants.TOKEN
+    };
+    
+    const param = {
+      order_id: this.props.match.params.id,
+      submit: true
+    }
+
+    axios.post(`${Constants.API}//api/v1/document/approval`, param).then(res => {
+      Modal.success({
+        title: 'Success',
+        content: 'Telah berhasil disubmit.',
+        cancelText: null,
+      });    
+    }).catch(() => {
+      Modal.error({
+        title: 'Error',
+        content: 'Ada masalah dengan server.',
+        cancelText: null,
+        onOk: () => this.props.history.push(`/assign/${this.props.match.params.id}`)
+      });
     })
   }
 
@@ -198,7 +230,9 @@ class Assign extends Component {
                         </div>
                         <div className="button-assign">
                           {
-                            akun === 'debitur' && <button>
+                            akun === 'debitur' && <button
+                              onClick={this.handleSign}
+                            >
                               Tanda tangan
                             </button>
                           }
@@ -214,7 +248,11 @@ class Assign extends Component {
                     <p className="info-text">Submission bisa di aktifkan ketika sudah di tanda tangani semua</p>
                   </div>
                   <div className="col-md-4">
-                    <Button>
+                    <Button
+                      type="button"
+                      onClick={this.handleSignSubmit}
+                      disabled={!( akun === 'kreditur' && detailAssgin.data.has_creditor_signed && detailAssgin.data.has_debtor_signed)}
+                    >
                       Submit
                     </Button>
                   </div>

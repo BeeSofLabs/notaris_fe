@@ -25,11 +25,14 @@ class ChatRoom extends Component {
       listChat: {
         status: 'Loading',
         items: []
-      }
+      },
+      inputChat: '',
+      id_room: null
     }
 
     this.handleSign = this.handleSign.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
+    this.handleChat = this.handleChat.bind(this)
   }
 
   showModal() {
@@ -50,19 +53,15 @@ class ChatRoom extends Component {
     };
     const dataProf = cookieStorage.getItem('prof')
     const data = JSON.parse(decompressFromEncodedURIComponent(dataProf))
-    if (data.user_tipe === "debtor") {
-      this.setState({
-        akun: 'debitur'
-      })
-    } else {
-      this.setState({
-        akun: 'kreditur'
-      })
-    }
+    this.setState({
+      akun: data.name
+    })
 
     return axios.get(`${Constants.API}/api/v1/orders/show/${this.props.match.params.id}`).then(res => {
-      console.log('asd', res)
       this.getChat(res.data.order.chat_room.id)
+      this.setState({
+        id_room: res.data.order.chat_room.id
+      })
       this.setState({
         detailAssgin: {
           status: 'Success',
@@ -113,9 +112,7 @@ class ChatRoom extends Component {
   getChat(id) {
     axios.defaults.headers.common.Authorization = `Token ${Constants.TOKEN}`;
 
-
     axios.get(`${Constants.API}/api/v1/chats?chat_room_id=${id}`).then(res => {
-      console.log('asd', res)
       return this.setState({
         listChat: {
           status: 'Success',
@@ -139,14 +136,100 @@ class ChatRoom extends Component {
   }
 
   renderChat() {
-    const { listChat } = this.state
+    const { listChat, akun } = this.state
     
     if (listChat.status === 'Loading') {
       return 'Loading ...'
     }
     
     if (listChat.status === 'Success') {
-      return "jalan"
+      return <Card>
+        <div className="section-chat">
+          <div className="container-chat">
+            <div className="box-chat">
+              {
+                listChat.items.map(key => {
+                  if (key.username === akun) {
+                    return (
+                      <div className="row-chat" key={key.id}>
+                        <div className="item-box item-box-me">
+                          <div className="item-title">
+                            <h4>Saya</h4>
+                          </div>
+                          <div className="item-body">
+                            <p>{key.content}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+
+                  return (
+                    <div className="row-chat" key={key.id}>
+                      <div className="item-box">
+                        <div className="item-title">
+                          <h4>{key.username} - <span>Notaris</span></h4>
+                        </div>
+                        <div className="item-body">
+                          <p>{key.content}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ) 
+                })
+              }
+            </div>
+          </div>
+        </div>
+      </Card>
+    }
+  }
+
+  renderSubmitChat() {
+    const { inputChat } = this.state
+    return (
+      <Card>
+        <div className="box-input">
+          <form onSubmit={this.handleChat}>
+            <input 
+              className="input-chat"
+              placeholder="..."
+              value={inputChat}
+              onChange={(e) => this.setState({ inputChat: e.target.value })}
+            />
+            <button type="submit" className="button-chat">
+              Kirim
+            </button>
+          </form>
+        </div>
+      </Card>
+    )
+  }
+
+  handleChat(e) {
+    e.preventDefault()
+    const { inputChat, listChat, id_room } = this.state
+
+    if (inputChat) {
+      axios.defaults.headers.common.Authorization = `Token ${Constants.TOKEN}`;
+
+      const params = {
+        chats: {
+          content: inputChat,
+		      chat_room_id: id_room
+        }
+      }
+      return axios.post(`${Constants.API}/api/v1/chats`, params).then(res => {
+        this.setState({
+          listChat: {
+            status: 'Success',
+            items: res.data.chat_room.chats
+          },
+          inputChat: ''
+        })
+      }).catch(err => {
+  
+      })
     }
   }
 
@@ -164,6 +247,7 @@ class ChatRoom extends Component {
           <div className="row">
             <div className="col-md-8">
               {this.renderChat()}
+              {this.renderSubmitChat()}
             </div>
             <div className="col-md-4">
               <Card>
@@ -185,7 +269,6 @@ class ChatRoom extends Component {
 
   render() {
     const { detailAssgin } = this.state
-    console.log('asd', detailAssgin)
     return (
       <PageWrapper>
         <div className="assign-wrapper">  
