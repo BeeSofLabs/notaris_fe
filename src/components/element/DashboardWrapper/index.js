@@ -49,8 +49,13 @@ class DashboardWrapper extends Component {
                 Profile
               </a>
             </Menu.Item>
+            <Menu.Item key="1">
+              <a href="/dashboard/list-order">
+                Order
+              </a>
+            </Menu.Item>
 
-            <SubMenu
+            {/* <SubMenu
               key="sub1"
               title={
                 <span>
@@ -63,7 +68,7 @@ class DashboardWrapper extends Component {
               </Menu.Item>
               <Menu.Item key="4">Edit Akta</Menu.Item>
               <Menu.Item key="5">Kelengkapan Pihak Lain</Menu.Item>
-            </SubMenu>
+            </SubMenu> */}
           </Menu>
         </Sider>}
         <Layout>

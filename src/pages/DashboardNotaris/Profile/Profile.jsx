@@ -4,9 +4,11 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { DashboardWrapper, Card, Button, TableCom, SelectFormik } from '../../../components/element'
 import { Checkbox } from 'antd'
-import { Modal } from 'antd'
+import { Modal, Switch } from 'antd'
 import { Row, Col, Dropdown } from 'react-bootstrap'
-
+import axios from 'axios'
+import * as moment from 'moment';
+import Constants from '../../../helpers/constants' 
 
 const options = [{ value: 1, label: 'Label 1' }, { value: 2, label: 'Label 2' }]
 
@@ -38,11 +40,37 @@ export class Profile extends PureComponent<Props> {
 
     this.state = {
       zilmas: '',
-      visible: false
+      visible: false,
+      detailNotaris: {
+        status: 'Loading',
+        data: {}
+      }
     }
 
     this.showModal = this.showModal.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
+  }
+
+  componentDidMount() {
+    axios.defaults.headers.common.Authorization = `Token ${Constants.TOKEN}`;
+
+    
+    axios.get(`${Constants.API}/api/v1/users/show`).then(res => {
+      console.log('asd', res)
+      return this.setState({
+        detailNotaris: {
+          status: 'Success',
+          data: res.data
+        }
+      })
+    }).catch(err => {
+      this.setState({
+        detailNotaris: {
+          status: 'Failed',
+          data: {}
+        }
+      })
+    })
   }
 
   handleCancel = e => {
@@ -61,12 +89,17 @@ export class Profile extends PureComponent<Props> {
 
   }
 
-  render() {
-    return (
-      <DashboardWrapper>
-        <div className="title-dashboard">
-          <h4>Profile saya</h4>
-        </div>
+  renderDetail() {
+    const { detailNotaris } = this.state
+
+    if (detailNotaris.status === 'Loading') {
+      return <div className="body-dashboard">
+        Loading ....
+      </div>
+    }
+    console.log(detailNotaris)
+    if (detailNotaris.status === 'Success') {
+      return (
         <div className="body-dashboard">
           <Card>
             <div className="info-profile">
@@ -78,13 +111,13 @@ export class Profile extends PureComponent<Props> {
                 </Col>
                 <Col md="9">
                   <div className="nama">
-                    <h5>Angelica Surjodiningrat S.H</h5>
+                    <h5>{detailNotaris.data.name}</h5>
                   </div>
                   <div className="city">
-                    <p>Depok, Kab Bogor, Kota Bogor</p>
+                    <p>{detailNotaris.data.indonesia_city.city_name}, {detailNotaris.data.indonesia_province.province_name}</p>
                   </div>
                   <div className="lokasi">
-                    <p>Jl. Mataram No.61, RT.4/RW.1, Selong, Kec. Kby. Baru, Kota Jakarta Selatan, DKI Jakarta</p>
+                    <p>{detailNotaris.data.address}</p>
                     <p>10.000.000 - 15.000.000 <button onClick={this.showModal}>Edit</button></p>
                   </div>
                   <Modal
@@ -111,6 +144,11 @@ export class Profile extends PureComponent<Props> {
                     </div>
                   </Modal>
                 </Col>
+                <Col md="12">
+                  <div className="section-aktif">
+                    <Switch defaultChecked /> <span>Dengan mengaktifkan switch, profile Anda dapat ditampilkan dalam pencarian sistem</span>
+                  </div>
+                </Col>
               </Row>
             </div>
           </Card>
@@ -126,7 +164,7 @@ export class Profile extends PureComponent<Props> {
                         <h4>Nomor SK Notaris</h4>
                       </div>
                       <div className="deskripsi-group">
-                        <p>9081523239293923/239923/2323</p>
+                        <p>{detailNotaris.data.no_sk_notaris}</p>
                       </div>
                     </div>
 
@@ -135,7 +173,7 @@ export class Profile extends PureComponent<Props> {
                         <h4>Nomor Akta</h4>
                       </div>
                       <div className="deskripsi-group">
-                        <p>908152323929</p>
+                        <p>{detailNotaris.data.no_akta}</p>
                       </div>
                     </div>
 
@@ -144,7 +182,7 @@ export class Profile extends PureComponent<Props> {
                         <h4>Nomor Telpon</h4>
                       </div>
                       <div className="deskripsi-group">
-                        <p>+62 232332323</p>
+                        <p>{detailNotaris.data.phone}</p>
                       </div>
                     </div>
                   </div>
@@ -154,7 +192,7 @@ export class Profile extends PureComponent<Props> {
                         <h4>Tanggal SK Notaris</h4>
                       </div>
                       <div className="deskripsi-group">
-                        <p>19 Agustus 2016</p>
+                        <p>{detailNotaris.data.tgl_sk_notaris}</p>
                       </div>
                     </div>
 
@@ -163,7 +201,7 @@ export class Profile extends PureComponent<Props> {
                         <h4>Tanggal Akta</h4>
                       </div>
                       <div className="deskripsi-group">
-                        <p>19 Agustus 2016</p>
+                        <p>{detailNotaris.data.tgl_akta}</p>
                       </div>
                     </div>
 
@@ -172,7 +210,7 @@ export class Profile extends PureComponent<Props> {
                         <h4>Nomor Fax</h4>
                       </div>
                       <div className="deskripsi-group">
-                        <p>+62 2323232323</p>
+                        <p>{detailNotaris.data.fax}</p>
                       </div>
                     </div>
                   </div>
@@ -180,6 +218,17 @@ export class Profile extends PureComponent<Props> {
               </div>
             </Card>
         </div>
+      )
+    }
+  }
+
+  render() {
+    return (
+      <DashboardWrapper>
+        <div className="title-dashboard">
+          <h4>Profile saya</h4>
+        </div>
+        {this.renderDetail()}
       </DashboardWrapper>
     )
   }

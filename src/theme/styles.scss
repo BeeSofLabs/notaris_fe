@@ -12,6 +12,13 @@
 @import './components//payment';
 @import './components/dashboard';
 
+.ant-layout.ant-layout-has-sider {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
 .header {
   padding-top: 40px;
 }
@@ -391,5 +398,68 @@
   }
 }
 
+.section-aktif {
+  margin-top: 20px;
+  padding: 22px;
+  border-radius: 16px;
+  border: solid 1px #d6daee;
+  background-color: #ffffff;
 
+  span {
+    position: relative;
+    left: 20px;
+    font-family: 'Lato';
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #8b8b8b;
+  }
+}
+
+.table-list-order {
+  .ant-table-thead > tr > th {
+    background: #f4f5f8;
+    border-bottom: none;
+    font-family: 'Lato';
+    font-size: 14px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #00052e;
+  }
+
+  .ant-table-tbody > tr > td {
+    border-bottom: none;
+
+    
+  }
+
+  .ant-table-tbody > tr {
+    &:nth-child(even) {
+      background: #f8f9fa;
+    }
+  }
+}
+
+.status-list {
+  button {
+    background: none;
+    border: none;
+    font-family: 'Lato';
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.75;
+    letter-spacing: normal;
+    text-align: center;
+    color: #575962;
+    margin-left: 10px;
+  }
+}
 

@@ -2,7 +2,7 @@
   "errors": [],
   "warnings": [],
   "version": "4.41.2",
-  "hash": "ccbefc99af51822d5ca0",
+  "hash": "45674170d33d72afedfb",
   "publicPath": "/assets/",
   "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
   "assetsByChunkName": {
@@ -25,10 +25,7 @@
     "Order": "Order.js",
     "Payment": "Payment.js",
     "PaymentDetail": "PaymentDetail.js",
-    "Profile": [
-      "Profile.js",
-      "Profile.bcd6ce2c6b516511e35b.hot-update.js"
-    ],
+    "Profile": "Profile.js",
     "Register": "Register.js",
     "UserInfo": [
       "UserInfo.css",
@@ -36,7 +33,8 @@
     ],
     "main": [
       "main.css",
-      "main.js"
+      "main.js",
+      "main.1b5fd1511acd7dbbc0fe.hot-update.js"
     ],
     "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9": "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
     "vendors~Account~AddAgunan~Order~Register": "vendors~Account~AddAgunan~Order~Register.js",
@@ -47,6 +45,17 @@
     "vendors~Order": "vendors~Order.js"
   },
   "assets": [
+    {
+      "name": "1b5fd1511acd7dbbc0fe.hot-update.json",
+      "size": 46,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
     {
       "name": "Account.js",
       "size": 242287,
@@ -61,7 +70,7 @@
     },
     {
       "name": "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
-      "size": 147750,
+      "size": 147048,
       "chunks": [
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa"
       ],
@@ -193,7 +202,7 @@
     },
     {
       "name": "List.js",
-      "size": 164246,
+      "size": 175516,
       "chunks": [
         "List"
       ],
@@ -252,23 +261,8 @@
       "emitted": false
     },
     {
-      "name": "Profile.bcd6ce2c6b516511e35b.hot-update.js",
-      "size": 32303,
-      "chunks": [
-        "Profile"
-      ],
-      "chunkNames": [
-        "Profile"
-      ],
-      "info": {
-        "hotModuleReplacement": true,
-        "immutable": true
-      },
-      "emitted": false
-    },
-    {
       "name": "Profile.js",
-      "size": 32380,
+      "size": 40038,
       "chunks": [
         "Profile"
       ],
@@ -315,17 +309,6 @@
       "emitted": false
     },
     {
-      "name": "bcd6ce2c6b516511e35b.hot-update.json",
-      "size": 49,
-      "chunks": [],
-      "chunkNames": [],
-      "info": {
-        "hotModuleReplacement": true,
-        "immutable": true
-      },
-      "emitted": false
-    },
-    {
       "name": "icon-pena-bulu.6e90af7b.png",
       "size": 42734,
       "chunks": [],
@@ -342,8 +325,23 @@
       "emitted": false
     },
     {
+      "name": "main.1b5fd1511acd7dbbc0fe.hot-update.js",
+      "size": 1744,
+      "chunks": [
+        "main"
+      ],
+      "chunkNames": [
+        "main"
+      ],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
       "name": "main.css",
-      "size": 976704,
+      "size": 977941,
       "chunks": [
         "main"
       ],
@@ -375,7 +373,7 @@
     },
     {
       "name": "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
-      "size": 1985578,
+      "size": 1986615,
       "chunks": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9"
       ],
@@ -423,7 +421,7 @@
     },
     {
       "name": "vendors~Dashboard.js",
-      "size": 693658,
+      "size": 693689,
       "chunks": [
         "vendors~Dashboard"
       ],
@@ -435,7 +433,7 @@
     },
     {
       "name": "vendors~Dashboard~Order.js",
-      "size": 1061171,
+      "size": 1131043,
       "chunks": [
         "vendors~Dashboard~Order"
       ],
@@ -466,7 +464,8 @@
       ],
       "assets": [
         "main.css",
-        "main.js"
+        "main.js",
+        "main.1b5fd1511acd7dbbc0fe.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
@@ -479,7 +478,8 @@
       ],
       "assets": [
         "main.css",
-        "main.js"
+        "main.js",
+        "main.1b5fd1511acd7dbbc0fe.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
@@ -747,8 +747,7 @@
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Paym~0f440ec9.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~Forgot~History~Home~List~Login~Order~Payment~Paym~1965b6fa.js",
-        "Profile.js",
-        "Profile.bcd6ce2c6b516511e35b.hot-update.js"
+        "Profile.js"
       ],
       "children": {},
       "childAssets": {}
@@ -761,5 +760,48 @@
       "debug": false
     }
   },
-  "children": []
+  "children": [
+    {
+      "errors": [],
+      "warnings": [],
+      "publicPath": "/assets/",
+      "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
+      "assetsByChunkName": {},
+      "assets": [],
+      "filteredAssets": 0,
+      "entrypoints": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            "mini-css-extract-plugin"
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "namedChunkGroups": {
+        "mini-css-extract-plugin": {
+          "chunks": [
+            "mini-css-extract-plugin"
+          ],
+          "assets": [
+            "*"
+          ],
+          "children": {},
+          "childAssets": {}
+        }
+      },
+      "logging": {
+        "webpack.buildChunkGraph.visitModules": {
+          "entries": [],
+          "filteredEntries": 2,
+          "debug": false
+        }
+      },
+      "children": [],
+      "name": "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!node_modules/postcss-loader/src/index.js??ref--6-2!node_modules/sass-loader/dist/cjs.js??ref--6-3!src/theme/styles.scss"
+    }
+  ]
 }
