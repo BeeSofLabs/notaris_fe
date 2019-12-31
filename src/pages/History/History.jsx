@@ -9,6 +9,151 @@ import axios from 'axios'
 import * as moment from 'moment';
 import Constants from '../../helpers/constants' 
 
+const staticData = [{
+  id:2,
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'draft',
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:3,
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'submission',
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:4,
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'approval',
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:5,
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'waiting_payment',
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+},{
+  id:6,
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'paid',
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:7,
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'covernote',
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:8,
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'claim',
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:9,
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'close_claim',
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:10,
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'completed',
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:11,
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'expired',
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:12,
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'cancel',
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}]
+
 export class History extends PureComponent<Props> {
   constructor(props) {
     super(props)
@@ -30,11 +175,10 @@ export class History extends PureComponent<Props> {
 
     
     axios.get(`${Constants.API}/api/v1/orders`, ).then(res => {
-      console.log('asd', res)
       return this.setState({
         listOrder: {
           status: 'Success',
-          items: res.data.order
+          items: staticData
         }
       })
     }).catch(err => {
@@ -51,10 +195,10 @@ export class History extends PureComponent<Props> {
     switch(status) {
       case 'draft':
         return 'draft';
-      case 'submmission': 
+      case 'submission': 
         return 'Submission';
       case 'approval': 
-        return 'Submission';
+        return 'Approve';
       case 'waiting_payment':
         return 'Waiting Payment';
       case 'paid':
@@ -153,7 +297,7 @@ export class History extends PureComponent<Props> {
                               </div>
                               <div className="col-md-4">
                                 <label>Status</label>
-                                <p>{this.handleStatus((key.id%2) == 0 ? 'claim' : 'approval', key.id)}</p>
+                                <p>{this.handleStatus(key.status, key.id)}</p>
                                 {/* <div className="star">
                                   <h1>{star}</h1>
                                   <Rate
@@ -166,7 +310,7 @@ export class History extends PureComponent<Props> {
                               <div className="col-md-4">
                                 <a href={`/history/${key.id}`} className="link-order"><Icon type="eye" /><span>Lihat detail </span></a>
                                 <div className="bottom-content">
-                                  {this.renderButton((key.id%2) == 0 ? 'claim' : 'approval', key.id)}
+                                  {this.renderButton(key.status, key.id)}
                                 </div>
                               </div>
                             </div>

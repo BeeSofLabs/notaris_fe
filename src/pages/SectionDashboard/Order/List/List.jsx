@@ -33,6 +33,195 @@ const rows = [{
 }]
 
 
+const staticData = [{
+  id:2,
+  name: 'Angelina',
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'draft',
+  creditor_user: {
+    name: 'Andy'
+  },
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:3,
+  name: 'Angelina',
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'submission',
+  creditor_user: {
+    name: 'Andy'
+  },
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:4,
+  name: 'Angelina',
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'approval',
+  creditor_user: {
+    name: 'Andy'
+  },
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:5,
+  name: 'Angelina',
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'waiting_payment',
+  creditor_user: {
+    name: 'Andy'
+  },
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+},{
+  id:6,
+  name: 'Angelina',
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'paid',
+  creditor_user: {
+    name: 'Andy'
+  },
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:7,
+  name: 'Angelina',
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'covernote',
+  creditor_user: {
+    name: 'Andy'
+  },
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:8,
+  name: 'Angelina',
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'claim',
+  creditor_user: {
+    name: 'Andy'
+  },
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:9,
+  name: 'Angelina',
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'close_claim',
+  creditor_user: {
+    name: 'Andy'
+  },
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:10,
+  name: 'Angelina',
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'completed',
+  creditor_user: {
+    name: 'Andy'
+  },
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:11,
+  name: 'Angelina',
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'expired',
+  creditor_user: {
+    name: 'Andy'
+  },
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}, {
+  id:12,
+  name: 'Angelina',
+  no_request_order: 'RK0001',
+  document_type: 'SKMHT',
+  created_at: "2019-12-26T17:11:13.176Z",
+  status: 'cancel',
+  creditor_user: {
+    name: 'Andy'
+  },
+  chat_room: {
+      id: 5,
+      close_date: null,
+      is_closed: false,
+      open_date: "2019-12-26",
+      order_id: 10
+  }
+}]
+
 
 
 
@@ -58,7 +247,7 @@ export class List extends PureComponent<Props> {
       return this.setState({
         listOrder: {
           status: 'Success',
-          items: res.data.order
+          items: staticData
         }
       })
     }).catch(err => {

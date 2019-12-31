@@ -100,7 +100,9 @@ export class Login extends PureComponent<Props> {
     );
     if (data.info.data.user.user_tipe === "collateral_owner") {
       window.location = '/agunan'
-    } else {
+    } else if (data.info.data.user.user_tipe === "notaris")  {
+        window.location = '/dashboard/list-order'
+    }else {
       window.location = "/"
     }
   }
