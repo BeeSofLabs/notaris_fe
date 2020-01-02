@@ -33,7 +33,7 @@ const convertToRupiah = val => {
 
 const  CheckboxList = (props) => {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState([]);
+  const [checked, setChecked] = React.useState(props.value);
 
   const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value);
@@ -47,6 +47,7 @@ const  CheckboxList = (props) => {
     props.handleGetAgunan(newChecked)
     setChecked(newChecked);
   };
+  console.log('asd', checked)
   return (
     <List className={classes.root}>
       {props.listAgunan.items.map(value => {

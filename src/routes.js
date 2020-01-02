@@ -47,6 +47,11 @@ export default [
         component: Order,
       },
       {
+        path: '/notaris/:id/order/:idOrder',
+        exact: true,
+        component: Order,
+      },
+      {
         path: '/login',
         exact: true,
         component: Login

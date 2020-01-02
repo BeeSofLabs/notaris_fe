@@ -172,13 +172,12 @@ export class History extends PureComponent<Props> {
     // };
 
     axios.defaults.headers.common.Authorization = `Token ${Constants.TOKEN}`;
-
     
     axios.get(`${Constants.API}/api/v1/orders`, ).then(res => {
       return this.setState({
         listOrder: {
           status: 'Success',
-          items: staticData
+          items: res.data.order
         }
       })
     }).catch(err => {
@@ -220,7 +219,17 @@ export class History extends PureComponent<Props> {
     }
   }
 
-  renderButton(status, id) {
+  renderButton(status, id, idNotaris) {
+    if (status === 'draft') {
+      return <Button
+      type="button"
+      disabled={false}
+      onClick={() => this.props.history.push(`/notaris/${idNotaris}/order/${id}`)}
+    >
+      Draft
+    </Button>
+    }
+
     if (status === 'waiting_payment') {
       return <Button
         type="button"
@@ -310,7 +319,7 @@ export class History extends PureComponent<Props> {
                               <div className="col-md-4">
                                 <a href={`/history/${key.id}`} className="link-order"><Icon type="eye" /><span>Lihat detail </span></a>
                                 <div className="bottom-content">
-                                  {this.renderButton(key.status, key.id)}
+                                  {this.renderButton(key.status, key.id, key.notary_user.id)}
                                 </div>
                               </div>
                             </div>

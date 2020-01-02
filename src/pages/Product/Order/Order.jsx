@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import type { Dispatch, ReduxState } from '../../../types';
+import * as _ from 'lodash'
 import * as moment from 'moment';
 import {
   Formik,
@@ -73,7 +74,7 @@ export class Order extends PureComponent<Props> {
         items: []
       },
       agunan: [],
-      paramOrder: {},
+      paramOrder: null,
       kreditur: null,
       debitur: null,
       user_id: null,
@@ -90,12 +91,12 @@ export class Order extends PureComponent<Props> {
     this.handleChangeSearchColleteral = this.handleChangeSearchColleteral.bind(this)
     this.handleGetAgunan = this.handleGetAgunan.bind(this)
     this.handleSubmitOrder = this.handleSubmitOrder.bind(this)
+    this.handleDraftOrder = this.handleDraftOrder.bind(this)
     this.handleChangeSearchTerkait = this.handleChangeSearchTerkait.bind(this)
     this.onChangePersetujuan = this.onChangePersetujuan.bind(this)
   }
 
   onChangePersetujuan = e => {
-    console.log('asd', e.target.checked)
     this.setState({
       checkedPersetujuan: e.target.checked,
     });
@@ -105,6 +106,15 @@ export class Order extends PureComponent<Props> {
     const cookieStorage = new CookieStorage()
     const dataProf = cookieStorage.getItem('prof')
     const data = JSON.parse(decompressFromEncodedURIComponent(dataProf))
+    axios.defaults.headers.common = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': 'example-of-custom-header',
+      'Accept-Version': 1,
+      Accept: 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: Constants.TOKEN
+    };
     if (data.user_tipe === "debtor") {
       this.setState({
         user_id: data.id,
@@ -120,11 +130,77 @@ export class Order extends PureComponent<Props> {
         terkait: 'debitur'
       })
     }
+
+    if (this.props.match.params.idOrder) {
+      axios.get(`${Constants.API}/api/v1/orders/show/${this.props.match.params.idOrder}`).then(res => {
+        console.log('asddasda', res)
+        const options = [{
+          label: 'SKMHT',
+          value: 'skmht'
+        }, {
+          label: 'APHT',
+          value: 'apht'
+        }, {
+          label: 'Fidusia',
+          value: 'fidusia'
+        }]
+
+        let agunan = []
+        if (res.data.order.document_type === 'fidusia') {
+          res.data.order.movable_collaterals.map(key => { agunan.push(key.id)})
+        } else {
+          res.data.order.immovable_collaterals.map(key => { agunan.push(key.id)})
+        }
+        this.setState({
+          document_type: _.find(options, key => key.value === res.data.order.document_type),
+          paramOrder: {
+            no_perjanjian: res.data.order.no_perjanjian,
+            plafond: res.data.order.plafond,
+            tanggal_akad: res.data.order.tanggal_akad,
+            tgl_jatuh_tempo: moment(res.data.order.tgl_jatuh_tempo),
+            tarif_bunga: '',
+            agunan_pokok: res.data.order.agunan_pokok,
+            angsuran_bunga: res.data.order.angsuran_bunga,
+            jangka_waktu: res.data.order.jangka_waktu
+          },
+          pemilikAgunan: {
+            label: res.data.order.collateral_user.name,
+            value: res.data.order.collateral_user.id
+          },
+          agunan: agunan,
+          listCheckboxAgunan: res.data.order.document_type === 'fidusia' ? res.data.order.movable_collaterals : res.data.order.immovable_collaterals
+        })
+        axios.get(`${Constants.API}/api/v1/collateral?user_id=${res.data.order.collateral_user.id}`).then(res => {
+          let data = []
+          const { document_type } = this.state
+          if (document_type === 'fidusia') {
+            res.data.movable_collaterals.map(key => {
+              key.category = 'Bergerak';
+              data.push(key)
+            })
+          } else {
+            res.data.immovable_collaterals.map(key => {
+              key.category = 'Tidak Bergerak';
+              data.push(key)
+            })
+          }
+          this.setState({
+            listAgunan: {
+              status: 'SUCCESS',
+              items: data
+            }
+          })
+        })
+      }).catch(err => {
+        console.log(err)
+      })
+    }
   }
 
-  handleSubmitOrder() {
-    const order = {
-      status: "submission", // draft, submission
+  handleDraftOrder() {
+    
+    let order = {
+      status: "draft", // draft, submission
       agunan_pokok: parseInt(this.state.paramOrder.agunan_pokok),
       angsuran_bunga: parseInt(this.state.paramOrder.angsuran_bunga),
       total_price: 5000000,
@@ -138,7 +214,66 @@ export class Order extends PureComponent<Props> {
       debtor_id: this.state.debitur,
       creditor_id: this.state.kreditur,
       collateral_owner_id: this.state.pemilikAgunan,
-      immovable_collateral_ids: this.state.agunan,
+      // immovable_collateral_ids: this.state.agunan,
+    }
+
+    if (this.state.document_type === 'fidusia') {
+      order.movable_collateral_ids= this.state.agunan
+    } else {
+      order.immovable_collateral_ids= this.state.agunan
+    }
+
+    return axios.post(`${Constants.API}/api/v1/orders/create`, { ...order }).then((res) => {
+      return Swal.fire({
+        icon:'success',
+        html: `<div class="text-popup"><h5>Order Telah berhasil di simpan</h5></div>`,
+        confirmButtonText: 'Ok',
+        customClass: {
+          container: 'popup-container poptup-button-red',
+        },
+        width: '400px',
+        preConfirm: () => {
+          this.props.history.push('/')
+        },
+        allowOutsideClick: false,
+      })
+    }).catch(()=> {
+      Swal.fire({
+        icon: 'error',
+        html: `<div class="text-popup"><h5>Silahkan coba lagi.</h5></div>`,
+        confirmButtonText: 'Oke',
+        customClass: {
+          container: 'popup-container',
+        },
+        width: '400px',
+      })
+    })
+  }
+
+  handleSubmitOrder() {
+    
+    let order = {
+      status: "submission", // draft, submission
+      agunan_pokok: parseInt(this.state.paramOrder.agunan_pokok),
+      angsuran_bunga: parseInt(this.state.paramOrder.angsuran_bunga),
+      total_price: 5000000,
+      no_perjanjian: this.state.paramOrder.no_perjanjian,
+      plafond: parseInt(this.state.paramOrder.plafond),
+      tgl_akad:moment(new Date(this.state.paramOrder.tanggal_akad)).format("DDMMYYYY"),
+      jangka_waktu: parseInt(this.state.paramOrder.jangka_waktu),
+      document_type: this.state.document_type,
+      notary_id: this.state.notary_id,
+      user_id: this.state.user_id,
+      debtor_id: this.state.debitur,
+      creditor_id: this.state.kreditur,
+      collateral_owner_id: this.state.pemilikAgunan.value,
+      // immovable_collateral_ids: this.state.agunan,
+    }
+
+    if (this.state.document_type === 'fidusia') {
+      order.movable_collateral_ids= this.state.agunan
+    } else {
+      order.immovable_collateral_ids= this.state.agunan
     }
 
     return axios.post(`${Constants.API}/api/v1/orders/create`, { ...order }).then((res) => {
@@ -178,6 +313,7 @@ export class Order extends PureComponent<Props> {
         dataFilter
       )
     })
+    console.log('asd', dataTemp, value)
     this.setState({
       agunan: value,
       listCheckboxAgunan: dataTemp
@@ -240,7 +376,7 @@ export class Order extends PureComponent<Props> {
         status: 'LOADING',
         items:[]
       },
-      pemilikAgunan: value.value
+      pemilikAgunan: value
     })
 
     return axios.get(`${Constants.API}/api/v1/collateral?user_id=${value.value}`).then(res => {
@@ -399,6 +535,7 @@ export class Order extends PureComponent<Props> {
       return <CheckboxList 
         listAgunan={listAgunan}
         handleGetAgunan={this.handleGetAgunan}
+        value={this.state.agunan}
       />
     }
   }
@@ -408,7 +545,9 @@ export class Order extends PureComponent<Props> {
       current,
       listAgunan,
       agunan,
-      listCheckboxAgunan
+      listCheckboxAgunan,
+      paramOrder,
+      document_type
     } = this.state
     const options = [{
       label: 'SKMHT',
@@ -425,8 +564,6 @@ export class Order extends PureComponent<Props> {
         label: Yup.string().required('Tidak boleh kosong.')
       })
     })
-
-    console.log('asd', listAgunan, agunan, listCheckboxAgunan)
 
     const SchemaDocumentForm = Yup.object().shape({
       no_perjanjian: Yup.string().required('Tidak boleg kosong.'),
@@ -456,7 +593,7 @@ export class Order extends PureComponent<Props> {
                       <h4>Pilih Document Type</h4>
                       <Formik
                         initialValues={{
-                          document_type: "",
+                          document_type: document_type,
                         }}
                         validationSchema={SchemaDocumentType}
                         onSubmit={(value) => {
@@ -469,6 +606,7 @@ export class Order extends PureComponent<Props> {
                           })
                           this.handleSubmitFirst()
                         }}
+                        enableReinitialize={true}
                       >
                         {({
                           errors, touched, values, setFieldValue
@@ -476,6 +614,7 @@ export class Order extends PureComponent<Props> {
                           const onChangeSelect = (value) => {
                             setFieldValue('document_type', value)
                           }
+                          console.log('asdsss', values)
             
                           return (
                             <Form className="form-surat-nah">
@@ -518,7 +657,7 @@ export class Order extends PureComponent<Props> {
                   <div className="order-form">
                     <h4>Pilih Document Type</h4>
                     <Formik
-                      initialValues = {{
+                      initialValues = {paramOrder ? paramOrder : {
                         no_perjanjian: '',
                         plafond: '',
                         tanggal_akad: '',
@@ -535,6 +674,7 @@ export class Order extends PureComponent<Props> {
                         this.handleSubmitFirst()
                       }}
                       validationSchema={SchemaDocumentForm}
+                      enableReinitialize={true}
                     >
                       {({ errors, touched, values, setFieldValue }) => {
                         const onChangeDate = (name ,date, dateString) => {
@@ -655,7 +795,8 @@ export class Order extends PureComponent<Props> {
                               </button> */}
                               <AsyncSelect 
                                 cacheOptions 
-                                defaultOptions 
+                                defaultOptions
+                                value={this.state.pemilikAgunan}
                                 onChange={this.handleChangeSearchColleteral}
                                 loadOptions={(data) => this.promiseOptions('agunan', data)}
                                 className="container-select"
@@ -1245,6 +1386,41 @@ export class Order extends PureComponent<Props> {
                     </div>
                   </div>
                 </Card>
+                <div className="bottom-card">
+                  <Card>
+                    <div className="order-form">
+                      <div className="title-section">
+                        <h4>Dokumen Detail</h4>
+                      </div>
+                      <div className="row">
+                      <div className="col-md-6">
+                        <DetailField label="No Perjanjian" value={paramOrder.no_perjanjian} />
+                      </div>
+                      <div className="col-md-6">
+                        <DetailField label="Plafond" value={paramOrder.plafond} />
+                      </div>
+                      <div className="col-md-6">
+                        <DetailField label="Tanggal Akad" value={moment(new Date(this.state.paramOrder.tanggal_akad)).format("DD MMMM YYYY")} />
+                      </div>
+                      <div className="col-md-6">
+                        <DetailField label="Tanggal Jatuh Tempo" value={moment(new Date(this.state.paramOrder.tgl_jatuh_tempo)).format("DD MMMM YYYY")} />
+                      </div>
+                      <div className="col-md-6">
+                        <DetailField label="Tarif Bunga" value={paramOrder.tarif_bunga} />
+                      </div>
+                      <div className="col-md-6">
+                        <DetailField label="Jangka Waktu" value={paramOrder.jangka_waktu} />
+                      </div>
+                      <div className="col-md-6">
+                        <DetailField label="Agunan Pokok" value={this.convertToRupiah(paramOrder.agunan_pokok)} />
+                      </div>
+                      <div className="col-md-6">
+                        <DetailField label="Angsuran Bunga" value={this.convertToRupiah(paramOrder.angsuran_bunga)} />
+                      </div>
+                    </div>
+                    </div>
+                  </Card>
+                </div>
                 {/* <Card>
                   <div className="order-form notaris-review">
                     <div className="title-section">
@@ -1280,7 +1456,7 @@ export class Order extends PureComponent<Props> {
         {current === 4 && <div className="button-last"> 
           <div className="container">
             <div className="row">
-              <div className="col-md-9">
+              <div className="col-md-8">
                 <div className="checkbox-section">
                   <Checkbox
                     checked={this.state.checkedPersetujuan}
@@ -1290,7 +1466,19 @@ export class Order extends PureComponent<Props> {
                   </Checkbox>
                 </div>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-2">
+                <div className="button-section">
+                  <Button
+                    className="button-left"
+                    type="submit"
+                    disabled={!this.state.checkedPersetujuan}
+                    onClick={this.handleDraftOrder}
+                  >
+                    Simpan
+                  </Button>
+                </div>
+              </div>
+              <div className="col-md-2">
                 <div className="button-section">
                   <Button
                     className="button-left"
@@ -1302,6 +1490,7 @@ export class Order extends PureComponent<Props> {
                   </Button>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>}

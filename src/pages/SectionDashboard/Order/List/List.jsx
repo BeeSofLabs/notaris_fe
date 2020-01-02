@@ -243,11 +243,10 @@ export class List extends PureComponent<Props> {
 
     
     axios.get(`${Constants.API}/api/v1/orders`, ).then(res => {
-      console.log('asd', res)
       return this.setState({
         listOrder: {
           status: 'Success',
-          items: staticData
+          items: res.data.order
         }
       })
     }).catch(err => {

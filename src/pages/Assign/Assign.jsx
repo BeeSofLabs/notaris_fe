@@ -280,7 +280,6 @@ class Assign extends Component {
 
   render() {
     const { detailAssgin } = this.state
-    console.log('asd', detailAssgin)
     return (
       <PageWrapper>
         <div className="assign-wrapper">  
