@@ -254,7 +254,7 @@ export class History extends PureComponent<Props> {
       return <Button
         type="button"
         disabled={false}
-        onClick={() => this.props.history.push(`/chat/${id}`)}
+        onClick={() => this.props.history.push(`/chat-room/${id}`)}
       >
         Chat
       </Button>

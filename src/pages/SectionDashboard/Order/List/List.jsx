@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { DashboardWrapper, Card, TableCom, SelectFormik } from '../../../../components/element'
+import { Button ,DashboardWrapper, Card, TableCom, SelectFormik } from '../../../../components/element'
 import { Checkbox, Table } from 'antd'
 import { Row, Col, Dropdown } from 'react-bootstrap'
 import axios from 'axios'
@@ -263,35 +263,51 @@ export class List extends PureComponent<Props> {
 
   }
 
-  handleStatus(status) {
+  handleStatus(status, id) {
     console.log('asd', status)
     switch(status) {
       case 'draft':
         return (
         <>
           <span>draft</span>
-          <button>Edit</button>
+          <button
+            type="button"
+            disabled={false}
+            onClick={() => this.props.history.push(`/dashboard/edit-document/${id}`)}
+          >Edit</button>
         </>
         );
       case 'submission': 
         return (
           <>
             <span>Submission</span>
-            <button>Edit</button>
+            <button
+              type="button"
+              disabled={false}
+              onClick={() => this.props.history.push(`/dashboard/edit-document/${id}`)}
+            >Edit</button>
           </>
           );
       case 'approval': 
         return (
           <>
             <span>Approval</span>
-            <button>Edit</button>
+            <button
+              type="button"
+              disabled={false}
+              onClick={() => this.props.history.push(`/dashboard/edit-document/${id}`)}
+            >Edit</button>
           </>
           );
       case 'waiting_payment':
         return (
           <>
             <span>Waiting Payment</span>
-            <button>Edit</button>
+            <button
+              type="button"
+              disabled={false}
+              onClick={() => this.props.history.push(`/dashboard/edit-document/${id}`)}
+            >Edit</button>
           </>
           );
       case 'paid':
@@ -311,13 +327,25 @@ export class List extends PureComponent<Props> {
       case 'claim': 
         return (
           <>
-            <button>Claim Chat</button>
+            <button
+              type="button"
+              disabled={false}
+              onClick={() => this.props.history.push(`/dashboard/chat-room/${id}`)}
+            >
+              Klaim Chat
+            </button>
           </>
           );
       case 'close_claim':
         return (
           <>
-            <button>Claim Chat</button>
+            <button
+              type="button"
+              disabled={false}
+              onClick={() => this.props.history.push(`/dashboard/chat-room/${id}`)}
+            >
+              Klaim Chat
+            </button>
           </>
           );
       case 'completed':
@@ -370,7 +398,8 @@ export class List extends PureComponent<Props> {
         type_order: key.document_type,
         tanggal: moment(new Date(key.created_at)).format("DD MMMM YYYY"),
         pemohon_order: key.creditor_user.name,
-        status: key.status
+        status: key.status,
+        id: key.id
       })
     })
     // const dataSource = [
@@ -411,9 +440,10 @@ export class List extends PureComponent<Props> {
         title: 'Status',
         dataIndex: 'status',
         key: 'status',
-        render: status => (
-          <span className="status-list">{this.handleStatus(status)}</span>
-        )
+        render: (status, id) => {
+          return (
+          <span className="status-list">{this.handleStatus(status, id.id)}</span>
+        )}
       }
     ];
     if (listOrder.status === 'Success') {

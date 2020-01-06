@@ -20,6 +20,8 @@ import Assign from './Assign'
 import LoadingAssign from './LoadingAssign/LoadingAssign'
 import ChatRoom from './ChatRoom'
 import DashboardProfile from './DashboardNotaris/Profile'
+import KlaimChat from './DashboardNotaris/KlaimChat'
+import EditDocument from './DashboardNotaris/EditDocument'
 
 export { 
   asyncHome, 
@@ -41,5 +43,7 @@ export {
   Assign,
   LoadingAssign,
   ChatRoom,
-  DashboardProfile
+  DashboardProfile,
+  KlaimChat,
+  EditDocument
 };

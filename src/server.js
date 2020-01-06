@@ -103,14 +103,14 @@ app.get('*', (req, res) => {
 
       const staticContext = {};
       const AppComponent = (
-        <ChunkExtractorManager extractor={extractor}>
+        // <ChunkExtractorManager extractor={extractor}>
           <Provider store={store}>
             {/* Setup React-Router server-side rendering */}
             <StaticRouter location={req.path} context={staticContext}>
               {renderRoutes(routes)}
             </StaticRouter>
           </Provider>
-        </ChunkExtractorManager>
+        // </ChunkExtractorManager>
       );
 
       const initialState = store.getState();

@@ -2,7 +2,7 @@
 
 import { usersAction, userAction } from './actions';
 import App from './app';
-import { asyncHome, asyncUserInfo, ChatRoom, LoadingAssign, Assign, NotFound, List, Detail, Order, Login, Register, Account, Forgot, Payment, PaymentDetail, History, Dashboard, DashboardListOrder, AddAgunan, DashboardProfile } from './pages';
+import { asyncHome, asyncUserInfo, ChatRoom, LoadingAssign, EditDocument, Assign, NotFound, List, Detail, Order,KlaimChat, Login, Register, Account, Forgot, Payment, PaymentDetail, History, Dashboard, DashboardListOrder, AddAgunan, DashboardProfile } from './pages';
 import RequireAuth from './components/Page/PublicComponent/index'
 import RequireAuthAgunan from './components/Page/AuthComponent/RequireAuthAgunan'
 
@@ -110,6 +110,19 @@ export default [
         path: '/dashboard/profile',
         exact: true,
         component: DashboardProfile
+      },
+      {
+        path: '/dashboard/chat-room/:id',
+        exact: true,
+        component: KlaimChat
+      },
+      {
+        path: '/dashboard/edit-document/:id',
+        exact: true,
+        component: EditDocument,
+        loadData: ({ params }: Object) => [
+          userAction.fetchUserIfNeeded(params.id)
+        ]
       },
       {
         path: '/assign/:id',
