@@ -4,6 +4,7 @@ import { Icon, Modal } from 'antd'
 import axios from 'axios'
 import Constants from '../../../helpers/constants';
 import CKEditor from '@ckeditor/ckeditor5-react';
+import Swal from 'sweetalert2/dist/sweetalert2'
 import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 import { CookieStorage } from 'cookie-storage'
@@ -29,12 +30,14 @@ class EditDocument extends Component {
         data: {}
       },
       inputChat: '',
-      id_room: null
+      id_room: null,
+      valueEditor: ''
     }
 
     this.handleSign = this.handleSign.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.handleChat = this.handleChat.bind(this)
+    this.handleUploadDocument = this.handleUploadDocument.bind(this)
   }
 
   showModal() {
@@ -120,6 +123,7 @@ class EditDocument extends Component {
     axios.defaults.headers.common.Authorization = `Token ${Constants.TOKEN}`;
 
     axios.get(`${Constants.API}/api/v1/document?doctype=${type}&order_id=${id}`).then(res => {
+      
       return this.setState({
         listChat: {
           status: 'Success',
@@ -136,6 +140,31 @@ class EditDocument extends Component {
     })
   }
 
+  handleUploadDocument() {
+    const { valueEditor } = this.state;
+    const param = {
+      order_id: this.props.match.params.id,
+      html_content: valueEditor
+    }
+    axios.post(`${Constants.API}/api/v1/document/upload`, param).then(res => {
+      return Swal.fire({
+        icon:'success',
+        html: `<div class="text-popup"><h5>Order Telah berhasil di simpan</h5></div>`,
+        confirmButtonText: 'Ok',
+        customClass: {
+          container: 'popup-container poptup-button-red',
+        },
+        width: '400px',
+        preConfirm: () => {
+          this.props.history.push('/dashboard/list-order')
+        },
+        allowOutsideClick: false,
+      })
+    }).catch(err => {
+      
+    })
+  }
+
   handleCancel() {
     this.setState({
       visible: !this.state.visible
@@ -143,8 +172,7 @@ class EditDocument extends Component {
   }
 
   renderChat() {
-    const { listChat, akun } = this.state
-    
+    const { listChat, akun, valueEditor } = this.state
     if (listChat.status === 'Loading') {
       return 'Loading ...'
     }
@@ -161,9 +189,13 @@ class EditDocument extends Component {
                     editor.ui.getEditableElement()
                 );
             } }
-            onChange={ ( event, editor ) => console.log( { event, editor } ) }
+            onChange={(event, editor) => { 
+              this.setState({
+                valueEditor: editor.getData()
+              })
+            }}
             editor={ DecoupledEditor }
-            data={listChat.data.template}
+            data={listChat.data.content ? listChat.data.content : listChat.data.template}
           />
       </div>
     }
@@ -218,7 +250,7 @@ class EditDocument extends Component {
   }
 
   renderDetail() {
-    const { detailAssgin, akun } = this.state
+    const { detailAssgin, akun, valueEditor } = this.state
     console.log(detailAssgin)
     if (detailAssgin.status === 'Loading') {
       return <div className="container">
@@ -247,8 +279,9 @@ class EditDocument extends Component {
               </Card>
               <div className="button-upload">
                 <Button
-                  disabled={false}
+                  disabled={valueEditor ? false : true}
                   type="button"
+                  onClick={this.handleUploadDocument}
                 >Upload</Button>
               </div>
             </div>
