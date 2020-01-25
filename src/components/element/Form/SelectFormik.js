@@ -20,6 +20,7 @@ const SelectFormik = ({
   options,
   onChange,
   value,
+  disabled
 }) => (
   <div className="group-select-formik">
     <label htmlFor={name}>
@@ -32,6 +33,7 @@ const SelectFormik = ({
         value={value}
         onChange={onChange}
         s={s}
+        disabled={disabled}
         // iconRenderer={iconRenderer}
       />
       {error && <span className="error">{error}</span>}

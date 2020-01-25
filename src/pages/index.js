@@ -22,6 +22,7 @@ import ChatRoom from './ChatRoom'
 import DashboardProfile from './DashboardNotaris/Profile'
 import KlaimChat from './DashboardNotaris/KlaimChat'
 import EditDocument from './DashboardNotaris/EditDocument'
+import DashboardHome from './DashboardNotaris/Home';
 
 export { 
   asyncHome, 
@@ -45,5 +46,6 @@ export {
   ChatRoom,
   DashboardProfile,
   KlaimChat,
-  EditDocument
+  EditDocument,
+  DashboardHome
 };

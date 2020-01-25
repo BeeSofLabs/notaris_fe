@@ -518,7 +518,7 @@ export class List extends PureComponent<Props> {
 
   render() {
     return (
-      <DashboardWrapper>
+      <DashboardWrapper page={["3"]}>
         <div className="title-dashboard">
           <h4>List Order</h4>
         </div>

@@ -294,7 +294,7 @@ class EditDocument extends Component {
   render() {
     const { detailAssgin } = this.state
     return (
-      <DashboardWrapper>
+      <DashboardWrapper page={["3"]}>
         <div className="assign-wrapper">  
           {this.renderDetail()}
         </div>

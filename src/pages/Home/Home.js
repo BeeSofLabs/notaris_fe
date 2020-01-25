@@ -7,6 +7,13 @@ import { InputSearch, PageWrapper } from '../../components/element';
 import { usersAction } from '../../actions';
 import type { Home as HomeType, Dispatch, ReduxState } from '../../types';
 import styles from './styles.scss';
+import { Redirect } from 'react-router-dom';
+
+import { CookieStorage } from 'cookie-storage';
+import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string';
+import { Dashboard } from '../Dashboard/Dashboard';
+
+const cookieStorage = new CookieStorage();
 
 type Props = { home: HomeType, fetchUsersIfNeeded: () => void };
 
@@ -21,6 +28,19 @@ export class Home extends PureComponent<Props> {
 
     this.onChange = this.onChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  componentWillMount() {
+    const dataProf = cookieStorage.getItem('prof')
+
+    if (dataProf) {
+      const data = JSON.parse(decompressFromEncodedURIComponent(dataProf));
+      if (
+        data.user_tipe === "notaris"
+      ) {
+        this.props.history.push('/dashboard/list-order')
+      }
+    }
   }
 
   componentDidMount() {
@@ -138,7 +158,7 @@ export class Home extends PureComponent<Props> {
             <div className="container">
               <div className="body-wrapper">
                 <div className="title-section">
-                  <h4>Maps Wilayah Kerja Notaris</h4>
+                  <h4>Peta Lokasi Kantor Notaris dan PPAT</h4>
                 </div>
                 <div className="body-section">
                   <iframe

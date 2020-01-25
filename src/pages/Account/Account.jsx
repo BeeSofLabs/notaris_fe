@@ -81,11 +81,11 @@ export class Account extends PureComponent<Props> {
       ],
       optionsGender: [
         {
-          label: 'Tn',
+          label: 'Laki-laki',
           value: 0
         },
         {
-          label: 'Ny',
+          label: 'Wanita',
           value: 1
         }
       ],
@@ -150,7 +150,7 @@ export class Account extends PureComponent<Props> {
       window.location = '/';
     }
     var d = new Date();
-    var toYear = d.getFullYear() - 20;
+    var toYear = d.getFullYear() - 30;
     d.setFullYear(toYear)
     this.setState({
       default_tanggal_lahir: moment(d, dateFormat)
@@ -490,7 +490,29 @@ export class Account extends PureComponent<Props> {
         {({ errors, touched, values, setFieldValue }) => {
           const onChangeSelect = (name, value) => {
             setFieldValue(name, value);
+            if (name === 'jenis_kelamin') {
+              if (value.label === 'Laki-laki') {
+                setFieldValue('status_pendamping', {
+                  label: 'Suami',
+                  value: 0
+                })
+              } else if (value.label === 'Wanita') {
+                setFieldValue('status_pendamping', {
+                  label: 'Istri',
+                  value: 1
+                })
+              }
+            }
           };
+          const changeUrlInput = (e) => {
+            var str = e.target.value;
+            var pattLat = /\@(-?[\d\.]*)/;
+            var pattLong = /\@[-?\d\.]*\,([-?\d\.]*)/;
+            var resultLat = str.match(pattLat)
+            var resultLong = str.match(pattLong)
+            setFieldValue('latitude', resultLat[1]);
+            setFieldValue('longitude', resultLong[1])
+          }
           const onChangeDate = (date, dateString) => {
             setFieldValue('tanggal_lahir', date);
           };
@@ -498,7 +520,6 @@ export class Account extends PureComponent<Props> {
           const onChangeTextarea = e => {
             setFieldValue(e.target.name, e.target.value);
           };
-          console.log('asd', errors)
           return (
             <Form className="form-login">
               <h3>Data Diri</h3>
@@ -635,6 +656,21 @@ export class Account extends PureComponent<Props> {
                 </div>
                 <div className="col-md-4">
                   <div className="row">
+                    <div className="col-md-12">
+                      <div class="group-input-formik">
+                        <label htmlFor="url-lokasi">
+                          Url lokasi
+
+                          <input 
+                            type="text"
+                            name="url_lokasi"
+                            placeholder="Url Lokasi"
+                            className="formik-input"
+                            onChange={changeUrlInput}
+                          />
+                        </label>
+                      </div>
+                    </div>
                     {/* <div className="col-md-12">
                       <InputFormik
                         name="ibu_kandung"
@@ -648,6 +684,7 @@ export class Account extends PureComponent<Props> {
                         name="longitude"
                         label="Longitude"
                         placeholder="..."
+                        disabled={true}
                         error={
                           errors.luasTanah && touched.luasTanah
                             ? errors.luasTanah
@@ -659,7 +696,8 @@ export class Account extends PureComponent<Props> {
                       <InputFormik
                         name="latitude"
                         label="Latitude"
-                        placeholder="Masukan Latitude"
+                        placeholder="..."
+                        disabled={true}
                         error={
                           errors.latitude && touched.latitude
                             ? errors.latitude
@@ -787,6 +825,7 @@ export class Account extends PureComponent<Props> {
                       </div>
                       <div className="col-md-12">
                         <SelectFormik
+                          disabled
                           name="status_pendamping"
                           label="Status Pendamping"
                           value={values.status_pendamping}
@@ -1133,7 +1172,7 @@ export class Account extends PureComponent<Props> {
       nomor_sk: Yup.string().required('Tidak boleh kosong.'),
       tgl_sk: Yup.string().required('Tidak boleh kosong.'),
       nomor_akta: Yup.string().required('Tidak boleh kosong.'),
-      tanggal_akta: Yup.string().required('Tidak boleh kosong.'),
+      // tanggal_akta: Yup.string().required('Tidak boleh kosong.'),
       // prov_kerja: Yup.string().required('Tidak boleh kosong.'),
       // kot_kerja: Yup.string().required('Tidak boleh kosong.'),
       // kec_kerja: Yup.string().required('Tidak boleh kosong.'),
@@ -1157,7 +1196,7 @@ export class Account extends PureComponent<Props> {
         nomor_sk: Yup.string().required('Tidak boleh kosong.'),
         tgl_sk: Yup.string().required('Tidak boleh kosong.'),
         nomor_akta: Yup.string().required('Tidak boleh kosong.'),
-        tanggal_akta: Yup.string().required('Tidak boleh kosong.'),
+        // tanggal_akta: Yup.string().required('Tidak boleh kosong.'),
         prov_kerja: Yup.string().required('Tidak boleh kosong.'),
         kot_kerja: Yup.string().required('Tidak boleh kosong.'),
         kec_kerja: Yup.string().required('Tidak boleh kosong.'),
@@ -1185,8 +1224,8 @@ export class Account extends PureComponent<Props> {
           tgl_sk: '',
           nomor_akta: '',
           tanggal_akta: moment(new Date(), dateFormat),
-          tempat_lahir: default_tanggal_lahir,
-          tanggal_lahir: '',
+          tempat_lahir: '',
+          tanggal_lahir: default_tanggal_lahir,
           prov_kerja: '',
           kot_kerja:'',
           kec_kerja: '',
@@ -1248,6 +1287,15 @@ export class Account extends PureComponent<Props> {
           const onChangeTextarea = e => {
             setFieldValue(e.target.name, e.target.value);
           };
+          const changeUrlInput = (e) => {
+            var str = e.target.value;
+            var pattLat = /\@(-?[\d\.]*)/;
+            var pattLong = /\@[-?\d\.]*\,([-?\d\.]*)/;
+            var resultLat = str.match(pattLat)
+            var resultLong = str.match(pattLong)
+            setFieldValue('latitude', resultLat[1]);
+            setFieldValue('longitude', resultLong[1])
+          }
           const onChangeDate = (name ,date, dateString) => {
             console.log('asd', name, date)
             setFieldValue(name, date);
@@ -1367,7 +1415,7 @@ export class Account extends PureComponent<Props> {
                 </div>
                 <div className="col-md-4">
                   <div className="row">
-                    <div className="col-md-12">
+                    {/* <div className="col-md-12">
                       <DateInput
                         name="tanggal_akta"
                         label="Tanggal Akta"
@@ -1380,7 +1428,7 @@ export class Account extends PureComponent<Props> {
                             : null
                         }
                       />
-                    </div>
+                    </div> */}
                     <div className="col-md-12">
                       <InputFormik
                         name="tempat_lahir"
@@ -1482,7 +1530,7 @@ export class Account extends PureComponent<Props> {
                 <div className="col-md-4">
                   <InputFormik
                     name="no_fax"
-                    label="Nomor Fax"
+                    label="Nomor Fax Kantor"
                     placeholder="Masukan no fax"
                     error={
                       errors.no_fax && touched.no_fax ? errors.no_fax : null
@@ -1505,10 +1553,26 @@ export class Account extends PureComponent<Props> {
                   />
                 </div>
                 <div className="col-md-4">
+                  <div class="group-input-formik">
+                    <label htmlFor="url-lokasi">
+                      Url lokasi
+
+                      <input 
+                        type="text"
+                        name="url_lokasi"
+                        placeholder="Url Lokasi"
+                        className="formik-input"
+                        onChange={changeUrlInput}
+                      />
+                    </label>
+                  </div>
+                </div>
+                <div className="col-md-4">
                   <InputFormik
                     name="longitude"
                     label="Longitude"
                     placeholder="..."
+                    disabled={true}
                     error={
                       errors.luasTanah && touched.luasTanah
                         ? errors.luasTanah
@@ -1521,6 +1585,7 @@ export class Account extends PureComponent<Props> {
                     name="latitude"
                     label="Latitude"
                     placeholder="..."
+                    disabled={true}
                     error={
                       errors.latitude && touched.latitude
                         ? errors.latitude

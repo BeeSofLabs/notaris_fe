@@ -15,7 +15,7 @@ class DashboardWrapper extends Component {
     window.location = '/';
   }
   render() {
-    const { children } = this.props 
+    const { children, page } = this.props 
     return (
       <Layout style={{ minHeight: '100vh' }}>
         {!this.props.noMenu && <Sider
@@ -49,18 +49,18 @@ class DashboardWrapper extends Component {
               </Col>
             </Row>
           </div>
-          <Menu defaultSelectedKeys={['3']} mode="inline">
+          <Menu defaultSelectedKeys={page} mode="inline">
 
             <Menu.Item key="1">Dashboard</Menu.Item>
-            <Menu.Item key="1">
-              <a href="/dashboard/profile">
+            <Menu.Item key="2">
+              <Link to="/dashboard/profile">
                 Profile
-              </a>
+              </Link>
             </Menu.Item>
-            <Menu.Item key="1">
-              <a href="/dashboard/list-order">
+            <Menu.Item key="3">
+              <Link to="/dashboard/list-order">
                 Order
-              </a>
+              </Link>
             </Menu.Item>
             <button
               type="button"

@@ -224,7 +224,7 @@ export class Profile extends PureComponent<Props> {
 
   render() {
     return (
-      <DashboardWrapper>
+      <DashboardWrapper page={["2"]}>
         <div className="title-dashboard">
           <h4>Profile saya</h4>
         </div>

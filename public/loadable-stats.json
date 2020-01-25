@@ -2,15 +2,12 @@
   "errors": [],
   "warnings": [],
   "version": "4.41.2",
-  "hash": "f14634e0dc9e40f80ab3",
+  "hash": "35a68c0dfcb6f47eae04",
   "publicPath": "/assets/",
   "outputPath": "/home/zilmas/Documents/work-other/notaris_fe/public/assets",
   "assetsByChunkName": {
     "Account": "Account.js",
-    "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9": [
-      "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-      "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js"
-    ],
+    "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9": "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
     "Account~AddAgunan~List": "Account~AddAgunan~List.js",
     "AddAgunan": "AddAgunan.js",
     "Assign": "Assign.js",
@@ -22,7 +19,8 @@
     "History": "History.js",
     "Home": [
       "Home.css",
-      "Home.js"
+      "Home.js",
+      "Home.796ca6f411e8b22cfb80.hot-update.js"
     ],
     "KlaimChat": "KlaimChat.js",
     "List": "List.js",
@@ -41,18 +39,20 @@
       "main.js"
     ],
     "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42": "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
+    "vendors~Account~AddAgunan~Home~Order~Register": "vendors~Account~AddAgunan~Home~Order~Register.js",
     "vendors~Account~AddAgunan~Order~Register": "vendors~Account~AddAgunan~Order~Register.js",
     "vendors~Account~List": "vendors~Account~List.js",
-    "vendors~AddAgunan~Dashboard~EditDocument~Order": "vendors~AddAgunan~Dashboard~EditDocument~Order.js",
-    "vendors~Dashboard": "vendors~Dashboard.js",
-    "vendors~Dashboard~Order": "vendors~Dashboard~Order.js",
+    "vendors~AddAgunan~Dashboard~EditDocument~Home~Order": "vendors~AddAgunan~Dashboard~EditDocument~Home~Order.js",
+    "vendors~Dashboard~Home": "vendors~Dashboard~Home.js",
+    "vendors~Dashboard~Home~Order": "vendors~Dashboard~Home~Order.js",
     "vendors~EditDocument~KlaimChat": "vendors~EditDocument~KlaimChat.js",
+    "vendors~Home": "vendors~Home.js",
     "vendors~Order": "vendors~Order.js"
   },
   "assets": [
     {
-      "name": "1a1d5efeb6d74c1907f0.hot-update.json",
-      "size": 151,
+      "name": "796ca6f411e8b22cfb80.hot-update.json",
+      "size": 46,
       "chunks": [],
       "chunkNames": [],
       "info": {
@@ -63,7 +63,7 @@
     },
     {
       "name": "Account.js",
-      "size": 242287,
+      "size": 249402,
       "chunks": [
         "Account"
       ],
@@ -74,23 +74,8 @@
       "emitted": false
     },
     {
-      "name": "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
-      "size": 22482,
-      "chunks": [
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9"
-      ],
-      "chunkNames": [
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9"
-      ],
-      "info": {
-        "hotModuleReplacement": true,
-        "immutable": true
-      },
-      "emitted": false
-    },
-    {
       "name": "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-      "size": 150113,
+      "size": 150768,
       "chunks": [
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9"
       ],
@@ -174,7 +159,7 @@
     },
     {
       "name": "EditDocument.js",
-      "size": 47252,
+      "size": 47341,
       "chunks": [
         "EditDocument"
       ],
@@ -209,6 +194,21 @@
       "emitted": false
     },
     {
+      "name": "Home.796ca6f411e8b22cfb80.hot-update.js",
+      "size": 18930,
+      "chunks": [
+        "Home"
+      ],
+      "chunkNames": [
+        "Home"
+      ],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
       "name": "Home.css",
       "size": 30,
       "chunks": [
@@ -222,7 +222,7 @@
     },
     {
       "name": "Home.js",
-      "size": 68354,
+      "size": 77660,
       "chunks": [
         "Home"
       ],
@@ -234,7 +234,7 @@
     },
     {
       "name": "KlaimChat.js",
-      "size": 44874,
+      "size": 44963,
       "chunks": [
         "KlaimChat"
       ],
@@ -246,7 +246,7 @@
     },
     {
       "name": "List.js",
-      "size": 193201,
+      "size": 193294,
       "chunks": [
         "List"
       ],
@@ -306,7 +306,7 @@
     },
     {
       "name": "Profile.js",
-      "size": 40038,
+      "size": 40131,
       "chunks": [
         "Profile"
       ],
@@ -318,7 +318,7 @@
     },
     {
       "name": "Register.js",
-      "size": 53932,
+      "size": 52926,
       "chunks": [
         "Register"
       ],
@@ -370,7 +370,7 @@
     },
     {
       "name": "main.css",
-      "size": 982022,
+      "size": 982310,
       "chunks": [
         "main"
       ],
@@ -382,7 +382,7 @@
     },
     {
       "name": "main.js",
-      "size": 21411479,
+      "size": 21419290,
       "chunks": [
         "main"
       ],
@@ -413,8 +413,20 @@
       "emitted": false
     },
     {
+      "name": "vendors~Account~AddAgunan~Home~Order~Register.js",
+      "size": 67494,
+      "chunks": [
+        "vendors~Account~AddAgunan~Home~Order~Register"
+      ],
+      "chunkNames": [
+        "vendors~Account~AddAgunan~Home~Order~Register"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
       "name": "vendors~Account~AddAgunan~Order~Register.js",
-      "size": 420799,
+      "size": 353451,
       "chunks": [
         "vendors~Account~AddAgunan~Order~Register"
       ],
@@ -437,37 +449,37 @@
       "emitted": false
     },
     {
-      "name": "vendors~AddAgunan~Dashboard~EditDocument~Order.js",
-      "size": 244225,
+      "name": "vendors~AddAgunan~Dashboard~EditDocument~Home~Order.js",
+      "size": 244230,
       "chunks": [
-        "vendors~AddAgunan~Dashboard~EditDocument~Order"
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order"
       ],
       "chunkNames": [
-        "vendors~AddAgunan~Dashboard~EditDocument~Order"
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order"
       ],
       "info": {},
       "emitted": false
     },
     {
-      "name": "vendors~Dashboard.js",
-      "size": 693689,
+      "name": "vendors~Dashboard~Home.js",
+      "size": 693694,
       "chunks": [
-        "vendors~Dashboard"
+        "vendors~Dashboard~Home"
       ],
       "chunkNames": [
-        "vendors~Dashboard"
+        "vendors~Dashboard~Home"
       ],
       "info": {},
       "emitted": false
     },
     {
-      "name": "vendors~Dashboard~Order.js",
-      "size": 1131043,
+      "name": "vendors~Dashboard~Home~Order.js",
+      "size": 1131048,
       "chunks": [
-        "vendors~Dashboard~Order"
+        "vendors~Dashboard~Home~Order"
       ],
       "chunkNames": [
-        "vendors~Dashboard~Order"
+        "vendors~Dashboard~Home~Order"
       ],
       "info": {},
       "emitted": false
@@ -480,6 +492,18 @@
       ],
       "chunkNames": [
         "vendors~EditDocument~KlaimChat"
+      ],
+      "info": {},
+      "emitted": false
+    },
+    {
+      "name": "vendors~Home.js",
+      "size": 3858735,
+      "chunks": [
+        "vendors~Home"
+      ],
+      "chunkNames": [
+        "vendors~Home"
       ],
       "info": {},
       "emitted": false
@@ -526,15 +550,27 @@
     "Home": {
       "chunks": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42",
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order",
+        "vendors~Account~AddAgunan~Home~Order~Register",
+        "vendors~Dashboard~Home~Order",
+        "vendors~Dashboard~Home",
+        "vendors~Home",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9",
+        "Dashboard",
         "Home"
       ],
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order.js",
+        "vendors~Account~AddAgunan~Home~Order~Register.js",
+        "vendors~Dashboard~Home~Order.js",
+        "vendors~Dashboard~Home.js",
+        "vendors~Home.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
+        "Dashboard.js",
         "Home.css",
-        "Home.js"
+        "Home.js",
+        "Home.796ca6f411e8b22cfb80.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
@@ -562,7 +598,6 @@
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
         "vendors~Account~List.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Account~AddAgunan~List.js",
         "List.js"
       ],
@@ -578,7 +613,6 @@
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Detail.js"
       ],
       "children": {},
@@ -587,21 +621,22 @@
     "Order": {
       "chunks": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42",
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order",
+        "vendors~Account~AddAgunan~Home~Order~Register",
         "vendors~Account~AddAgunan~Order~Register",
-        "vendors~AddAgunan~Dashboard~EditDocument~Order",
-        "vendors~Dashboard~Order",
+        "vendors~Dashboard~Home~Order",
         "vendors~Order",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9",
         "Order"
       ],
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order.js",
+        "vendors~Account~AddAgunan~Home~Order~Register.js",
         "vendors~Account~AddAgunan~Order~Register.js",
-        "vendors~AddAgunan~Dashboard~EditDocument~Order.js",
-        "vendors~Dashboard~Order.js",
+        "vendors~Dashboard~Home~Order.js",
         "vendors~Order.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Order.js"
       ],
       "children": {},
@@ -616,7 +651,6 @@
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Login.js"
       ],
       "children": {},
@@ -625,15 +659,16 @@
     "Register": {
       "chunks": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42",
+        "vendors~Account~AddAgunan~Home~Order~Register",
         "vendors~Account~AddAgunan~Order~Register",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9",
         "Register"
       ],
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
+        "vendors~Account~AddAgunan~Home~Order~Register.js",
         "vendors~Account~AddAgunan~Order~Register.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Register.js"
       ],
       "children": {},
@@ -642,6 +677,7 @@
     "Account": {
       "chunks": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42",
+        "vendors~Account~AddAgunan~Home~Order~Register",
         "vendors~Account~AddAgunan~Order~Register",
         "vendors~Account~List",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9",
@@ -650,10 +686,10 @@
       ],
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
+        "vendors~Account~AddAgunan~Home~Order~Register.js",
         "vendors~Account~AddAgunan~Order~Register.js",
         "vendors~Account~List.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Account~AddAgunan~List.js",
         "Account.js"
       ],
@@ -669,7 +705,6 @@
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Forgot.js"
       ],
       "children": {},
@@ -684,7 +719,6 @@
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Payment.js"
       ],
       "children": {},
@@ -699,7 +733,6 @@
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "PaymentDetail.js"
       ],
       "children": {},
@@ -714,7 +747,6 @@
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "History.js"
       ],
       "children": {},
@@ -723,19 +755,18 @@
     "Dashboard": {
       "chunks": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42",
-        "vendors~AddAgunan~Dashboard~EditDocument~Order",
-        "vendors~Dashboard~Order",
-        "vendors~Dashboard",
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order",
+        "vendors~Dashboard~Home~Order",
+        "vendors~Dashboard~Home",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9",
         "Dashboard"
       ],
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
-        "vendors~AddAgunan~Dashboard~EditDocument~Order.js",
-        "vendors~Dashboard~Order.js",
-        "vendors~Dashboard.js",
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order.js",
+        "vendors~Dashboard~Home~Order.js",
+        "vendors~Dashboard~Home.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Dashboard.js"
       ],
       "children": {},
@@ -744,18 +775,19 @@
     "AddAgunan": {
       "chunks": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42",
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order",
+        "vendors~Account~AddAgunan~Home~Order~Register",
         "vendors~Account~AddAgunan~Order~Register",
-        "vendors~AddAgunan~Dashboard~EditDocument~Order",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9",
         "Account~AddAgunan~List",
         "AddAgunan"
       ],
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order.js",
+        "vendors~Account~AddAgunan~Home~Order~Register.js",
         "vendors~Account~AddAgunan~Order~Register.js",
-        "vendors~AddAgunan~Dashboard~EditDocument~Order.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Account~AddAgunan~List.js",
         "AddAgunan.js"
       ],
@@ -771,7 +803,6 @@
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Assign.js"
       ],
       "children": {},
@@ -786,7 +817,6 @@
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "ChatRoom.js"
       ],
       "children": {},
@@ -801,7 +831,6 @@
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "Profile.js"
       ],
       "children": {},
@@ -818,7 +847,6 @@
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
         "vendors~EditDocument~KlaimChat.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "KlaimChat.js"
       ],
       "children": {},
@@ -827,17 +855,16 @@
     "EditDocument": {
       "chunks": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42",
-        "vendors~AddAgunan~Dashboard~EditDocument~Order",
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order",
         "vendors~EditDocument~KlaimChat",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9",
         "EditDocument"
       ],
       "assets": [
         "vendors~Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimCha~6efdaa42.js",
-        "vendors~AddAgunan~Dashboard~EditDocument~Order.js",
+        "vendors~AddAgunan~Dashboard~EditDocument~Home~Order.js",
         "vendors~EditDocument~KlaimChat.js",
         "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.js",
-        "Account~AddAgunan~Assign~ChatRoom~Dashboard~Detail~EditDocument~Forgot~History~Home~KlaimChat~List~L~3a2667c9.1a1d5efeb6d74c1907f0.hot-update.js",
         "EditDocument.js"
       ],
       "children": {},

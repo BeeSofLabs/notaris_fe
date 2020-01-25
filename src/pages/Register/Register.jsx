@@ -53,10 +53,6 @@ export class Register extends PureComponent<Props> {
         {
           label: 'Perorangan',
           value: 'pr'
-        },
-        {
-          label: 'Badan Usaha',
-          value: 'bu'
         }
       ],
       loading: false,
@@ -157,10 +153,6 @@ export class Register extends PureComponent<Props> {
                         {
                           label: 'Perorangan',
                           value: 'perorangan'
-                        },
-                        {
-                          label: 'Badan Usaha',
-                          value: 'badan_usaha'
                         }
                       ]
                     }}
@@ -200,10 +192,6 @@ export class Register extends PureComponent<Props> {
                               {
                                 label: 'Perorangan',
                                 value: 'perorangan'
-                              },
-                              {
-                                label: 'Badan Usaha',
-                                value: 'badan_usaha'
                               }
                             ]
                             setFieldValue('optionsStatus', optionsStatus)

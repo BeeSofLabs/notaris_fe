@@ -9,6 +9,7 @@ const InputFormik = ({
   label,
   error,
   optional,
+  disabled
 }) => (
   <div className="group-input-formik">
     <label htmlFor={name}>
@@ -22,6 +23,7 @@ const InputFormik = ({
         placeholder={placeholder}
         className="formik-input"
         id={name}
+        disabled={disabled}
       />
       {error && <span className="error">{error}</span>}
 

@@ -599,3 +599,25 @@ Preserve the relative scale, though. */
   margin-left: calc( 2 * var(--ck-spacing-large) );
   margin-right: calc( 2 * var(--ck-spacing-large) );
 }
+
+.dashboard-chart {
+  padding: 32px 31px;
+
+  // .recharts-wrapper {
+  //   width: 100%!important;
+  // }
+
+  .title-dashboard-chart {
+    h3 {
+      margin-bottom: 20px;
+      font-family: 'Lato';
+      font-size: 16px;
+      font-weight: 600;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.31;
+      letter-spacing: normal;
+      color: #00052e;
+    }
+  }
+}

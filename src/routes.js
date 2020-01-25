@@ -2,7 +2,7 @@
 
 import { usersAction, userAction } from './actions';
 import App from './app';
-import { asyncHome, asyncUserInfo, ChatRoom, LoadingAssign, EditDocument, Assign, NotFound, List, Detail, Order,KlaimChat, Login, Register, Account, Forgot, Payment, PaymentDetail, History, Dashboard, DashboardListOrder, AddAgunan, DashboardProfile } from './pages';
+import { asyncHome, asyncUserInfo, ChatRoom, DashboardHome, LoadingAssign, EditDocument, Assign, NotFound, List, Detail, Order,KlaimChat, Login, Register, Account, Forgot, Payment, PaymentDetail, History, Dashboard, DashboardListOrder, AddAgunan, DashboardProfile } from './pages';
 import RequireAuth from './components/Page/PublicComponent/index'
 import RequireAuthAgunan from './components/Page/AuthComponent/RequireAuthAgunan'
 
@@ -86,11 +86,11 @@ export default [
         exact: true,
         component: History
       },
-      // {
-      //   path: '/dashboard',
-      //   exact: true,
-      //   component: Dashboard
-      // },
+      {
+        path: '/dashboard',
+        exact: true,
+        component: DashboardHome
+      },
       {
         path: '/agunan',
         exact: true,
